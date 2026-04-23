@@ -32,7 +32,7 @@ module pcs_tx #(
     logic signed [2:0]        TD_n;
     logic                     Srev_n;
 
-    // 40.3.1.3.1 scrambler
+    // 40.3.1.3.{1.2} scrambler/S{x,y,g}_n gen
     // 40.3.1.3.3 Sc_n
     // 40.3.1.3.4 Sd_n
     // 40.3.1.3.5 table 
