@@ -7,12 +7,13 @@ module tx_sign_rev (
     input  logic signed [2:0]  TC_n,
     input  logic signed [2:0]  TD_n,
 
-    output logic               Srev_n,
     output logic signed [2:0]  A_n,
     output logic signed [2:0]  B_n,
     output logic signed [2:0]  C_n,
     output logic signed [2:0]  D_n
 );
+    logic Srev_n;
+
     always_comb begin
         Srev_n = tx_enable_n[2] ^ tx_enable_n[4];
 

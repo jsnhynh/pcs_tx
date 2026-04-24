@@ -1,11 +1,9 @@
-package tx_table_data_pkg;
-    typedef logic signed [2:0] qsym_t;
-
+package pcs_tx_pkg;
     typedef struct packed {
-        qsym_t TA_n;
-        qsym_t TB_n;
-        qsym_t TC_n;
-        qsym_t TD_n;
+        logic signed [2:0] TA_n;
+        logic signed [2:0] TB_n;
+        logic signed [2:0] TC_n;
+        logic signed [2:0] TD_n;
     } tx_table_entry_t;
 
     // table 40-1: even subsets [000], [010], [100], [110]

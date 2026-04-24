@@ -3,9 +3,7 @@ module tx_scrambler #(
 ) (
     input  logic         clk,
     input  logic         rst,
-    input  logic         scrambler_reset,
-
-    input  logic         master_mode,
+    input  logic         config_i,
     output logic [3:0]   Sy_n,
     output logic [3:0]   Sx_n,
     output logic [3:0]   Sg_n
@@ -15,8 +13,8 @@ module tx_scrambler #(
     always_comb begin
         // master phy polynomial: 1 + x^13 + x^33
         // slave phy polynomial: 1 + x^20 + x^33
-        Scr_next = (master_mode) ? {Scr_n[31:0], Scr_n[12] ^ Scr_n[32]} :
-                                   {Scr_n[31:0], Scr_n[19] ^ Scr_n[32]};
+        Scr_next = (config_i) ? {Scr_n[31:0], Scr_n[12] ^ Scr_n[32]} :
+                                {Scr_n[31:0], Scr_n[19] ^ Scr_n[32]};
 
         // derived bit streams from the pcs spec
         Sy_n[0] = Scr_n[0];
@@ -30,7 +28,7 @@ module tx_scrambler #(
         Sx_n[3] = Scr_n[13] ^ Scr_n[15] ^ Scr_n[18] ^ Scr_n[20]
                 ^ Scr_n[23] ^ Scr_n[25] ^ Scr_n[28] ^ Scr_n[30];
 
-        Sg_n[0] = Scr_n[11] ^ Scr_n[5];
+        Sg_n[0] = Scr_n[1]  ^ Scr_n[5];
         Sg_n[1] = Scr_n[4]  ^ Scr_n[8]  ^ Scr_n[9]  ^ Scr_n[13];
         Sg_n[2] = Scr_n[7]  ^ Scr_n[11] ^ Scr_n[17] ^ Scr_n[21];
         Sg_n[3] = Scr_n[10] ^ Scr_n[14] ^ Scr_n[15] ^ Scr_n[19]
@@ -38,8 +36,8 @@ module tx_scrambler #(
     end
 
     // shift register
-    always_ff @(posedge clk or posedge rst or posedge scrambler_reset) begin
-        if (rst || scrambler_reset)
+    always_ff @(posedge clk or posedge rst) begin
+        if (rst)
             Scr_n <= (SCR_SEED == '0) ? 33'h1 : SCR_SEED;
         else
             Scr_n <= Scr_next;
