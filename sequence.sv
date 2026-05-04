@@ -32,6 +32,17 @@ class comprehensive_sequence extends uvm_sequence #(seq_item);
         finish_item(item);
     endtask
 
+    task send_rand(input logic cfg_i);
+        seq_item item;
+        item = seq_item::type_id::create("item");
+        start_item(item);
+        item.config_i = cfg_i;
+        if (!item.randomize()) begin
+            `uvm_error(get_type_name(), "randomize failed")
+        end
+        finish_item(item);
+    endtask
+
     task body();
         `uvm_info(get_type_name(), "=== A1: normal data master (256 items)", UVM_LOW)
         normal_data(1'b1);
@@ -73,8 +84,7 @@ class comprehensive_sequence extends uvm_sequence #(seq_item);
     endtask
 
     task random_run(input logic cfg, int n);
-        for (int i = 0; i < n; i++)
-            send($urandom, 1'b1, i[0], 1'b0, cfg, 1'b0, 1'b0, 1'b0);
+        repeat (n) send_rand(cfg);
     endtask
 
     // ----------------------------------------------------------------
@@ -82,8 +92,16 @@ class comprehensive_sequence extends uvm_sequence #(seq_item);
     // ----------------------------------------------------------------
     task tx_mode_tests();
         // B1: tx_mode=1 with tx_enable=1
-        for (int i = 0; i < 64; i++)
-            send($urandom, 1'b1, 1'b0, 1'b1, $urandom[0], $urandom[0], $urandom[0], $urandom[0]);
+        for (int i = 0; i < 64; i++) begin
+            seq_item item;
+            item = seq_item::type_id::create("item");
+            start_item(item);
+            item.tx_enable = 1'b1;
+            item.tx_mode   = 1'b1;
+            item.config_i  = 1'b1;
+            if (!item.randomize()) `uvm_error(get_type_name(), "randomize failed")
+            finish_item(item);
+        end
 
         // B2: tx_mode=1 with tx_enable=0, various sideband
         send(8'h00, 1'b0, 1'b0, 1'b1, 1'b1, 1'b1, 1'b1, 1'b1);
@@ -191,7 +209,7 @@ class comprehensive_sequence extends uvm_sequence #(seq_item);
             for (int lrs = 0; lrs < 2; lrs++)
             for (int llr = 0; llr < 2; llr++)
             for (int lud = 0; lud < 2; lud++)
-                send($urandom, en[0], 1'b0, 1'b0, 1'b1,
+                send(8'h00, en[0], 1'b0, 1'b0, 1'b1,
                      lrs[0], llr[0], lud[0]);
         end
 
@@ -243,7 +261,7 @@ class comprehensive_sequence extends uvm_sequence #(seq_item);
         // walking ones
         for (int b = 0; b < 8; b++) begin
             send(8'b1 << b, 1'b1, 1'b0, 1'b0, 1'b1, 1'b0, 1'b0, 1'b0);
-            send(~(8'b1 << b), 1'b1, $urandom[0], 1'b0, 1'b1, 1'b0, 1'b0, 1'b0);
+            send(~(8'b1 << b), 1'b1, b[0], 1'b0, 1'b1, 1'b0, 1'b0, 1'b0);
         end
 
         // all sideband high + tx_mode=1 + terr=1 + TXD=0x0F
@@ -251,23 +269,14 @@ class comprehensive_sequence extends uvm_sequence #(seq_item);
 
         // rapid enable toggle
         for (int i = 0; i < 16; i++)
-            send($urandom, i[0], 1'b0, 1'b0, 1'b1, 1'b0, 1'b0, 1'b0);
+            send(8'h00 + i[7:0], i[0], 1'b0, 1'b0, 1'b1, 1'b0, 1'b0, 1'b0);
     endtask
 
     // ----------------------------------------------------------------
     // H: random stress
     // ----------------------------------------------------------------
     task random_stress(input logic cfg, int n);
-        logic te, terr, tm, lrs, llr, lud;
-        for (int i = 0; i < n; i++) begin
-            te   = $urandom[0];
-            terr = $urandom[0];
-            tm   = $urandom[0];
-            lrs  = $urandom[0];
-            llr  = $urandom[0];
-            lud  = $urandom[0];
-            send($urandom, te, terr, tm, cfg, lrs, llr, lud);
-        end
+        repeat (n) send_rand(cfg);
     endtask
 
 endclass

@@ -9,16 +9,24 @@ class seq_item extends uvm_sequence_item;
     rand logic       tx_enable;
     rand logic       tx_error;
     rand logic       tx_mode;
-    rand logic       config_i;
+    logic            config_i;
     rand logic       loc_rcvr_status;
     rand logic       loc_lpi_req;
     rand logic       loc_update_done;
 
-    // result fields
-    rand logic signed [2:0] A_n;
-    rand logic signed [2:0] B_n;
-    rand logic signed [2:0] C_n;
-    rand logic signed [2:0] D_n;
+    // result fields (set by monitors, not randomized)
+    logic signed [2:0] A_n;
+    logic signed [2:0] B_n;
+    logic signed [2:0] C_n;
+    logic signed [2:0] D_n;
+
+    constraint c_default {
+        tx_error        dist { 0 := 80, 1 := 20 };
+        tx_mode         dist { 0 := 85, 1 := 15 };
+        loc_rcvr_status dist { 0 := 70, 1 := 30 };
+        loc_lpi_req     dist { 0 := 80, 1 := 20 };
+        loc_update_done dist { 0 := 70, 1 := 30 };
+    }
 
     function new(string name = "seq_item");
         super.new(name);
