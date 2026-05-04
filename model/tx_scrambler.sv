@@ -14,12 +14,12 @@ module tx_scrambler #(
     logic [32:0] Scr_n, Scr_next;
 
     always_comb begin
-        // master phy polynomial: 1 + x^13 + x^33
-        // slave phy polynomial: 1 + x^20 + x^33
+        // master lfsr: x13 + x33
+        // slave lfsr: x20 + x33
         Scr_next = (config_i) ? {Scr_n[31:0], Scr_n[12] ^ Scr_n[32]} :
                                 {Scr_n[31:0], Scr_n[19] ^ Scr_n[32]};
 
-        // derived bit streams from the pcs spec
+        // scramble bits
         Sy_n[0] = Scr_n[0];
         Sy_n[1] = Scr_n[3]  ^ Scr_n[8];
         Sy_n[2] = Scr_n[6]  ^ Scr_n[16];
@@ -38,7 +38,7 @@ module tx_scrambler #(
                 ^ Scr_n[20] ^ Scr_n[24] ^ Scr_n[25] ^ Scr_n[29];
     end
 
-    // shift register
+    // lfsr shift
     always_ff @(posedge clk or posedge rst) begin
         if (rst)
             Scr_n <= (SCR_SEED == '0) ? 33'h1 : SCR_SEED;

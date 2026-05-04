@@ -16,6 +16,9 @@ class scoreboard extends uvm_scoreboard;
     seq_item act_q[$];
     seq_item exp_q[$];
 
+    int match_count;
+    int fail_count;
+
     function new(string name, uvm_component par);
         super.new(name, par);
     endfunction
@@ -51,17 +54,10 @@ class scoreboard extends uvm_scoreboard;
     endfunction
 
     function void compare_if_ready();
-        seq_item in_t;
-        seq_item act_t;
-        seq_item exp_t;
+        seq_item in_t, act_t, exp_t;
 
         while ((act_q.size() > 0) && (exp_q.size() > 0)) begin
-            if (in_q.size() > 0) begin
-                in_t = in_q.pop_front();
-            end else begin
-                in_t = null;
-            end
-
+            in_t = (in_q.size() > 0) ? in_q.pop_front() : null;
             act_t = act_q.pop_front();
             exp_t = exp_q.pop_front();
 
@@ -70,36 +66,13 @@ class scoreboard extends uvm_scoreboard;
                 (exp_t.C_n !== act_t.C_n) ||
                 (exp_t.D_n !== act_t.D_n))
             begin
-                if (in_t != null) begin
-                    `uvm_error("SCOREBOARD",
-                        $sformatf(
-                            {"FAIL :\n",
-                            "IN : TXD=0x%0h tx_enable=%0b tx_error=%0b tx_mode=%0b config_i=%0b loc_rcvr_status=%0b loc_lpi_req=%0b loc_update_done=%0b\n",
-                            "EXP: A=%0d B=%0d C=%0d D=%0d\n",
-                            "ACT: A=%0d B=%0d C=%0d D=%0d"},
-                            in_t.TXD,
-                            in_t.tx_enable,
-                            in_t.tx_error,
-                            in_t.tx_mode,
-                            in_t.config_i,
-                            in_t.loc_rcvr_status,
-                            in_t.loc_lpi_req,
-                            in_t.loc_update_done,
-                            exp_t.A_n, exp_t.B_n, exp_t.C_n, exp_t.D_n,
-                            act_t.A_n, act_t.B_n, act_t.C_n, act_t.D_n
-                        )
-                    );
-                end else begin
-                    `uvm_error("SCOREBOARD",
-                        $sformatf(
-                            {"FAIL :\n",
-                            "EXP: A=%0d B=%0d C=%0d D=%0d\n",
-                            "ACT: A=%0d B=%0d C=%0d D=%0d"},
-                            exp_t.A_n, exp_t.B_n, exp_t.C_n, exp_t.D_n,
-                            act_t.A_n, act_t.B_n, act_t.C_n, act_t.D_n
-                        )
-                    );
-                end
+                fail_count++;
+                `uvm_error("SCB",
+                    $sformatf("FAIL: exp={%0d,%0d,%0d,%0d} act={%0d,%0d,%0d,%0d}",
+                              exp_t.A_n, exp_t.B_n, exp_t.C_n, exp_t.D_n,
+                              act_t.A_n, act_t.B_n, act_t.C_n, act_t.D_n))
+            end else begin
+                match_count++;
             end
         end
     endfunction
@@ -107,15 +80,13 @@ class scoreboard extends uvm_scoreboard;
     function void report_phase(uvm_phase phase);
         super.report_phase(phase);
 
-        if ((act_q.size() != 0) || (exp_q.size() != 0)) begin
-            `uvm_error("SCOREBOARD",
-                $sformatf(
-                    "Unmatched transactions remain: actual=%0d expected=%0d",
-                    act_q.size(),
-                    exp_q.size()
-                )
-            );
-        end
+        if (fail_count == 0 && match_count > 0)
+            `uvm_info("SCB", $sformatf("PASS: %0d items matched", match_count), UVM_NONE)
+        else if (fail_count > 0)
+            `uvm_error("SCB", $sformatf("FAIL: %0d mismatches, %0d matched", fail_count, match_count))
+
+        if ((act_q.size() != 0) || (exp_q.size() != 0))
+            `uvm_error("SCB", $sformatf("leftover items: act=%0d exp=%0d", act_q.size(), exp_q.size()))
     endfunction
 
 endclass

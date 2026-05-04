@@ -4,7 +4,7 @@
 class seq_item extends uvm_sequence_item;
     `uvm_object_utils(seq_item)
 
-    // stimulus fields
+    // input fields
     rand logic [7:0] TXD;
     rand logic       tx_enable;
     rand logic       tx_error;
@@ -14,7 +14,7 @@ class seq_item extends uvm_sequence_item;
     rand logic       loc_lpi_req;
     rand logic       loc_update_done;
 
-    // result fields (set by monitors, not randomized)
+    // output fields
     logic signed [2:0] A_n;
     logic signed [2:0] B_n;
     logic signed [2:0] C_n;

@@ -2,8 +2,8 @@
 `define TX_TABLE_SV
 
 module tx_table (
-    input  logic [4:0]         tx_enable_n,  // [4] = tx_enable_{n-4}, ... [0] = tx_enable_n
-    input  logic [3:0]         tx_error_n,   // [3] = tx_error_{n-3},  ... [0] = tx_error_n
+    input  logic [4:0]         tx_enable_n,  
+    input  logic [3:0]         tx_error_n,   
     input  logic [7:0]         TXD,
     input  logic [8:0]         Sd_n,
 
@@ -46,7 +46,7 @@ module tx_table (
         esd_ext_err_n     = (tx_error_n[0] && tx_error_n[1] && tx_error_n[2] && (TXD != 8'h0F)) ||
                             (tx_error_n[0] && tx_error_n[1] && tx_error_n[2] && tx_error_n[3] && (TXD != 8'h0F));
 
-        // 40.3.1.3.5 row conditions in spec order.
+        // row priority from spec
         row_hit[ROW_XMT_ERR]      = tx_error_n[0]   && tx_enable_n[0]   && tx_enable_n[2];
         row_hit[ROW_CSRESET]      = csreset_n       && !tx_error_n[0];
         row_hit[ROW_CSEXTEND]     = csreset_n       && tx_error_n[0]    && (TXD == 8'h0F);

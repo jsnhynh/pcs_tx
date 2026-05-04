@@ -2,7 +2,7 @@
 `define TX_SIGN_REV_SV
 
 module tx_sign_rev (
-    input  logic [4:0]         tx_enable_n,  // [4] = tx_enable_{n-4}, ... [0] = tx_enable_n
+    input  logic [4:0]         tx_enable_n,  // [4]=enable_{n-4} ... [0]=enable_n
     input  logic [3:0]         Sg_n,
 
     input  logic signed [2:0]  TA_n,

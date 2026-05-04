@@ -5,11 +5,11 @@ module tx_sc_gen (
     input  logic        clk,
     input  logic        rst,
 
-    // dut inputs
-    input  logic [2:0]  tx_enable_n,  // [2] = tx_enable_{n-2}, [1] = tx_enable_{n-1}, [0] = tx_enable_{n}
+    // in
+    input  logic [2:0]  tx_enable_n,  
     input  logic        tx_mode,
 
-    // internal inputs
+    // from scrambler
     input  logic [3:0]  Sy_n,
     input  logic [3:0]  Sx_n,
 
@@ -19,16 +19,16 @@ module tx_sc_gen (
     logic        sc_even_phase;
 
     always_comb begin
-        // Sc_n[7:4]
+        // sc bits 7:4
         if (tx_enable_n[2])         Sc_n[7:4] = Sx_n[3:0];
         else                        Sc_n[7:4] = '0;
 
-        // Sc_n[3:1]
+        // sc bits 3:1
         if (tx_mode)                Sc_n[3:1] = '0;
         else if (sc_even_phase)     Sc_n[3:1] = Sy_n[3:1];
         else                        Sc_n[3:1] = Sy_prev[3:1] ^ 3'b111;
 
-        // Sc_n[0]
+        // sc bit 0
         if (tx_mode)                Sc_n[0] = '0;
         else                        Sc_n[0] = Sy_n[0];
     end

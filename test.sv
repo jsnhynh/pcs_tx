@@ -34,22 +34,22 @@ class test extends uvm_test;
 
         phase.raise_objection(this);
 
-        // initial reset + master run
+        // run 1: master
         apply_reset(1'b1);
         seq = comprehensive_sequence::type_id::create("seq");
         seq.start(e.agt.sqr);
 
-        // F1: reset mid-stream (master)
+        // run 2: master
         apply_reset(1'b1);
         seq = comprehensive_sequence::type_id::create("seq");
         seq.start(e.agt.sqr);
 
-        // F2: reset mid-stream (slave)
+        // run 3: slave
         apply_reset(1'b0);
         seq = comprehensive_sequence::type_id::create("seq");
         seq.start(e.agt.sqr);
 
-        // F4: rapid reset pulse
+        // run 4: quick reset
         vif.rst <= 1'b1;
         @(posedge vif.clk);
         vif.rst <= 1'b0;
