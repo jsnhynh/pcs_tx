@@ -21,16 +21,41 @@ class test extends uvm_test;
         end
     endfunction
 
-    task run_phase(uvm_phase phase);
-        base_sequence seq;
-
-        phase.raise_objection(this);
-
+    task apply_reset(input logic cfg);
+        vif.rst      <= 1'b1;
+        vif.config_i <= cfg;
         repeat (3) @(posedge vif.clk);
         vif.rst <= 1'b0;
         @(negedge vif.clk);
+    endtask
 
-        seq = base_sequence::type_id::create("seq");
+    task run_phase(uvm_phase phase);
+        comprehensive_sequence seq;
+
+        phase.raise_objection(this);
+
+        // initial reset + master run
+        apply_reset(1'b1);
+        seq = comprehensive_sequence::type_id::create("seq");
+        seq.start(e.agt.sqr);
+
+        // F1: reset mid-stream (master)
+        apply_reset(1'b1);
+        seq = comprehensive_sequence::type_id::create("seq");
+        seq.start(e.agt.sqr);
+
+        // F2: reset mid-stream (slave)
+        apply_reset(1'b0);
+        seq = comprehensive_sequence::type_id::create("seq");
+        seq.start(e.agt.sqr);
+
+        // F4: rapid reset pulse
+        vif.rst <= 1'b1;
+        @(posedge vif.clk);
+        vif.rst <= 1'b0;
+        @(negedge vif.clk);
+
+        seq = comprehensive_sequence::type_id::create("seq");
         seq.start(e.agt.sqr);
 
         #100ns;
