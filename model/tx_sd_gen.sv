@@ -1,3 +1,6 @@
+`ifndef TX_SD_GEN_SV
+`define TX_SD_GEN_SV
+
 module tx_sd_gen (
     input  logic        clk,
     input  logic        rst,
@@ -83,3 +86,5 @@ module tx_sd_gen (
     end
 
 endmodule
+
+`endif

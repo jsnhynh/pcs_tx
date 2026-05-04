@@ -1,3 +1,6 @@
+`ifndef PCS_TX_SV
+`define PCS_TX_SV
+
 /*
     omitted due to project scope:
     RX_CLK, RXD, RX_DV, RX_ER, rem_*, CRS, COL, PMA_UNITDATA.indication, PMA_UNITDATA.request
@@ -106,3 +109,5 @@ module pcs_tx #(
     );
 
 endmodule
+
+`endif

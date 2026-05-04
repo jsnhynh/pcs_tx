@@ -1,3 +1,6 @@
+`ifndef PCS_TX_PKG_SV
+`define PCS_TX_PKG_SV
+
 package pcs_tx_pkg;
     typedef struct packed {
         logic signed [2:0] TA_n;
@@ -696,3 +699,5 @@ package pcs_tx_pkg;
         }
     };
 endpackage
+
+`endif

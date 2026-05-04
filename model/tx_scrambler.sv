@@ -1,3 +1,6 @@
+`ifndef TX_SCRAMBLER_SV
+`define TX_SCRAMBLER_SV
+
 module tx_scrambler #(
     parameter logic [32:0] SCR_SEED = 33'h1
 ) (
@@ -44,3 +47,5 @@ module tx_scrambler #(
     end
 
 endmodule
+
+`endif

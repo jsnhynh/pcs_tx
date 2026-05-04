@@ -1,3 +1,6 @@
+`ifndef TX_SC_GEN_SV
+`define TX_SC_GEN_SV
+
 module tx_sc_gen (
     input  logic        clk,
     input  logic        rst,
@@ -41,3 +44,5 @@ module tx_sc_gen (
     end
 
 endmodule
+
+`endif

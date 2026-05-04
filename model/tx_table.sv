@@ -1,3 +1,6 @@
+`ifndef TX_TABLE_SV
+`define TX_TABLE_SV
+
 module tx_table (
     input  logic [4:0]         tx_enable_n,  // [4] = tx_enable_{n-4}, ... [0] = tx_enable_n
     input  logic [3:0]         tx_error_n,   // [3] = tx_error_{n-3},  ... [0] = tx_error_n
@@ -106,3 +109,5 @@ module tx_table (
     end
 
 endmodule
+
+`endif

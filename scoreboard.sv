@@ -1,3 +1,6 @@
+`ifndef SCOREBOARD_SV
+`define SCOREBOARD_SV
+
 `uvm_analysis_imp_decl(_in)
 `uvm_analysis_imp_decl(_act)
 `uvm_analysis_imp_decl(_exp)
@@ -5,13 +8,13 @@
 class scoreboard extends uvm_scoreboard;
     `uvm_component_utils(scoreboard)
 
-    uvm_analysis_imp_in  #(pcs_tx_in_txn,  scoreboard) ap_in;
-    uvm_analysis_imp_act #(pcs_tx_out_txn, scoreboard) ap_act;
-    uvm_analysis_imp_exp #(pcs_tx_out_txn, scoreboard) ap_exp;
+    uvm_analysis_imp_in  #(seq_item, scoreboard) ap_in;
+    uvm_analysis_imp_act #(seq_item, scoreboard) ap_act;
+    uvm_analysis_imp_exp #(seq_item, scoreboard) ap_exp;
 
-    pcs_tx_in_txn   in_q[$];
-    pcs_tx_out_txn  act_q[$];
-    pcs_tx_out_txn  exp_q[$];
+    seq_item in_q[$];
+    seq_item act_q[$];
+    seq_item exp_q[$];
 
     function new(string name, uvm_component par);
         super.new(name, par);
@@ -24,33 +27,33 @@ class scoreboard extends uvm_scoreboard;
         ap_exp = new("ap_exp", this);
     endfunction
 
-    function void write_in(pcs_tx_in_txn t);
-        pcs_tx_in_txn cpy;
-        cpy = pcs_tx_in_txn::type_id::create("cpy");
+    function void write_in(seq_item t);
+        seq_item cpy;
+        cpy = seq_item::type_id::create("cpy");
         cpy.copy(t);
         in_q.push_back(cpy);
     endfunction
 
-    function void write_act(pcs_tx_out_txn t);
-        pcs_tx_out_txn cpy;
-        cpy = pcs_tx_out_txn::type_id::create("cpy");
+    function void write_act(seq_item t);
+        seq_item cpy;
+        cpy = seq_item::type_id::create("cpy");
         cpy.copy(t);
         act_q.push_back(cpy);
         compare_if_ready();
     endfunction
 
-    function void write_exp(pcs_tx_out_txn t);
-        pcs_tx_out_txn cpy;
-        cpy = pcs_tx_out_txn::type_id::create("cpy");
+    function void write_exp(seq_item t);
+        seq_item cpy;
+        cpy = seq_item::type_id::create("cpy");
         cpy.copy(t);
         exp_q.push_back(cpy);
         compare_if_ready();
     endfunction
 
     function void compare_if_ready();
-        pcs_tx_in_txn   in_t;
-        pcs_tx_out_txn  act_t;
-        pcs_tx_out_txn  exp_t;
+        seq_item in_t;
+        seq_item act_t;
+        seq_item exp_t;
 
         while ((act_q.size() > 0) && (exp_q.size() > 0)) begin
             if (in_q.size() > 0) begin
@@ -65,7 +68,7 @@ class scoreboard extends uvm_scoreboard;
             if ((exp_t.A_n !== act_t.A_n) ||
                 (exp_t.B_n !== act_t.B_n) ||
                 (exp_t.C_n !== act_t.C_n) ||
-                (exp_t.D_n !== act_t.D_n)) 
+                (exp_t.D_n !== act_t.D_n))
             begin
                 if (in_t != null) begin
                     `uvm_error("SCOREBOARD",
@@ -116,3 +119,5 @@ class scoreboard extends uvm_scoreboard;
     endfunction
 
 endclass
+
+`endif
