@@ -39,7 +39,7 @@ module pcs_tx_broken #(
     ) u_tx_scrambler (
         .clk             (clk),
         .rst             (rst),
-        .config_i        (~config_i),
+        .config_i        (config_i),
         .Sy_n            (Sy_n),
         .Sx_n            (Sx_n),
         .Sg_n            (Sg_n)
@@ -98,11 +98,15 @@ module pcs_tx_broken #(
         .TC_n           (TC_n),
         .TD_n           (TD_n),
 
-        .A_n            (A_n),
+        .A_n            (A_n_int),
         .B_n            (B_n),
         .C_n            (C_n),
         .D_n            (D_n)
     );
+
+    // BUG: A_n always negated
+    logic signed [2:0] A_n_int;
+    assign A_n = -A_n_int;
 
 endmodule
 
