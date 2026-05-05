@@ -2,3 +2,5 @@
   CREATE_STREAM @30 {NAME:seq T:Transactions SCOPE:uvm_test_top.e.agt.sqr STREAM:713}
   CREATE_STREAM @30 {NAME:seq T:Transactions SCOPE:uvm_test_top.e.agt.sqr STREAM:713}
   CREATE_STREAM @30 {NAME:seq T:Transactions SCOPE:uvm_test_top.e.agt.sqr STREAM:713}
+  CREATE_STREAM @30 {NAME:seq T:Transactions SCOPE:uvm_test_top.e.agt.sqr STREAM:713}
+  CREATE_STREAM @30 {NAME:seq T:Transactions SCOPE:uvm_test_top.e.agt.sqr STREAM:713}

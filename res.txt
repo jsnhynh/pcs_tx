@@ -1,4 +1,3 @@
-bash-5.1$ ../sv_uvm tb_top.sv 
 /apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/bin/vcs: line 3860: lsb_release: command not found
 
 Warning-[LNX_OS_VERUN] Unsupported Linux version
@@ -8,7 +7,7 @@ Warning-[LNX_OS_VERUN] Unsupported Linux version
   Please refer to release notes for information on supported platforms.
 
                          Chronologic VCS (TM)
-         Version U-2023.03-SP2-8 -- Tue May  5 13:23:14 2026
+         Version U-2023.03-SP2-8 -- Tue May  5 13:30:35 2026
 
                     Copyright (c) 1991 - 2024 Synopsys, Inc.
    This software and the associated documentation are proprietary to Synopsys,
@@ -335,6 +334,13 @@ Back to file 'tb_top.sv'.
 Parsing included file 'model/pcs_tx.sv'.
 Back to file 'tb_top.sv'.
 Parsing included file 'model/pcs_tx_broken.sv'.
+
+Warning-[IPDW] Identifier previously declared
+model/pcs_tx_broken.sv, 108
+  Second declaration for identifier 'A_n_int' ignored
+  Identifier 'A_n_int' previously declared as wire. [model/pcs_tx_broken.sv, 
+  101]
+
 Back to file 'tb_top.sv'.
 Parsing included file 'seq_item.sv'.
 Back to file 'tb_top.sv'.
@@ -359,32 +365,35 @@ Back to file 'tb_top.sv'.
 Top Level Modules:
        tb_top
 TimeScale is 1 ns / 1 ns
+
+Warning-[PCWM-W] Port connection width mismatch
+model/pcs_tx_broken.sv, 93
+"tx_sign_rev u_tx_sign_rev( .tx_enable_n (tx_enable_n),  .Sg_n (Sg_n),  .TA_n (TA_n),  .TB_n (TB_n),  .TC_n (TC_n),  .TD_n (TD_n),  .A_n (A_n_int),  .B_n (B_n),  .C_n (C_n),  .D_n (D_n));"
+  The following 1-bit expression is connected to 3-bit port "A_n" of module 
+  "tx_sign_rev", instance "u_tx_sign_rev".
+  Expression: A_n_int
+  Instantiated module defined at: "model/tx_sign_rev.sv", 4
+  Use +lint=PCWM for more details.
+
 Starting vcs inline pass...
 
 11 modules and 0 UDP read.
 recompiling package vcs_paramclassrepository
-recompiling package uvm_pkg
-recompiling module pcs_tx_mon_if
-recompiling module tx_sc_gen
-recompiling module tx_sd_gen
-recompiling module tx_table
-recompiling module pcs_tx
 recompiling module pcs_tx_broken
-recompiling module tb_top
-9 of 11 modules done
-	However, due to incremental compilation, only 9 modules need to be compiled. 
+Both modules done.
+	However, due to incremental compilation, only 2 modules need to be compiled. 
 /bin/ld: rmapats_mop.o: warning: relocation against `HsimLongLong2Int' in read-only section `.text'
 /bin/ld: warning: creating DT_TEXTREL in a shared object
 rm -f _cuarc*.so _csrc*.so pre_vcsobj_*.so share_vcsobj_*.so
 if [ -x ../simv ]; then chmod a-x ../simv; fi
-g++  -o ../simv      -m32 -m32 -rdynamic  -Wl,-rpath='$ORIGIN'/simv.daidir -Wl,-rpath=./simv.daidir -Wl,-rpath=/apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib -L/apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib  -Wl,-rpath-link=./  uvm_dpi.o   objs/amcQw_d.o  _3966649_archive_1.so _prev_archive_1.so  SIM_l.o      rmapats_mop.o rmapats.o rmar.o rmar_nd.o  rmar_llvm_0_1.o rmar_llvm_0_0.o            -lvirsim -lerrorinf -lsnpsmalloc -lvfs    -lvcsnew -lsimprofile -luclinative /apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib/vcs_tls.o   -Wl,-whole-archive  -lvcsucli    -Wl,-no-whole-archive      ./../simv.daidir/vc_hdrs.o    /apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib/vcs_save_restore_new.o /apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib/ctype-stubs_32.a -ldl  -lc -lm -lpthread -ldl 
+g++  -o ../simv      -m32 -m32 -rdynamic  -Wl,-rpath='$ORIGIN'/simv.daidir -Wl,-rpath=./simv.daidir -Wl,-rpath=/apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib -L/apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib  -Wl,-rpath-link=./  uvm_dpi.o   objs/amcQw_d.o  _3969504_archive_1.so _prev_archive_1.so  SIM_l.o      rmapats_mop.o rmapats.o rmar.o rmar_nd.o  rmar_llvm_0_1.o rmar_llvm_0_0.o            -lvirsim -lerrorinf -lsnpsmalloc -lvfs    -lvcsnew -lsimprofile -luclinative /apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib/vcs_tls.o   -Wl,-whole-archive  -lvcsucli    -Wl,-no-whole-archive      ./../simv.daidir/vc_hdrs.o    /apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib/vcs_save_restore_new.o /apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib/ctype-stubs_32.a -ldl  -lc -lm -lpthread -ldl 
 ../simv up to date
-CPU time: 5.141 seconds to compile + .258 seconds to elab + .287 seconds to link
+CPU time: 4.680 seconds to compile + .284 seconds to elab + .255 seconds to link
 Info: [VCS_SAVE_RESTORE_INFO] ASLR (Address Space Layout Randomization) is detected on the machine. To enable $save functionality, ASLR will be switched off and simv re-executed.
 Please use '-no_save' simv switch to avoid re-execution or '-suppress=ASLR_DETECTED_INFO' to suppress this message.
 Chronologic VCS simulator copyright 1991-2023
 Contains Synopsys proprietary information.
-Compiler version U-2023.03-SP2-8; Runtime version U-2023.03-SP2-8;  May  5 13:23 2026
+Compiler version U-2023.03-SP2-8; Runtime version U-2023.03-SP2-8;  May  5 13:30 2026
 UVM_INFO /home/morris/uvm-1.2/src/base/uvm_root.svh(392) @ 0: reporter [UVM/RELNOTES] 
 ----------------------------------------------------------------
 UVM-1.2
@@ -428,7 +437,7 @@ $finish called from file "/home/morris/uvm-1.2/src/base/uvm_root.svh", line 517.
 $finish at simulation time               208275
            V C S   S i m u l a t i o n   R e p o r t 
 Time: 208275 ns
-CPU Time:      1.940 seconds;       Data structure size:   0.2Mb
-Tue May  5 13:23:25 2026
+CPU Time:      1.800 seconds;       Data structure size:   0.2Mb
+Tue May  5 13:30:44 2026
 bash-5.1$ 
 
