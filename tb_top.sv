@@ -32,6 +32,17 @@ module tb_top;
     pcs_tx_mon_if dif_ref(clk);
     pcs_tx_mon_if dif_dut(clk);
 
+    // wire dif_dut inputs from dif_ref so mon_out_dut sees valid rst
+    assign dif_dut.rst             = dif_ref.rst;
+    assign dif_dut.TXD             = dif_ref.TXD;
+    assign dif_dut.tx_enable       = dif_ref.tx_enable;
+    assign dif_dut.tx_error        = dif_ref.tx_error;
+    assign dif_dut.tx_mode         = dif_ref.tx_mode;
+    assign dif_dut.config_i        = dif_ref.config_i;
+    assign dif_dut.loc_rcvr_status = dif_ref.loc_rcvr_status;
+    assign dif_dut.loc_lpi_req     = dif_ref.loc_lpi_req;
+    assign dif_dut.loc_update_done = dif_ref.loc_update_done;
+
     pcs_tx u_ref (
         .clk             (clk),
         .rst             (dif_ref.rst),

@@ -18,6 +18,8 @@ class scoreboard extends uvm_scoreboard;
 
     int match_count;
     int fail_count;
+    int act_rcv_count;
+    int exp_rcv_count;
 
     function new(string name, uvm_component par);
         super.new(name, par);
@@ -42,6 +44,7 @@ class scoreboard extends uvm_scoreboard;
         cpy = seq_item::type_id::create("cpy");
         cpy.copy(t);
         act_q.push_back(cpy);
+        act_rcv_count++;
         compare_if_ready();
     endfunction
 
@@ -50,6 +53,7 @@ class scoreboard extends uvm_scoreboard;
         cpy = seq_item::type_id::create("cpy");
         cpy.copy(t);
         exp_q.push_back(cpy);
+        exp_rcv_count++;
         compare_if_ready();
     endfunction
 
@@ -79,6 +83,9 @@ class scoreboard extends uvm_scoreboard;
 
     function void report_phase(uvm_phase phase);
         super.report_phase(phase);
+
+        `uvm_info("SCB", $sformatf("received: act=%0d exp=%0d  compared: match=%0d fail=%0d  leftover: act_q=%0d exp_q=%0d",
+            act_rcv_count, exp_rcv_count, match_count, fail_count, act_q.size(), exp_q.size()), UVM_NONE)
 
         if (fail_count == 0 && match_count > 0)
             `uvm_info("SCB", $sformatf("PASS: %0d items matched", match_count), UVM_NONE)
