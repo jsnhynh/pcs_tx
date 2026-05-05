@@ -30,18 +30,11 @@ module tb_top;
     logic clk;
 
     pcs_tx_mon_if dif_ref(clk);
-    pcs_tx_mon_if dif_dut(clk);
+    pcs_tx_out_if ref_out(clk);
+    pcs_tx_out_if dut_out(clk);
 
-    // wire dif_dut inputs from dif_ref so mon_out_dut sees valid rst
-    assign dif_dut.rst             = dif_ref.rst;
-    assign dif_dut.TXD             = dif_ref.TXD;
-    assign dif_dut.tx_enable       = dif_ref.tx_enable;
-    assign dif_dut.tx_error        = dif_ref.tx_error;
-    assign dif_dut.tx_mode         = dif_ref.tx_mode;
-    assign dif_dut.config_i        = dif_ref.config_i;
-    assign dif_dut.loc_rcvr_status = dif_ref.loc_rcvr_status;
-    assign dif_dut.loc_lpi_req     = dif_ref.loc_lpi_req;
-    assign dif_dut.loc_update_done = dif_ref.loc_update_done;
+    assign ref_out.rst = dif_ref.rst;
+    assign dut_out.rst = dif_ref.rst;
 
     pcs_tx u_ref (
         .clk             (clk),
@@ -54,10 +47,10 @@ module tb_top;
         .loc_rcvr_status (dif_ref.loc_rcvr_status),
         .loc_lpi_req     (dif_ref.loc_lpi_req),
         .loc_update_done (dif_ref.loc_update_done),
-        .A_n             (dif_ref.A_n),
-        .B_n             (dif_ref.B_n),
-        .C_n             (dif_ref.C_n),
-        .D_n             (dif_ref.D_n)
+        .A_n             (ref_out.A_n),
+        .B_n             (ref_out.B_n),
+        .C_n             (ref_out.C_n),
+        .D_n             (ref_out.D_n)
     );
 
     pcs_tx_broken u_dut (
@@ -71,10 +64,10 @@ module tb_top;
         .loc_rcvr_status (dif_ref.loc_rcvr_status),
         .loc_lpi_req     (dif_ref.loc_lpi_req),
         .loc_update_done (dif_ref.loc_update_done),
-        .A_n             (dif_dut.A_n),
-        .B_n             (dif_dut.B_n),
-        .C_n             (dif_dut.C_n),
-        .D_n             (dif_dut.D_n)
+        .A_n             (dut_out.A_n),
+        .B_n             (dut_out.B_n),
+        .C_n             (dut_out.C_n),
+        .D_n             (dut_out.D_n)
     );
 
     always #5 clk <= ~clk;
@@ -92,10 +85,10 @@ module tb_top;
         dif_ref.loc_lpi_req      = 1'b0;
         dif_ref.loc_update_done  = 1'b0;
 
-        uvm_config_db #(virtual pcs_tx_mon_if)::set(null, "*.agt.*",   "vif", dif_ref);
-        uvm_config_db #(virtual pcs_tx_mon_if)::set(null, "*.mon_out_gm", "vif", dif_ref);
-        uvm_config_db #(virtual pcs_tx_mon_if)::set(null, "*.mon_out_dut","vif", dif_dut);
-        uvm_config_db #(virtual pcs_tx_mon_if)::set(null, "*",          "vif", dif_ref);
+        uvm_config_db #(virtual pcs_tx_mon_if)::set(null, "uvm_test_top",       "vif", dif_ref);
+        uvm_config_db #(virtual pcs_tx_mon_if)::set(null, "uvm_test_top.e.agt.*","vif", dif_ref);
+        uvm_config_db #(virtual pcs_tx_out_if)::set(null, "uvm_test_top.e.mon_out_gm", "vif", ref_out);
+        uvm_config_db #(virtual pcs_tx_out_if)::set(null, "uvm_test_top.e.mon_out_dut","vif", dut_out);
 
         run_test("test");
     end

@@ -82,4 +82,29 @@ interface pcs_tx_mon_if(input logic clk);
 
 endinterface
 
+interface pcs_tx_out_if(input logic clk);
+
+    logic        rst;
+
+    logic signed [2:0] A_n;
+    logic signed [2:0] B_n;
+    logic signed [2:0] C_n;
+    logic signed [2:0] D_n;
+
+    clocking mon_cb @(posedge clk);
+        default input #1step;
+        input rst;
+        input A_n;
+        input B_n;
+        input C_n;
+        input D_n;
+    endclocking
+
+    modport MON (
+        clocking mon_cb,
+        input clk
+    );
+
+endinterface
+
 `endif

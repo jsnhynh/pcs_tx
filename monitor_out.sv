@@ -4,7 +4,7 @@
 class mon_pcs_tx_out extends uvm_monitor;
     `uvm_component_utils(mon_pcs_tx_out)
 
-    virtual pcs_tx_mon_if vif;
+    virtual pcs_tx_out_if vif;
 
     uvm_analysis_port #(seq_item) ap;
 
@@ -17,7 +17,7 @@ class mon_pcs_tx_out extends uvm_monitor;
 
         ap = new("ap", this);
 
-        if (!uvm_config_db #(virtual pcs_tx_mon_if)::get(this, "", "vif", vif)) begin
+        if (!uvm_config_db #(virtual pcs_tx_out_if)::get(this, "", "vif", vif)) begin
             `uvm_fatal("NOVIF", "virtual interface not set for mon_pcs_tx_out")
         end
     endfunction
@@ -27,7 +27,7 @@ class mon_pcs_tx_out extends uvm_monitor;
 
         forever begin
             @(vif.mon_cb);
-            if (vif.rst) continue;
+            if (vif.mon_cb.rst) continue;
 
             txn = seq_item::type_id::create("txn");
             txn.A_n = vif.mon_cb.A_n;
