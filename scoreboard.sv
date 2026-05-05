@@ -22,7 +22,15 @@ class scoreboard extends uvm_scoreboard;
     int in_rcv_count;
     int act_rcv_count;
     int exp_rcv_count;
+    int lane_fail_count[4];
     int max_mismatch_log = 20;
+    int seq_compare_count[int unsigned];
+    int seq_match_count[int unsigned];
+    int seq_fail_count[int unsigned];
+    int seq_lane_a_fail[int unsigned];
+    int seq_lane_b_fail[int unsigned];
+    int seq_lane_c_fail[int unsigned];
+    int seq_lane_d_fail[int unsigned];
 
     function new(string name, uvm_component par);
         super.new(name, par);
@@ -33,6 +41,7 @@ class scoreboard extends uvm_scoreboard;
         ap_in  = new("ap_in",  this);
         ap_act = new("ap_act", this);
         ap_exp = new("ap_exp", this);
+        void'($value$plusargs("SCB_MAX_MISMATCH_LOG=%d", max_mismatch_log));
     endfunction
 
     function void write_in(seq_item t);
@@ -70,9 +79,25 @@ class scoreboard extends uvm_scoreboard;
 
     function string fmt_in(seq_item t);
         if (t == null) return "<input not captured>";
-        return $sformatf("TXD=0x%02h tx_en=%0b tx_err=%0b tx_mode=%0b cfg=%0b lrs=%0b lpi=%0b upd=%0b",
-                         t.TXD, t.tx_enable, t.tx_error, t.tx_mode, t.config_i,
+        return $sformatf("seq=%s TXD=0x%02h tx_en=%0b tx_err=%0b tx_mode=%0b cfg=%0b lrs=%0b lpi=%0b upd=%0b",
+                         scenario_name(t.scenario_id), t.TXD, t.tx_enable, t.tx_error, t.tx_mode, t.config_i,
                          t.loc_rcvr_status, t.loc_lpi_req, t.loc_update_done);
+    endfunction
+
+    function string scenario_name(int unsigned scenario_id);
+        case (scenario_id)
+            1:  return "normal_data_cfg1";
+            2:  return "normal_data_cfg0";
+            3:  return "random_run_cfg1";
+            4:  return "tx_mode_tests";
+            5:  return "special_rows";
+            6:  return "sideband_perms";
+            7:  return "error_injection";
+            8:  return "corner_cases";
+            9:  return "random_stress_cfg1";
+            10: return "random_stress_cfg0";
+            default: return "idle_or_unlabeled";
+        endcase
     endfunction
 
     function string diff_fields(seq_item exp_t, seq_item act_t);
@@ -85,6 +110,20 @@ class scoreboard extends uvm_scoreboard;
         return fields;
     endfunction
 
+    function void count_lane_mismatches(seq_item exp_t, seq_item act_t);
+        if (exp_t.A_n !== act_t.A_n) lane_fail_count[0]++;
+        if (exp_t.B_n !== act_t.B_n) lane_fail_count[1]++;
+        if (exp_t.C_n !== act_t.C_n) lane_fail_count[2]++;
+        if (exp_t.D_n !== act_t.D_n) lane_fail_count[3]++;
+    endfunction
+
+    function void count_seq_lane_mismatches(int unsigned scenario_id, seq_item exp_t, seq_item act_t);
+        if (exp_t.A_n !== act_t.A_n) seq_lane_a_fail[scenario_id]++;
+        if (exp_t.B_n !== act_t.B_n) seq_lane_b_fail[scenario_id]++;
+        if (exp_t.C_n !== act_t.C_n) seq_lane_c_fail[scenario_id]++;
+        if (exp_t.D_n !== act_t.D_n) seq_lane_d_fail[scenario_id]++;
+    endfunction
+
     function void compare_if_ready();
         seq_item in_t, act_t, exp_t;
 
@@ -93,6 +132,7 @@ class scoreboard extends uvm_scoreboard;
             act_t = act_q.pop_front();
             exp_t = exp_q.pop_front();
             compare_count++;
+            seq_compare_count[in_t.scenario_id]++;
 
             if ((exp_t.A_n !== act_t.A_n) ||
                 (exp_t.B_n !== act_t.B_n) ||
@@ -100,6 +140,9 @@ class scoreboard extends uvm_scoreboard;
                 (exp_t.D_n !== act_t.D_n))
             begin
                 fail_count++;
+                seq_fail_count[in_t.scenario_id]++;
+                count_lane_mismatches(exp_t, act_t);
+                count_seq_lane_mismatches(in_t.scenario_id, exp_t, act_t);
                 if (fail_count <= max_mismatch_log) begin
                     `uvm_error("SCB_MISMATCH",
                         $sformatf("compare[%0d] mismatched fields:%s  input={%s}  exp=%s act=%s",
@@ -112,7 +155,25 @@ class scoreboard extends uvm_scoreboard;
                 end
             end else begin
                 match_count++;
+                seq_match_count[in_t.scenario_id]++;
             end
+        end
+    endfunction
+
+    function void report_sequence_summary();
+        foreach (seq_compare_count[scenario_id]) begin
+            string status;
+            status = (seq_fail_count[scenario_id] == 0) ? "PASS" : "FAIL";
+            `uvm_info("SCB_SEQ", $sformatf("%s: seq=%s compared=%0d pass=%0d fail=%0d lane_fail={A:%0d B:%0d C:%0d D:%0d}",
+                status,
+                scenario_name(scenario_id),
+                seq_compare_count[scenario_id],
+                seq_match_count[scenario_id],
+                seq_fail_count[scenario_id],
+                seq_lane_a_fail[scenario_id],
+                seq_lane_b_fail[scenario_id],
+                seq_lane_c_fail[scenario_id],
+                seq_lane_d_fail[scenario_id]), UVM_NONE)
         end
     endfunction
 
@@ -128,10 +189,14 @@ class scoreboard extends uvm_scoreboard;
         else if (fail_count == 0)
             `uvm_info("SCB", $sformatf("PASS: %0d items matched", match_count), UVM_NONE)
         else if (fail_count > 0)
-            `uvm_error("SCB", $sformatf("FAIL: %0d mismatches, %0d matched", fail_count, match_count))
+            `uvm_error("SCB", $sformatf("FAIL: %0d mismatches; PASS: %0d matched  lane mismatches: A=%0d B=%0d C=%0d D=%0d",
+                fail_count, match_count,
+                lane_fail_count[0], lane_fail_count[1], lane_fail_count[2], lane_fail_count[3]))
 
         if ((in_q.size() != 0) || (act_q.size() != 0) || (exp_q.size() != 0))
             `uvm_error("SCB", $sformatf("leftover items: in=%0d act=%0d exp=%0d", in_q.size(), act_q.size(), exp_q.size()))
+
+        report_sequence_summary();
     endfunction
 
 endclass

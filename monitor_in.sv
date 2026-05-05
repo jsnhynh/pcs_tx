@@ -27,7 +27,7 @@ class mon_pcs_tx_in extends uvm_monitor;
 
         forever begin
             @(vif.mon_cb);
-            if (vif.rst) continue;
+            if (vif.mon_cb.rst) continue;
 
             txn = seq_item::type_id::create("txn");
             txn.TXD              = vif.mon_cb.TXD;
@@ -38,6 +38,7 @@ class mon_pcs_tx_in extends uvm_monitor;
             txn.loc_rcvr_status  = vif.mon_cb.loc_rcvr_status;
             txn.loc_lpi_req      = vif.mon_cb.loc_lpi_req;
             txn.loc_update_done  = vif.mon_cb.loc_update_done;
+            txn.scenario_id      = vif.mon_cb.scenario_id;
 
             ap.write(txn);
         end

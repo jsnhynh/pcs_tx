@@ -4,6 +4,20 @@
 class comprehensive_sequence extends uvm_sequence #(seq_item);
     `uvm_object_utils(comprehensive_sequence)
 
+    localparam int unsigned SCN_IDLE              = 0;
+    localparam int unsigned SCN_NORMAL_CFG1       = 1;
+    localparam int unsigned SCN_NORMAL_CFG0       = 2;
+    localparam int unsigned SCN_RANDOM_RUN_CFG1   = 3;
+    localparam int unsigned SCN_TX_MODE           = 4;
+    localparam int unsigned SCN_SPECIAL_ROWS      = 5;
+    localparam int unsigned SCN_SIDEBAND_PERMS    = 6;
+    localparam int unsigned SCN_ERROR_INJECTION   = 7;
+    localparam int unsigned SCN_CORNER_CASES      = 8;
+    localparam int unsigned SCN_RANDOM_STRESS_CFG1 = 9;
+    localparam int unsigned SCN_RANDOM_STRESS_CFG0 = 10;
+
+    int unsigned current_scenario_id = SCN_IDLE;
+
     function new(string name = "comprehensive_sequence");
         super.new(name);
     endfunction
@@ -29,6 +43,7 @@ class comprehensive_sequence extends uvm_sequence #(seq_item);
         item.loc_rcvr_status  = lrs_i;
         item.loc_lpi_req      = llr_i;
         item.loc_update_done  = lud_i;
+        item.scenario_id      = current_scenario_id;
         finish_item(item);
     endtask
 
@@ -38,6 +53,7 @@ class comprehensive_sequence extends uvm_sequence #(seq_item);
         item = seq_item::type_id::create("item");
         start_item(item);
         item.config_i = cfg_i;
+        item.scenario_id = current_scenario_id;
         if (!item.randomize()) begin
             `uvm_error(get_type_name(), "randomize failed")
         end
@@ -59,15 +75,18 @@ class comprehensive_sequence extends uvm_sequence #(seq_item);
 
     // all 256 txd values, enable on
     task normal_data(input logic cfg);
+        current_scenario_id = cfg ? SCN_NORMAL_CFG1 : SCN_NORMAL_CFG0;
         for (int i = 0; i < 256; i++)
             send(i[7:0], 1'b1, 1'b0, 1'b0, cfg, 1'b0, 1'b0, 1'b0);
     endtask
 
     task random_run(input logic cfg, int n);
+        current_scenario_id = SCN_RANDOM_RUN_CFG1;
         repeat (n) send_rand(cfg);
     endtask
 
     task tx_mode_tests();
+        current_scenario_id = SCN_TX_MODE;
         // tx_mode=1, enable=1, random sidebands
         for (int i = 0; i < 64; i++) begin
             seq_item item;
@@ -76,6 +95,7 @@ class comprehensive_sequence extends uvm_sequence #(seq_item);
             item.tx_enable = 1'b1;
             item.tx_mode   = 1'b1;
             item.config_i  = 1'b1;
+            item.scenario_id = current_scenario_id;
             if (!item.randomize()) `uvm_error(get_type_name(), "randomize failed")
             finish_item(item);
         end
@@ -94,6 +114,7 @@ class comprehensive_sequence extends uvm_sequence #(seq_item);
 
     // hit every special row in table 40-1 / 40-2
     task special_rows();
+        current_scenario_id = SCN_SPECIAL_ROWS;
         // xmt_err: te_n[0]=1, te_n[2]=1, terr_n[0]=1
         send(8'h00, 1'b1, 1'b0, 1'b0, 1'b1, 1'b0, 1'b0, 1'b0);
         send(8'h00, 1'b1, 1'b0, 1'b0, 1'b1, 1'b0, 1'b0, 1'b0);
@@ -161,6 +182,7 @@ class comprehensive_sequence extends uvm_sequence #(seq_item);
 
     // all 8 sideband combos, enable on/off
     task sideband_perms();
+        current_scenario_id = SCN_SIDEBAND_PERMS;
         for (int en = 0; en < 2; en++) begin
             for (int lrs = 0; lrs < 2; lrs++)
             for (int llr = 0; llr < 2; llr++)
@@ -181,6 +203,7 @@ class comprehensive_sequence extends uvm_sequence #(seq_item);
     endtask
 
     task error_injection();
+        current_scenario_id = SCN_ERROR_INJECTION;
         // single error pulses across history depths
         send(8'h00, 1'b1, 1'b1, 1'b0, 1'b1, 1'b0, 1'b0, 1'b0);
         send(8'h00, 1'b1, 1'b0, 1'b0, 1'b1, 1'b0, 1'b0, 1'b0);
@@ -203,6 +226,7 @@ class comprehensive_sequence extends uvm_sequence #(seq_item);
     endtask
 
     task corner_cases();
+        current_scenario_id = SCN_CORNER_CASES;
         send(8'h00, 1'b1, 1'b0, 1'b0, 1'b1, 1'b0, 1'b0, 1'b0);
         send(8'hFF, 1'b1, 1'b0, 1'b0, 1'b1, 1'b0, 1'b0, 1'b0);
         send(8'h0F, 1'b1, 1'b0, 1'b0, 1'b1, 1'b0, 1'b0, 1'b0);
@@ -222,6 +246,7 @@ class comprehensive_sequence extends uvm_sequence #(seq_item);
     endtask
 
     task random_stress(input logic cfg, int n);
+        current_scenario_id = cfg ? SCN_RANDOM_STRESS_CFG1 : SCN_RANDOM_STRESS_CFG0;
         repeat (n) send_rand(cfg);
     endtask
 

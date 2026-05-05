@@ -13,6 +13,7 @@ class seq_item extends uvm_sequence_item;
     rand logic       loc_rcvr_status;
     rand logic       loc_lpi_req;
     rand logic       loc_update_done;
+    int unsigned     scenario_id;
 
     // output fields
     logic signed [2:0] A_n;
@@ -42,6 +43,7 @@ class seq_item extends uvm_sequence_item;
         printer.print_field("loc_rcvr_status",  loc_rcvr_status,  1, UVM_BIN);
         printer.print_field("loc_lpi_req",      loc_lpi_req,      1, UVM_BIN);
         printer.print_field("loc_update_done",  loc_update_done,  1, UVM_BIN);
+        printer.print_field_int("scenario_id", scenario_id, 32, UVM_DEC);
         printer.print_field_int("A_n", A_n, 3, UVM_DEC);
         printer.print_field_int("B_n", B_n, 3, UVM_DEC);
         printer.print_field_int("C_n", C_n, 3, UVM_DEC);
@@ -62,6 +64,7 @@ class seq_item extends uvm_sequence_item;
         loc_rcvr_status  = rhs_.loc_rcvr_status;
         loc_lpi_req      = rhs_.loc_lpi_req;
         loc_update_done  = rhs_.loc_update_done;
+        scenario_id      = rhs_.scenario_id;
         A_n              = rhs_.A_n;
         B_n              = rhs_.B_n;
         C_n              = rhs_.C_n;
@@ -80,6 +83,7 @@ class seq_item extends uvm_sequence_item;
                 (loc_rcvr_status === rhs_.loc_rcvr_status) &&
                 (loc_lpi_req     === rhs_.loc_lpi_req)     &&
                 (loc_update_done === rhs_.loc_update_done) &&
+                (scenario_id     ==  rhs_.scenario_id)     &&
                 (A_n             === rhs_.A_n)             &&
                 (B_n             === rhs_.B_n)             &&
                 (C_n             === rhs_.C_n)             &&

@@ -53,7 +53,11 @@ module tb_top;
         .D_n             (ref_out.D_n)
     );
 
+`ifdef DUT_IS_GOLDEN
+    pcs_tx u_dut (
+`else
     pcs_tx_broken u_dut (
+`endif
         .clk             (clk),
         .rst             (dif_ref.rst),
         .TXD             (dif_ref.TXD),
@@ -84,6 +88,7 @@ module tb_top;
         dif_ref.loc_rcvr_status  = 1'b0;
         dif_ref.loc_lpi_req      = 1'b0;
         dif_ref.loc_update_done  = 1'b0;
+        dif_ref.scenario_id      = 0;
 
         uvm_config_db #(virtual pcs_tx_mon_if)::set(null, "uvm_test_top",       "vif", dif_ref);
         uvm_config_db #(virtual pcs_tx_mon_if)::set(null, "uvm_test_top.e.agt.*","vif", dif_ref);

@@ -24,6 +24,7 @@ class test extends uvm_test;
     task apply_reset(input logic cfg);
         vif.rst      <= 1'b1;
         vif.config_i <= cfg;
+        vif.scenario_id <= 0;
         repeat (3) @(posedge vif.clk);
         vif.rst <= 1'b0;
         @(negedge vif.clk);
@@ -50,6 +51,7 @@ class test extends uvm_test;
         seq.start(e.agt.sqr);
 
         // run 4: quick reset
+        vif.scenario_id <= 0;
         vif.rst <= 1'b1;
         @(posedge vif.clk);
         vif.rst <= 1'b0;

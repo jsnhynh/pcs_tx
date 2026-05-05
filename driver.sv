@@ -32,6 +32,7 @@ class driver extends uvm_driver #(seq_item);
             vif.drv_cb.loc_rcvr_status  <= item.loc_rcvr_status;
             vif.drv_cb.loc_lpi_req      <= item.loc_lpi_req;
             vif.drv_cb.loc_update_done  <= item.loc_update_done;
+            vif.drv_cb.scenario_id      <= item.scenario_id;
 
             seq_item_port.item_done();
         end
