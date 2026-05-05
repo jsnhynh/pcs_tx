@@ -1,3 +1,4 @@
+bash-5.1$ ../sv_uvm tb_top.sv 
 /apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/bin/vcs: line 3860: lsb_release: command not found
 
 Warning-[LNX_OS_VERUN] Unsupported Linux version
@@ -7,7 +8,7 @@ Warning-[LNX_OS_VERUN] Unsupported Linux version
   Please refer to release notes for information on supported platforms.
 
                          Chronologic VCS (TM)
-         Version U-2023.03-SP2-8 -- Tue May  5 13:30:35 2026
+         Version U-2023.03-SP2-8 -- Tue May  5 15:40:31 2026
 
                     Copyright (c) 1991 - 2024 Synopsys, Inc.
    This software and the associated documentation are proprietary to Synopsys,
@@ -375,25 +376,307 @@ model/pcs_tx_broken.sv, 93
   Instantiated module defined at: "model/tx_sign_rev.sv", 4
   Use +lint=PCWM for more details.
 
+
+Warning-[ICPSD_W] Illegal combination of drivers
+interface.sv, 6
+  Illegal combination of structural and procedural drivers.
+  Variable "rst" is driven by an invalid combination of structural and 
+  procedural drivers. Variables driven by a structural driver cannot have any 
+  other drivers.
+  This variable is declared at "interface.sv", 6: logic rst;
+  The first driver is at "tb_top.sv", 36: assign tb_top.dif_dut.rst = 
+  tb_top.dif_ref.rst;
+  The second driver is at "interface.sv", 24: output rst = rst;
+  
+  This warning will be upgraded to error in future releases
+  
+
+
+Warning-[ICPSD_W] Illegal combination of drivers
+interface.sv, 8
+  Illegal combination of structural and procedural drivers.
+  Variable "TXD" is driven by an invalid combination of structural and 
+  procedural drivers. Variables driven by a structural driver cannot have any 
+  other drivers.
+  This variable is declared at "interface.sv", 8: logic [7:0] TXD;
+  The first driver is at "tb_top.sv", 37: assign tb_top.dif_dut.TXD = 
+  tb_top.dif_ref.TXD;
+  The second driver is at "interface.sv", 25: output TXD = TXD;
+  
+  This warning will be upgraded to error in future releases
+  
+
+
+Warning-[ICPSD_W] Illegal combination of drivers
+interface.sv, 9
+  Illegal combination of structural and procedural drivers.
+  Variable "tx_enable" is driven by an invalid combination of structural and 
+  procedural drivers. Variables driven by a structural driver cannot have any 
+  other drivers.
+  This variable is declared at "interface.sv", 9: logic tx_enable;
+  The first driver is at "tb_top.sv", 38: assign tb_top.dif_dut.tx_enable = 
+  tb_top.dif_ref.tx_enable;
+  The second driver is at "interface.sv", 26: output tx_enable = tx_enable;
+  
+  This warning will be upgraded to error in future releases
+  
+
+
+Warning-[ICPSD_W] Illegal combination of drivers
+interface.sv, 10
+  Illegal combination of structural and procedural drivers.
+  Variable "tx_error" is driven by an invalid combination of structural and 
+  procedural drivers. Variables driven by a structural driver cannot have any 
+  other drivers.
+  This variable is declared at "interface.sv", 10: logic tx_error;
+  The first driver is at "tb_top.sv", 39: assign tb_top.dif_dut.tx_error = 
+  tb_top.dif_ref.tx_error;
+  The second driver is at "interface.sv", 27: output tx_error = tx_error;
+  
+  This warning will be upgraded to error in future releases
+  
+
+
+Warning-[ICPSD_W] Illegal combination of drivers
+interface.sv, 11
+  Illegal combination of structural and procedural drivers.
+  Variable "tx_mode" is driven by an invalid combination of structural and 
+  procedural drivers. Variables driven by a structural driver cannot have any 
+  other drivers.
+  This variable is declared at "interface.sv", 11: logic tx_mode;
+  The first driver is at "tb_top.sv", 40: assign tb_top.dif_dut.tx_mode = 
+  tb_top.dif_ref.tx_mode;
+  The second driver is at "interface.sv", 28: output tx_mode = tx_mode;
+  
+  This warning will be upgraded to error in future releases
+  
+
+
+Warning-[ICPSD_W] Illegal combination of drivers
+interface.sv, 12
+  Illegal combination of structural and procedural drivers.
+  Variable "config_i" is driven by an invalid combination of structural and 
+  procedural drivers. Variables driven by a structural driver cannot have any 
+  other drivers.
+  This variable is declared at "interface.sv", 12: logic config_i;
+  The first driver is at "tb_top.sv", 41: assign tb_top.dif_dut.config_i = 
+  tb_top.dif_ref.config_i;
+  The second driver is at "interface.sv", 29: output config_i = config_i;
+  
+  This warning will be upgraded to error in future releases
+  
+
+
+Warning-[ICPSD_W] Illegal combination of drivers
+interface.sv, 13
+  Illegal combination of structural and procedural drivers.
+  Variable "loc_rcvr_status" is driven by an invalid combination of structural
+  and procedural drivers. Variables driven by a structural driver cannot have 
+  any other drivers.
+  This variable is declared at "interface.sv", 13: logic loc_rcvr_status;
+  The first driver is at "tb_top.sv", 42: assign 
+  tb_top.dif_dut.loc_rcvr_status = tb_top.dif_ref.loc_rcvr_status;
+  The second driver is at "interface.sv", 30: output loc_rcvr_status = 
+  loc_rcvr_status;
+  
+  This warning will be upgraded to error in future releases
+  
+
+
+Warning-[ICPSD_W] Illegal combination of drivers
+interface.sv, 14
+  Illegal combination of structural and procedural drivers.
+  Variable "loc_lpi_req" is driven by an invalid combination of structural and
+  procedural drivers. Variables driven by a structural driver cannot have any 
+  other drivers.
+  This variable is declared at "interface.sv", 14: logic loc_lpi_req;
+  The first driver is at "tb_top.sv", 43: assign tb_top.dif_dut.loc_lpi_req = 
+  tb_top.dif_ref.loc_lpi_req;
+  The second driver is at "interface.sv", 31: output loc_lpi_req = 
+  loc_lpi_req;
+  
+  This warning will be upgraded to error in future releases
+  
+
+
+Warning-[ICPSD_W] Illegal combination of drivers
+interface.sv, 15
+  Illegal combination of structural and procedural drivers.
+  Variable "loc_update_done" is driven by an invalid combination of structural
+  and procedural drivers. Variables driven by a structural driver cannot have 
+  any other drivers.
+  This variable is declared at "interface.sv", 15: logic loc_update_done;
+  The first driver is at "tb_top.sv", 44: assign 
+  tb_top.dif_dut.loc_update_done = tb_top.dif_ref.loc_update_done;
+  The second driver is at "interface.sv", 32: output loc_update_done = 
+  loc_update_done;
+  
+  This warning will be upgraded to error in future releases
+  
+
 Starting vcs inline pass...
 
 11 modules and 0 UDP read.
 recompiling package vcs_paramclassrepository
-recompiling module pcs_tx_broken
+recompiling module tb_top
 Both modules done.
 	However, due to incremental compilation, only 2 modules need to be compiled. 
+
+Warning-[ICPSD_W] Illegal combination of drivers
+interface.sv, 8
+  Illegal combination of structural and procedural drivers.
+  Variable "TXD" is driven by an invalid combination of structural and 
+  procedural drivers. Variables driven by a structural driver cannot have any 
+  other drivers.
+  This variable is declared at "interface.sv", 8: logic [7:0] TXD;
+  The first driver is at "interface.sv", 25
+  Hierarchical path: tb_top.dif_dut
+  The second driver is at "tb_top.sv", 37
+  Hierarchical path: tb_top
+  
+  This warning will be upgraded to error in future releases
+  
+
+
+Warning-[ICPSD_W] Illegal combination of drivers
+interface.sv, 12
+  Illegal combination of structural and procedural drivers.
+  Variable "config_i" is driven by an invalid combination of structural and 
+  procedural drivers. Variables driven by a structural driver cannot have any 
+  other drivers.
+  This variable is declared at "interface.sv", 12: logic config_i;
+  The first driver is at "interface.sv", 29
+  Hierarchical path: tb_top.dif_dut
+  The second driver is at "tb_top.sv", 41
+  Hierarchical path: tb_top
+  
+  This warning will be upgraded to error in future releases
+  
+
+
+Warning-[ICPSD_W] Illegal combination of drivers
+interface.sv, 14
+  Illegal combination of structural and procedural drivers.
+  Variable "loc_lpi_req" is driven by an invalid combination of structural and
+  procedural drivers. Variables driven by a structural driver cannot have any 
+  other drivers.
+  This variable is declared at "interface.sv", 14: logic loc_lpi_req;
+  The first driver is at "interface.sv", 31
+  Hierarchical path: tb_top.dif_dut
+  The second driver is at "tb_top.sv", 43
+  Hierarchical path: tb_top
+  
+  This warning will be upgraded to error in future releases
+  
+
+
+Warning-[ICPSD_W] Illegal combination of drivers
+interface.sv, 13
+  Illegal combination of structural and procedural drivers.
+  Variable "loc_rcvr_status" is driven by an invalid combination of structural
+  and procedural drivers. Variables driven by a structural driver cannot have 
+  any other drivers.
+  This variable is declared at "interface.sv", 13: logic loc_rcvr_status;
+  The first driver is at "interface.sv", 30
+  Hierarchical path: tb_top.dif_dut
+  The second driver is at "tb_top.sv", 42
+  Hierarchical path: tb_top
+  
+  This warning will be upgraded to error in future releases
+  
+
+
+Warning-[ICPSD_W] Illegal combination of drivers
+interface.sv, 15
+  Illegal combination of structural and procedural drivers.
+  Variable "loc_update_done" is driven by an invalid combination of structural
+  and procedural drivers. Variables driven by a structural driver cannot have 
+  any other drivers.
+  This variable is declared at "interface.sv", 15: logic loc_update_done;
+  The first driver is at "interface.sv", 32
+  Hierarchical path: tb_top.dif_dut
+  The second driver is at "tb_top.sv", 44
+  Hierarchical path: tb_top
+  
+  This warning will be upgraded to error in future releases
+  
+
+
+Warning-[ICPSD_W] Illegal combination of drivers
+interface.sv, 6
+  Illegal combination of structural and procedural drivers.
+  Variable "rst" is driven by an invalid combination of structural and 
+  procedural drivers. Variables driven by a structural driver cannot have any 
+  other drivers.
+  This variable is declared at "interface.sv", 6: logic rst;
+  The first driver is at "interface.sv", 24
+  Hierarchical path: tb_top.dif_dut
+  The second driver is at "tb_top.sv", 36
+  Hierarchical path: tb_top
+  
+  This warning will be upgraded to error in future releases
+  
+
+
+Warning-[ICPSD_W] Illegal combination of drivers
+interface.sv, 9
+  Illegal combination of structural and procedural drivers.
+  Variable "tx_enable" is driven by an invalid combination of structural and 
+  procedural drivers. Variables driven by a structural driver cannot have any 
+  other drivers.
+  This variable is declared at "interface.sv", 9: logic tx_enable;
+  The first driver is at "interface.sv", 26
+  Hierarchical path: tb_top.dif_dut
+  The second driver is at "tb_top.sv", 38
+  Hierarchical path: tb_top
+  
+  This warning will be upgraded to error in future releases
+  
+
+
+Warning-[ICPSD_W] Illegal combination of drivers
+interface.sv, 10
+  Illegal combination of structural and procedural drivers.
+  Variable "tx_error" is driven by an invalid combination of structural and 
+  procedural drivers. Variables driven by a structural driver cannot have any 
+  other drivers.
+  This variable is declared at "interface.sv", 10: logic tx_error;
+  The first driver is at "interface.sv", 27
+  Hierarchical path: tb_top.dif_dut
+  The second driver is at "tb_top.sv", 39
+  Hierarchical path: tb_top
+  
+  This warning will be upgraded to error in future releases
+  
+
+
+Warning-[ICPSD_W] Illegal combination of drivers
+interface.sv, 11
+  Illegal combination of structural and procedural drivers.
+  Variable "tx_mode" is driven by an invalid combination of structural and 
+  procedural drivers. Variables driven by a structural driver cannot have any 
+  other drivers.
+  This variable is declared at "interface.sv", 11: logic tx_mode;
+  The first driver is at "interface.sv", 28
+  Hierarchical path: tb_top.dif_dut
+  The second driver is at "tb_top.sv", 40
+  Hierarchical path: tb_top
+  
+  This warning will be upgraded to error in future releases
+  
+
 /bin/ld: rmapats_mop.o: warning: relocation against `HsimLongLong2Int' in read-only section `.text'
 /bin/ld: warning: creating DT_TEXTREL in a shared object
 rm -f _cuarc*.so _csrc*.so pre_vcsobj_*.so share_vcsobj_*.so
 if [ -x ../simv ]; then chmod a-x ../simv; fi
-g++  -o ../simv      -m32 -m32 -rdynamic  -Wl,-rpath='$ORIGIN'/simv.daidir -Wl,-rpath=./simv.daidir -Wl,-rpath=/apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib -L/apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib  -Wl,-rpath-link=./  uvm_dpi.o   objs/amcQw_d.o  _3969504_archive_1.so _prev_archive_1.so  SIM_l.o      rmapats_mop.o rmapats.o rmar.o rmar_nd.o  rmar_llvm_0_1.o rmar_llvm_0_0.o            -lvirsim -lerrorinf -lsnpsmalloc -lvfs    -lvcsnew -lsimprofile -luclinative /apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib/vcs_tls.o   -Wl,-whole-archive  -lvcsucli    -Wl,-no-whole-archive      ./../simv.daidir/vc_hdrs.o    /apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib/vcs_save_restore_new.o /apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib/ctype-stubs_32.a -ldl  -lc -lm -lpthread -ldl 
+g++  -o ../simv      -m32 -m32 -rdynamic  -Wl,-rpath='$ORIGIN'/simv.daidir -Wl,-rpath=./simv.daidir -Wl,-rpath=/apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib -L/apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib  -Wl,-rpath-link=./  uvm_dpi.o   objs/amcQw_d.o  _4012265_archive_1.so _prev_archive_1.so  SIM_l.o      rmapats_mop.o rmapats.o rmar.o rmar_nd.o  rmar_llvm_0_1.o rmar_llvm_0_0.o            -lvirsim -lerrorinf -lsnpsmalloc -lvfs    -lvcsnew -lsimprofile -luclinative /apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib/vcs_tls.o   -Wl,-whole-archive  -lvcsucli    -Wl,-no-whole-archive      ./../simv.daidir/vc_hdrs.o    /apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib/vcs_save_restore_new.o /apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib/ctype-stubs_32.a -ldl  -lc -lm -lpthread -ldl 
 ../simv up to date
-CPU time: 4.680 seconds to compile + .284 seconds to elab + .255 seconds to link
+CPU time: 4.531 seconds to compile + .286 seconds to elab + .279 seconds to link
 Info: [VCS_SAVE_RESTORE_INFO] ASLR (Address Space Layout Randomization) is detected on the machine. To enable $save functionality, ASLR will be switched off and simv re-executed.
 Please use '-no_save' simv switch to avoid re-execution or '-suppress=ASLR_DETECTED_INFO' to suppress this message.
 Chronologic VCS simulator copyright 1991-2023
 Contains Synopsys proprietary information.
-Compiler version U-2023.03-SP2-8; Runtime version U-2023.03-SP2-8;  May  5 13:30 2026
+Compiler version U-2023.03-SP2-8; Runtime version U-2023.03-SP2-8;  May  5 15:40 2026
 UVM_INFO /home/morris/uvm-1.2/src/base/uvm_root.svh(392) @ 0: reporter [UVM/RELNOTES] 
 ----------------------------------------------------------------
 UVM-1.2
@@ -418,18 +701,19 @@ UVM-1.2
 
 UVM_INFO @ 0: reporter [RNTST] Running test test...
 UVM_INFO /home/morris/uvm-1.2/src/base/uvm_objection.svh(1270) @ 208275: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
-UVM_INFO scoreboard.sv(84) @ 208275: uvm_test_top.e.scb [SCB] PASS: 20821 items matched
+UVM_INFO scoreboard.sv(87) @ 208275: uvm_test_top.e.scb [SCB] received: act=20821 exp=20821  compared: match=20821 fail=0  leftover: act_q=0 exp_q=0
+UVM_INFO scoreboard.sv(91) @ 208275: uvm_test_top.e.scb [SCB] PASS: 20821 items matched
 UVM_INFO /home/morris/uvm-1.2/src/base/uvm_report_server.svh(847) @ 208275: reporter [UVM/REPORT/SERVER] 
 --- UVM Report Summary ---
 
 ** Report counts by severity
-UVM_INFO :    4
+UVM_INFO :    5
 UVM_WARNING :    0
 UVM_ERROR :    0
 UVM_FATAL :    0
 ** Report counts by id
 [RNTST]     1
-[SCB]     1
+[SCB]     2
 [TEST_DONE]     1
 [UVM/RELNOTES]     1
 
@@ -437,7 +721,6 @@ $finish called from file "/home/morris/uvm-1.2/src/base/uvm_root.svh", line 517.
 $finish at simulation time               208275
            V C S   S i m u l a t i o n   R e p o r t 
 Time: 208275 ns
-CPU Time:      1.800 seconds;       Data structure size:   0.2Mb
-Tue May  5 13:30:44 2026
-bash-5.1$ 
+CPU Time:      1.820 seconds;       Data structure size:   0.2Mb
+Tue May  5 15:40:40 2026
 
