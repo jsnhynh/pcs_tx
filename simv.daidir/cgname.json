@@ -11,11 +11,11 @@
         "module",
         2
     ],
-    "_vcs_unit__3219674075": [
-        "_vcs_unit__3219674075",
-        "KUBqr",
+    "_vcs_unit__1986320002": [
+        "_vcs_unit__1986320002",
+        "SpGgZ",
         "module",
-        11
+        3
     ],
     "std": [
         "std",
@@ -34,6 +34,12 @@
         "Y0ixw",
         "module",
         6
+    ],
+    "pcs_tx_out_if": [
+        "pcs_tx_out_if",
+        "EqZYI",
+        "module",
+        16
     ],
     "pcs_tx_pkg": [
         "pcs_tx_pkg",

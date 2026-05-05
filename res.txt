@@ -1,3 +1,4 @@
+bash-5.1$ ../sv_uvm tb_top.sv 
 /apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/bin/vcs: line 3860: lsb_release: command not found
 
 Warning-[LNX_OS_VERUN] Unsupported Linux version
@@ -7,7 +8,7 @@ Warning-[LNX_OS_VERUN] Unsupported Linux version
   Please refer to release notes for information on supported platforms.
 
                          Chronologic VCS (TM)
-         Version U-2023.03-SP2-8 -- Tue May  5 15:52:09 2026
+         Version U-2023.03-SP2-8 -- Tue May  5 16:00:37 2026
 
                     Copyright (c) 1991 - 2024 Synopsys, Inc.
    This software and the associated documentation are proprietary to Synopsys,
@@ -25,640 +26,15 @@ Warning-[LNX_OS_VERUN] Unsupported Linux version
             Inclusivity and Diversity" (Refer to article 000036315 at
                         https://solvnetplus.synopsys.com)
 
-Parsing design file '/home/morris/uvm-1.2/src/uvm.sv'
-Parsing included file '/home/morris/uvm-1.2/src/uvm_pkg.sv'.
-Parsing included file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/macros/uvm_version_defines.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/macros/uvm_global_defines.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/macros/uvm_message_defines.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/macros/uvm_phase_defines.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/macros/uvm_object_defines.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/macros/uvm_printer_defines.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/macros/uvm_tlm_defines.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm_imps.svh'.
-Back to file '/home/morris/uvm-1.2/src/macros/uvm_tlm_defines.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/macros/uvm_sequence_defines.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/macros/uvm_callback_defines.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/macros/uvm_reg_defines.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/macros/uvm_deprecated_defines.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_pkg.sv'.
-Parsing included file '/home/morris/uvm-1.2/src/dpi/uvm_dpi.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/dpi/uvm_hdl.svh'.
-Back to file '/home/morris/uvm-1.2/src/dpi/uvm_dpi.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/dpi/uvm_svcmd_dpi.svh'.
-Back to file '/home/morris/uvm-1.2/src/dpi/uvm_dpi.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/dpi/uvm_regex.svh'.
-Back to file '/home/morris/uvm-1.2/src/dpi/uvm_dpi.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_pkg.sv'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_coreservice.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_version.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_object_globals.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_misc.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_object.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_pool.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_queue.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_factory.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_registry.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_spell_chkr.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_resource.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_resource_specializations.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_resource_db.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_config_db.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_printer.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_comparer.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_packer.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_links.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_tr_database.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_tr_stream.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_recorder.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_event_callback.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_event.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_barrier.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_callback.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_callback.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_report_message.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_report_catcher.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_report_server.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_report_handler.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_report_object.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_transaction.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_phase.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_domain.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_bottomup_phase.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_topdown_phase.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_task_phase.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_common_phases.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_runtime_phases.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_component.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_root.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_component.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_objection.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_heartbeat.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_globals.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_cmdline_processor.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_traversal.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_pkg.sv'.
-Parsing included file '/home/morris/uvm-1.2/src/dap/uvm_dap.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/dap/uvm_set_get_dap_base.svh'.
-Back to file '/home/morris/uvm-1.2/src/dap/uvm_dap.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/dap/uvm_simple_lock_dap.svh'.
-Back to file '/home/morris/uvm-1.2/src/dap/uvm_dap.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/dap/uvm_get_to_lock_dap.svh'.
-Back to file '/home/morris/uvm-1.2/src/dap/uvm_dap.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/dap/uvm_set_before_get_dap.svh'.
-Back to file '/home/morris/uvm-1.2/src/dap/uvm_dap.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_pkg.sv'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm_ifs.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm1/uvm_sqr_ifs.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_port_base.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm_imps.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm1/uvm_imps.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm1/uvm_ports.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm1/uvm_exports.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm1/uvm_analysis_port.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm_fifo_base.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm_fifos.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm_req_rsp.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm1/uvm_sqr_connections.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_pkg.sv'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_pair.svh'.
-Back to file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_policies.svh'.
-Back to file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_in_order_comparator.svh'.
-Back to file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_algorithmic_comparator.svh'.
-Back to file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_random_stimulus.svh'.
-Back to file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_subscriber.svh'.
-Back to file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_monitor.svh'.
-Back to file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_driver.svh'.
-Back to file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_push_driver.svh'.
-Back to file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_scoreboard.svh'.
-Back to file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_agent.svh'.
-Back to file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_env.svh'.
-Back to file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_test.svh'.
-Back to file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_pkg.sv'.
-Parsing included file '/home/morris/uvm-1.2/src/seq/uvm_seq.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/seq/uvm_sequence_item.svh'.
-Back to file '/home/morris/uvm-1.2/src/seq/uvm_seq.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/seq/uvm_sequencer_base.svh'.
-Back to file '/home/morris/uvm-1.2/src/seq/uvm_seq.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/seq/uvm_sequencer_analysis_fifo.svh'.
-Back to file '/home/morris/uvm-1.2/src/seq/uvm_seq.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/seq/uvm_sequencer_param_base.svh'.
-Back to file '/home/morris/uvm-1.2/src/seq/uvm_seq.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/seq/uvm_sequencer.svh'.
-Back to file '/home/morris/uvm-1.2/src/seq/uvm_seq.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/seq/uvm_push_sequencer.svh'.
-Back to file '/home/morris/uvm-1.2/src/seq/uvm_seq.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/seq/uvm_sequence_base.svh'.
-Back to file '/home/morris/uvm-1.2/src/seq/uvm_seq.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/seq/uvm_sequence.svh'.
-Back to file '/home/morris/uvm-1.2/src/seq/uvm_seq.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/seq/uvm_sequence_library.svh'.
-Back to file '/home/morris/uvm-1.2/src/seq/uvm_seq.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/seq/uvm_sequence_builtin.svh'.
-Back to file '/home/morris/uvm-1.2/src/seq/uvm_seq.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_pkg.sv'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2_defines.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2_time.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2_generic_payload.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2_ifs.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2_imps.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2_ports.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2_exports.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2_sockets_base.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2_sockets.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_pkg.sv'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg_item.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg_adapter.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg_predictor.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg_sequence.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg_cbs.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg_backdoor.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg_field.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_vreg_field.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg_indirect.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg_fifo.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg_file.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_mem_mam.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_vreg.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_mem.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg_map.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg_block.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/sequences/uvm_reg_hw_reset_seq.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/sequences/uvm_reg_bit_bash_seq.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/sequences/uvm_mem_walk_seq.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/sequences/uvm_mem_access_seq.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/sequences/uvm_reg_access_seq.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/sequences/uvm_reg_mem_shared_access_seq.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/sequences/uvm_reg_mem_built_in_seq.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/sequences/uvm_reg_mem_hdl_paths_seq.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_pkg.sv'.
-Back to file '/home/morris/uvm-1.2/src/uvm.sv'.
-Parsing design file 'tb_top.sv'
-Parsing included file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Back to file 'tb_top.sv'.
-Parsing included file 'interface.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'model/pcs_tx_pkg.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'model/tx_scrambler.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'model/tx_sc_gen.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'model/tx_sd_gen.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'model/tx_table.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'model/tx_sign_rev.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'model/pcs_tx.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'model/pcs_tx_broken.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'seq_item.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'sequencer.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'sequence.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'driver.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'monitor_in.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'monitor_out.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'agent.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'scoreboard.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'env.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'test.sv'.
-Back to file 'tb_top.sv'.
-Top Level Modules:
-       tb_top
-TimeScale is 1 ns / 1 ns
+The design hasn't changed and need not be recompiled. 
+If you really want to, delete file simv.daidir/.vcs.timestamp and
+run VCS again.
 
-Warning-[ICPSD_W] Illegal combination of drivers
-interface.sv, 6
-  Illegal combination of structural and procedural drivers.
-  Variable "rst" is driven by an invalid combination of structural and 
-  procedural drivers. Variables driven by a structural driver cannot have any 
-  other drivers.
-  This variable is declared at "interface.sv", 6: logic rst;
-  The first driver is at "tb_top.sv", 36: assign tb_top.dif_dut.rst = 
-  tb_top.dif_ref.rst;
-  The second driver is at "interface.sv", 24: output rst = rst;
-  
-  This warning will be upgraded to error in future releases
-  
-
-
-Warning-[ICPSD_W] Illegal combination of drivers
-interface.sv, 8
-  Illegal combination of structural and procedural drivers.
-  Variable "TXD" is driven by an invalid combination of structural and 
-  procedural drivers. Variables driven by a structural driver cannot have any 
-  other drivers.
-  This variable is declared at "interface.sv", 8: logic [7:0] TXD;
-  The first driver is at "tb_top.sv", 37: assign tb_top.dif_dut.TXD = 
-  tb_top.dif_ref.TXD;
-  The second driver is at "interface.sv", 25: output TXD = TXD;
-  
-  This warning will be upgraded to error in future releases
-  
-
-
-Warning-[ICPSD_W] Illegal combination of drivers
-interface.sv, 9
-  Illegal combination of structural and procedural drivers.
-  Variable "tx_enable" is driven by an invalid combination of structural and 
-  procedural drivers. Variables driven by a structural driver cannot have any 
-  other drivers.
-  This variable is declared at "interface.sv", 9: logic tx_enable;
-  The first driver is at "tb_top.sv", 38: assign tb_top.dif_dut.tx_enable = 
-  tb_top.dif_ref.tx_enable;
-  The second driver is at "interface.sv", 26: output tx_enable = tx_enable;
-  
-  This warning will be upgraded to error in future releases
-  
-
-
-Warning-[ICPSD_W] Illegal combination of drivers
-interface.sv, 10
-  Illegal combination of structural and procedural drivers.
-  Variable "tx_error" is driven by an invalid combination of structural and 
-  procedural drivers. Variables driven by a structural driver cannot have any 
-  other drivers.
-  This variable is declared at "interface.sv", 10: logic tx_error;
-  The first driver is at "tb_top.sv", 39: assign tb_top.dif_dut.tx_error = 
-  tb_top.dif_ref.tx_error;
-  The second driver is at "interface.sv", 27: output tx_error = tx_error;
-  
-  This warning will be upgraded to error in future releases
-  
-
-
-Warning-[ICPSD_W] Illegal combination of drivers
-interface.sv, 11
-  Illegal combination of structural and procedural drivers.
-  Variable "tx_mode" is driven by an invalid combination of structural and 
-  procedural drivers. Variables driven by a structural driver cannot have any 
-  other drivers.
-  This variable is declared at "interface.sv", 11: logic tx_mode;
-  The first driver is at "tb_top.sv", 40: assign tb_top.dif_dut.tx_mode = 
-  tb_top.dif_ref.tx_mode;
-  The second driver is at "interface.sv", 28: output tx_mode = tx_mode;
-  
-  This warning will be upgraded to error in future releases
-  
-
-
-Warning-[ICPSD_W] Illegal combination of drivers
-interface.sv, 12
-  Illegal combination of structural and procedural drivers.
-  Variable "config_i" is driven by an invalid combination of structural and 
-  procedural drivers. Variables driven by a structural driver cannot have any 
-  other drivers.
-  This variable is declared at "interface.sv", 12: logic config_i;
-  The first driver is at "tb_top.sv", 41: assign tb_top.dif_dut.config_i = 
-  tb_top.dif_ref.config_i;
-  The second driver is at "interface.sv", 29: output config_i = config_i;
-  
-  This warning will be upgraded to error in future releases
-  
-
-
-Warning-[ICPSD_W] Illegal combination of drivers
-interface.sv, 13
-  Illegal combination of structural and procedural drivers.
-  Variable "loc_rcvr_status" is driven by an invalid combination of structural
-  and procedural drivers. Variables driven by a structural driver cannot have 
-  any other drivers.
-  This variable is declared at "interface.sv", 13: logic loc_rcvr_status;
-  The first driver is at "tb_top.sv", 42: assign 
-  tb_top.dif_dut.loc_rcvr_status = tb_top.dif_ref.loc_rcvr_status;
-  The second driver is at "interface.sv", 30: output loc_rcvr_status = 
-  loc_rcvr_status;
-  
-  This warning will be upgraded to error in future releases
-  
-
-
-Warning-[ICPSD_W] Illegal combination of drivers
-interface.sv, 14
-  Illegal combination of structural and procedural drivers.
-  Variable "loc_lpi_req" is driven by an invalid combination of structural and
-  procedural drivers. Variables driven by a structural driver cannot have any 
-  other drivers.
-  This variable is declared at "interface.sv", 14: logic loc_lpi_req;
-  The first driver is at "tb_top.sv", 43: assign tb_top.dif_dut.loc_lpi_req = 
-  tb_top.dif_ref.loc_lpi_req;
-  The second driver is at "interface.sv", 31: output loc_lpi_req = 
-  loc_lpi_req;
-  
-  This warning will be upgraded to error in future releases
-  
-
-
-Warning-[ICPSD_W] Illegal combination of drivers
-interface.sv, 15
-  Illegal combination of structural and procedural drivers.
-  Variable "loc_update_done" is driven by an invalid combination of structural
-  and procedural drivers. Variables driven by a structural driver cannot have 
-  any other drivers.
-  This variable is declared at "interface.sv", 15: logic loc_update_done;
-  The first driver is at "tb_top.sv", 44: assign 
-  tb_top.dif_dut.loc_update_done = tb_top.dif_ref.loc_update_done;
-  The second driver is at "interface.sv", 32: output loc_update_done = 
-  loc_update_done;
-  
-  This warning will be upgraded to error in future releases
-  
-
-Starting vcs inline pass...
-
-11 modules and 0 UDP read.
-recompiling package vcs_paramclassrepository
-recompiling module pcs_tx_broken
-Both modules done.
-	However, due to incremental compilation, only 2 modules need to be compiled. 
-
-Warning-[ICPSD_W] Illegal combination of drivers
-interface.sv, 8
-  Illegal combination of structural and procedural drivers.
-  Variable "TXD" is driven by an invalid combination of structural and 
-  procedural drivers. Variables driven by a structural driver cannot have any 
-  other drivers.
-  This variable is declared at "interface.sv", 8: logic [7:0] TXD;
-  The first driver is at "interface.sv", 25
-  Hierarchical path: tb_top.dif_dut
-  The second driver is at "tb_top.sv", 37
-  Hierarchical path: tb_top
-  
-  This warning will be upgraded to error in future releases
-  
-
-
-Warning-[ICPSD_W] Illegal combination of drivers
-interface.sv, 12
-  Illegal combination of structural and procedural drivers.
-  Variable "config_i" is driven by an invalid combination of structural and 
-  procedural drivers. Variables driven by a structural driver cannot have any 
-  other drivers.
-  This variable is declared at "interface.sv", 12: logic config_i;
-  The first driver is at "interface.sv", 29
-  Hierarchical path: tb_top.dif_dut
-  The second driver is at "tb_top.sv", 41
-  Hierarchical path: tb_top
-  
-  This warning will be upgraded to error in future releases
-  
-
-
-Warning-[ICPSD_W] Illegal combination of drivers
-interface.sv, 14
-  Illegal combination of structural and procedural drivers.
-  Variable "loc_lpi_req" is driven by an invalid combination of structural and
-  procedural drivers. Variables driven by a structural driver cannot have any 
-  other drivers.
-  This variable is declared at "interface.sv", 14: logic loc_lpi_req;
-  The first driver is at "interface.sv", 31
-  Hierarchical path: tb_top.dif_dut
-  The second driver is at "tb_top.sv", 43
-  Hierarchical path: tb_top
-  
-  This warning will be upgraded to error in future releases
-  
-
-
-Warning-[ICPSD_W] Illegal combination of drivers
-interface.sv, 13
-  Illegal combination of structural and procedural drivers.
-  Variable "loc_rcvr_status" is driven by an invalid combination of structural
-  and procedural drivers. Variables driven by a structural driver cannot have 
-  any other drivers.
-  This variable is declared at "interface.sv", 13: logic loc_rcvr_status;
-  The first driver is at "interface.sv", 30
-  Hierarchical path: tb_top.dif_dut
-  The second driver is at "tb_top.sv", 42
-  Hierarchical path: tb_top
-  
-  This warning will be upgraded to error in future releases
-  
-
-
-Warning-[ICPSD_W] Illegal combination of drivers
-interface.sv, 15
-  Illegal combination of structural and procedural drivers.
-  Variable "loc_update_done" is driven by an invalid combination of structural
-  and procedural drivers. Variables driven by a structural driver cannot have 
-  any other drivers.
-  This variable is declared at "interface.sv", 15: logic loc_update_done;
-  The first driver is at "interface.sv", 32
-  Hierarchical path: tb_top.dif_dut
-  The second driver is at "tb_top.sv", 44
-  Hierarchical path: tb_top
-  
-  This warning will be upgraded to error in future releases
-  
-
-
-Warning-[ICPSD_W] Illegal combination of drivers
-interface.sv, 6
-  Illegal combination of structural and procedural drivers.
-  Variable "rst" is driven by an invalid combination of structural and 
-  procedural drivers. Variables driven by a structural driver cannot have any 
-  other drivers.
-  This variable is declared at "interface.sv", 6: logic rst;
-  The first driver is at "interface.sv", 24
-  Hierarchical path: tb_top.dif_dut
-  The second driver is at "tb_top.sv", 36
-  Hierarchical path: tb_top
-  
-  This warning will be upgraded to error in future releases
-  
-
-
-Warning-[ICPSD_W] Illegal combination of drivers
-interface.sv, 9
-  Illegal combination of structural and procedural drivers.
-  Variable "tx_enable" is driven by an invalid combination of structural and 
-  procedural drivers. Variables driven by a structural driver cannot have any 
-  other drivers.
-  This variable is declared at "interface.sv", 9: logic tx_enable;
-  The first driver is at "interface.sv", 26
-  Hierarchical path: tb_top.dif_dut
-  The second driver is at "tb_top.sv", 38
-  Hierarchical path: tb_top
-  
-  This warning will be upgraded to error in future releases
-  
-
-
-Warning-[ICPSD_W] Illegal combination of drivers
-interface.sv, 10
-  Illegal combination of structural and procedural drivers.
-  Variable "tx_error" is driven by an invalid combination of structural and 
-  procedural drivers. Variables driven by a structural driver cannot have any 
-  other drivers.
-  This variable is declared at "interface.sv", 10: logic tx_error;
-  The first driver is at "interface.sv", 27
-  Hierarchical path: tb_top.dif_dut
-  The second driver is at "tb_top.sv", 39
-  Hierarchical path: tb_top
-  
-  This warning will be upgraded to error in future releases
-  
-
-
-Warning-[ICPSD_W] Illegal combination of drivers
-interface.sv, 11
-  Illegal combination of structural and procedural drivers.
-  Variable "tx_mode" is driven by an invalid combination of structural and 
-  procedural drivers. Variables driven by a structural driver cannot have any 
-  other drivers.
-  This variable is declared at "interface.sv", 11: logic tx_mode;
-  The first driver is at "interface.sv", 28
-  Hierarchical path: tb_top.dif_dut
-  The second driver is at "tb_top.sv", 40
-  Hierarchical path: tb_top
-  
-  This warning will be upgraded to error in future releases
-  
-
-/bin/ld: rmapats_mop.o: warning: relocation against `HsimLongLong2Int' in read-only section `.text'
-/bin/ld: warning: creating DT_TEXTREL in a shared object
-rm -f _cuarc*.so _csrc*.so pre_vcsobj_*.so share_vcsobj_*.so
-if [ -x ../simv ]; then chmod a-x ../simv; fi
-g++  -o ../simv      -m32 -m32 -rdynamic  -Wl,-rpath='$ORIGIN'/simv.daidir -Wl,-rpath=./simv.daidir -Wl,-rpath=/apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib -L/apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib  -Wl,-rpath-link=./  uvm_dpi.o   objs/amcQw_d.o  _4017874_archive_1.so _prev_archive_1.so  SIM_l.o      rmapats_mop.o rmapats.o rmar.o rmar_nd.o  rmar_llvm_0_1.o rmar_llvm_0_0.o            -lvirsim -lerrorinf -lsnpsmalloc -lvfs    -lvcsnew -lsimprofile -luclinative /apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib/vcs_tls.o   -Wl,-whole-archive  -lvcsucli    -Wl,-no-whole-archive      ./../simv.daidir/vc_hdrs.o    /apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib/vcs_save_restore_new.o /apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib/ctype-stubs_32.a -ldl  -lc -lm -lpthread -ldl 
-../simv up to date
-CPU time: 4.613 seconds to compile + .303 seconds to elab + .310 seconds to link
 Info: [VCS_SAVE_RESTORE_INFO] ASLR (Address Space Layout Randomization) is detected on the machine. To enable $save functionality, ASLR will be switched off and simv re-executed.
 Please use '-no_save' simv switch to avoid re-execution or '-suppress=ASLR_DETECTED_INFO' to suppress this message.
 Chronologic VCS simulator copyright 1991-2023
 Contains Synopsys proprietary information.
-Compiler version U-2023.03-SP2-8; Runtime version U-2023.03-SP2-8;  May  5 15:52 2026
+Compiler version U-2023.03-SP2-8; Runtime version U-2023.03-SP2-8;  May  5 16:00 2026
 UVM_INFO /home/morris/uvm-1.2/src/base/uvm_root.svh(392) @ 0: reporter [UVM/RELNOTES] 
 ----------------------------------------------------------------
 UVM-1.2
@@ -682,20 +58,43 @@ UVM-1.2
       (Specify +UVM_NO_RELNOTES to turn off this notice)
 
 UVM_INFO @ 0: reporter [RNTST] Running test test...
+UVM_ERROR scoreboard.sv(104) @ 35: uvm_test_top.e.scb [SCB_MISMATCH] compare[1] mismatched fields: A  input={TXD=0x00 tx_en=0 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:-2 B:0 C:0 D:0} act={A:2 B:0 C:0 D:0}
+UVM_ERROR scoreboard.sv(104) @ 55: uvm_test_top.e.scb [SCB_MISMATCH] compare[3] mismatched fields: A  input={TXD=0x00 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:2 B:2 C:2 D:2} act={A:-2 B:2 C:2 D:2}
+UVM_ERROR scoreboard.sv(104) @ 65: uvm_test_top.e.scb [SCB_MISMATCH] compare[4] mismatched fields: A  input={TXD=0x01 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:2 B:2 C:2 D:-2} act={A:-2 B:2 C:2 D:-2}
+UVM_ERROR scoreboard.sv(104) @ 75: uvm_test_top.e.scb [SCB_MISMATCH] compare[5] mismatched fields: A  input={TXD=0x02 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:1 B:-1 C:-1 D:-1} act={A:-1 B:-1 C:-1 D:-1}
+UVM_ERROR scoreboard.sv(104) @ 95: uvm_test_top.e.scb [SCB_MISMATCH] compare[7] mismatched fields: A  input={TXD=0x04 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:-1 B:1 C:1 D:1} act={A:1 B:1 C:1 D:1}
+UVM_ERROR scoreboard.sv(104) @ 115: uvm_test_top.e.scb [SCB_MISMATCH] compare[9] mismatched fields: A  input={TXD=0x06 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:-2 B:0 C:-2 D:0} act={A:2 B:0 C:-2 D:0}
+UVM_ERROR scoreboard.sv(104) @ 125: uvm_test_top.e.scb [SCB_MISMATCH] compare[10] mismatched fields: A  input={TXD=0x07 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:2 B:0 C:0 D:-2} act={A:-2 B:0 C:0 D:-2}
+UVM_ERROR scoreboard.sv(104) @ 135: uvm_test_top.e.scb [SCB_MISMATCH] compare[11] mismatched fields: A  input={TXD=0x08 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:-2 B:0 C:0 D:1} act={A:2 B:0 C:0 D:1}
+UVM_ERROR scoreboard.sv(104) @ 155: uvm_test_top.e.scb [SCB_MISMATCH] compare[13] mismatched fields: A  input={TXD=0x0a tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:-1 B:-2 C:2 D:0} act={A:1 B:-2 C:2 D:0}
+UVM_ERROR scoreboard.sv(104) @ 165: uvm_test_top.e.scb [SCB_MISMATCH] compare[14] mismatched fields: A  input={TXD=0x0b tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:-2 B:2 C:1 D:1} act={A:2 B:2 C:1 D:1}
+UVM_ERROR scoreboard.sv(104) @ 175: uvm_test_top.e.scb [SCB_MISMATCH] compare[15] mismatched fields: A  input={TXD=0x0c tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:-2 B:-2 C:0 D:2} act={A:2 B:-2 C:0 D:2}
+UVM_ERROR scoreboard.sv(104) @ 195: uvm_test_top.e.scb [SCB_MISMATCH] compare[17] mismatched fields: A  input={TXD=0x0e tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:-2 B:1 C:1 D:-2} act={A:2 B:1 C:1 D:-2}
+UVM_ERROR scoreboard.sv(104) @ 215: uvm_test_top.e.scb [SCB_MISMATCH] compare[19] mismatched fields: A  input={TXD=0x10 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:1 B:0 C:1 D:0} act={A:-1 B:0 C:1 D:0}
+UVM_ERROR scoreboard.sv(104) @ 235: uvm_test_top.e.scb [SCB_MISMATCH] compare[21] mismatched fields: A  input={TXD=0x12 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:-2 B:2 C:1 D:0} act={A:2 B:2 C:1 D:0}
+UVM_ERROR scoreboard.sv(104) @ 245: uvm_test_top.e.scb [SCB_MISMATCH] compare[22] mismatched fields: A  input={TXD=0x13 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:1 B:1 C:-1 D:-1} act={A:-1 B:1 C:-1 D:-1}
+UVM_ERROR scoreboard.sv(104) @ 255: uvm_test_top.e.scb [SCB_MISMATCH] compare[23] mismatched fields: A  input={TXD=0x14 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:-1 B:0 C:-2 D:2} act={A:1 B:0 C:-2 D:2}
+UVM_ERROR scoreboard.sv(104) @ 265: uvm_test_top.e.scb [SCB_MISMATCH] compare[24] mismatched fields: A  input={TXD=0x15 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:1 B:1 C:0 D:-1} act={A:-1 B:1 C:0 D:-1}
+UVM_ERROR scoreboard.sv(104) @ 275: uvm_test_top.e.scb [SCB_MISMATCH] compare[25] mismatched fields: A  input={TXD=0x16 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:-1 B:-1 C:1 D:1} act={A:1 B:-1 C:1 D:1}
+UVM_ERROR scoreboard.sv(104) @ 295: uvm_test_top.e.scb [SCB_MISMATCH] compare[27] mismatched fields: A  input={TXD=0x18 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:1 B:0 C:1 D:-2} act={A:-1 B:0 C:1 D:-2}
+UVM_ERROR scoreboard.sv(104) @ 315: uvm_test_top.e.scb [SCB_MISMATCH] compare[29] mismatched fields: A  input={TXD=0x1a tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:-1 B:-1 C:1 D:1} act={A:1 B:-1 C:1 D:1}
+UVM_ERROR scoreboard.sv(109) @ 325: uvm_test_top.e.scb [SCB_MISMATCH] more than 20 mismatches seen; suppressing per-item details until summary
 UVM_INFO /home/morris/uvm-1.2/src/base/uvm_objection.svh(1270) @ 208275: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
-UVM_INFO scoreboard.sv(87) @ 208275: uvm_test_top.e.scb [SCB] received: act=20821 exp=20821  compared: match=20821 fail=0  leftover: act_q=0 exp_q=0
-UVM_INFO scoreboard.sv(91) @ 208275: uvm_test_top.e.scb [SCB] PASS: 20821 items matched
+UVM_INFO scoreboard.sv(122) @ 208275: uvm_test_top.e.scb [SCB] received: in=20821 act=20817 exp=20817  compared=20817 match=2555 fail=18262  leftover: in_q=4 act_q=0 exp_q=0
+UVM_ERROR scoreboard.sv(131) @ 208275: uvm_test_top.e.scb [SCB] FAIL: 18262 mismatches, 2555 matched
+UVM_ERROR scoreboard.sv(134) @ 208275: uvm_test_top.e.scb [SCB] leftover items: in=4 act=0 exp=0
 UVM_INFO /home/morris/uvm-1.2/src/base/uvm_report_server.svh(847) @ 208275: reporter [UVM/REPORT/SERVER] 
 --- UVM Report Summary ---
 
 ** Report counts by severity
-UVM_INFO :    5
+UVM_INFO :    4
 UVM_WARNING :    0
-UVM_ERROR :    0
+UVM_ERROR :   23
 UVM_FATAL :    0
 ** Report counts by id
 [RNTST]     1
-[SCB]     2
+[SCB]     3
+[SCB_MISMATCH]    21
 [TEST_DONE]     1
 [UVM/RELNOTES]     1
 
@@ -703,6 +102,6 @@ $finish called from file "/home/morris/uvm-1.2/src/base/uvm_root.svh", line 517.
 $finish at simulation time               208275
            V C S   S i m u l a t i o n   R e p o r t 
 Time: 208275 ns
-CPU Time:      1.850 seconds;       Data structure size:   0.2Mb
-Tue May  5 15:52:17 2026
+CPU Time:      2.500 seconds;       Data structure size:   0.2Mb
+Tue May  5 16:00:40 2026
 
