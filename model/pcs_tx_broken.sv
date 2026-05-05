@@ -75,6 +75,9 @@ module pcs_tx_broken #(
         .Sd_n               (Sd_n)
     );
 
+    // BUG: A_n always negated — declare A_n_int BEFORE use
+    logic signed [2:0]  A_n_int;
+
     // table lookup
     logic signed [2:0]  TA_n, TB_n, TC_n, TD_n;
     tx_table u_tx_table (
@@ -105,7 +108,6 @@ module pcs_tx_broken #(
     );
 
     // BUG: A_n always negated
-    logic signed [2:0] A_n_int;
     assign A_n = -A_n_int;
 
 endmodule
