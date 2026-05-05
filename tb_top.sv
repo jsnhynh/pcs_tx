@@ -13,6 +13,7 @@ import uvm_pkg::*;
 `include "model/tx_table.sv"
 `include "model/tx_sign_rev.sv"
 `include "model/pcs_tx.sv"
+`include "model/pcs_tx_broken.sv"
 
 `include "seq_item.sv"
 `include "sequencer.sv"
@@ -48,7 +49,7 @@ module tb_top;
         .D_n             (dif_ref.D_n)
     );
 
-    pcs_tx u_dut (
+    pcs_tx_broken u_dut (
         .clk             (clk),
         .rst             (dif_ref.rst),
         .TXD             (dif_ref.TXD),
