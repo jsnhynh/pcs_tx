@@ -8,7 +8,7 @@ Warning-[LNX_OS_VERUN] Unsupported Linux version
   Please refer to release notes for information on supported platforms.
 
                          Chronologic VCS (TM)
-         Version U-2023.03-SP2-8 -- Wed May  6 11:30:38 2026
+         Version U-2023.03-SP2-8 -- Wed May  6 11:39:23 2026
 
                     Copyright (c) 1991 - 2024 Synopsys, Inc.
    This software and the associated documentation are proprietary to Synopsys,
@@ -26,385 +26,15 @@ Warning-[LNX_OS_VERUN] Unsupported Linux version
             Inclusivity and Diversity" (Refer to article 000036315 at
                         https://solvnetplus.synopsys.com)
 
-Parsing design file '/home/morris/uvm-1.2/src/uvm.sv'
-Parsing included file '/home/morris/uvm-1.2/src/uvm_pkg.sv'.
-Parsing included file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/macros/uvm_version_defines.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/macros/uvm_global_defines.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/macros/uvm_message_defines.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/macros/uvm_phase_defines.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/macros/uvm_object_defines.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/macros/uvm_printer_defines.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/macros/uvm_tlm_defines.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm_imps.svh'.
-Back to file '/home/morris/uvm-1.2/src/macros/uvm_tlm_defines.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/macros/uvm_sequence_defines.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/macros/uvm_callback_defines.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/macros/uvm_reg_defines.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/macros/uvm_deprecated_defines.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_pkg.sv'.
-Parsing included file '/home/morris/uvm-1.2/src/dpi/uvm_dpi.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/dpi/uvm_hdl.svh'.
-Back to file '/home/morris/uvm-1.2/src/dpi/uvm_dpi.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/dpi/uvm_svcmd_dpi.svh'.
-Back to file '/home/morris/uvm-1.2/src/dpi/uvm_dpi.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/dpi/uvm_regex.svh'.
-Back to file '/home/morris/uvm-1.2/src/dpi/uvm_dpi.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_pkg.sv'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_coreservice.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_version.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_object_globals.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_misc.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_object.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_pool.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_queue.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_factory.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_registry.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_spell_chkr.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_resource.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_resource_specializations.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_resource_db.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_config_db.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_printer.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_comparer.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_packer.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_links.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_tr_database.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_tr_stream.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_recorder.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_event_callback.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_event.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_barrier.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_callback.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_callback.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_report_message.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_report_catcher.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_report_server.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_report_handler.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_report_object.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_transaction.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_phase.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_domain.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_bottomup_phase.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_topdown_phase.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_task_phase.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_common_phases.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_runtime_phases.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_component.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_root.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_component.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_objection.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_heartbeat.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_globals.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_cmdline_processor.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_traversal.svh'.
-Back to file '/home/morris/uvm-1.2/src/base/uvm_base.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_pkg.sv'.
-Parsing included file '/home/morris/uvm-1.2/src/dap/uvm_dap.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/dap/uvm_set_get_dap_base.svh'.
-Back to file '/home/morris/uvm-1.2/src/dap/uvm_dap.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/dap/uvm_simple_lock_dap.svh'.
-Back to file '/home/morris/uvm-1.2/src/dap/uvm_dap.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/dap/uvm_get_to_lock_dap.svh'.
-Back to file '/home/morris/uvm-1.2/src/dap/uvm_dap.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/dap/uvm_set_before_get_dap.svh'.
-Back to file '/home/morris/uvm-1.2/src/dap/uvm_dap.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_pkg.sv'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm_ifs.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm1/uvm_sqr_ifs.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/base/uvm_port_base.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm_imps.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm1/uvm_imps.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm1/uvm_ports.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm1/uvm_exports.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm1/uvm_analysis_port.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm_fifo_base.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm_fifos.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm_req_rsp.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm1/uvm_sqr_connections.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm1/uvm_tlm.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_pkg.sv'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_pair.svh'.
-Back to file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_policies.svh'.
-Back to file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_in_order_comparator.svh'.
-Back to file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_algorithmic_comparator.svh'.
-Back to file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_random_stimulus.svh'.
-Back to file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_subscriber.svh'.
-Back to file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_monitor.svh'.
-Back to file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_driver.svh'.
-Back to file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_push_driver.svh'.
-Back to file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_scoreboard.svh'.
-Back to file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_agent.svh'.
-Back to file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_env.svh'.
-Back to file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/comps/uvm_test.svh'.
-Back to file '/home/morris/uvm-1.2/src/comps/uvm_comps.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_pkg.sv'.
-Parsing included file '/home/morris/uvm-1.2/src/seq/uvm_seq.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/seq/uvm_sequence_item.svh'.
-Back to file '/home/morris/uvm-1.2/src/seq/uvm_seq.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/seq/uvm_sequencer_base.svh'.
-Back to file '/home/morris/uvm-1.2/src/seq/uvm_seq.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/seq/uvm_sequencer_analysis_fifo.svh'.
-Back to file '/home/morris/uvm-1.2/src/seq/uvm_seq.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/seq/uvm_sequencer_param_base.svh'.
-Back to file '/home/morris/uvm-1.2/src/seq/uvm_seq.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/seq/uvm_sequencer.svh'.
-Back to file '/home/morris/uvm-1.2/src/seq/uvm_seq.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/seq/uvm_push_sequencer.svh'.
-Back to file '/home/morris/uvm-1.2/src/seq/uvm_seq.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/seq/uvm_sequence_base.svh'.
-Back to file '/home/morris/uvm-1.2/src/seq/uvm_seq.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/seq/uvm_sequence.svh'.
-Back to file '/home/morris/uvm-1.2/src/seq/uvm_seq.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/seq/uvm_sequence_library.svh'.
-Back to file '/home/morris/uvm-1.2/src/seq/uvm_seq.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/seq/uvm_sequence_builtin.svh'.
-Back to file '/home/morris/uvm-1.2/src/seq/uvm_seq.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_pkg.sv'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2_defines.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2_time.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2_generic_payload.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2_ifs.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2_imps.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2_ports.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2_exports.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2_sockets_base.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2_sockets.svh'.
-Back to file '/home/morris/uvm-1.2/src/tlm2/uvm_tlm2.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_pkg.sv'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg_item.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg_adapter.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg_predictor.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg_sequence.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg_cbs.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg_backdoor.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg_field.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_vreg_field.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg_indirect.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg_fifo.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg_file.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_mem_mam.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_vreg.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_mem.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg_map.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/uvm_reg_block.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/sequences/uvm_reg_hw_reset_seq.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/sequences/uvm_reg_bit_bash_seq.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/sequences/uvm_mem_walk_seq.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/sequences/uvm_mem_access_seq.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/sequences/uvm_reg_access_seq.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/sequences/uvm_reg_mem_shared_access_seq.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/sequences/uvm_reg_mem_built_in_seq.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Parsing included file '/home/morris/uvm-1.2/src/reg/sequences/uvm_reg_mem_hdl_paths_seq.svh'.
-Back to file '/home/morris/uvm-1.2/src/reg/uvm_reg_model.svh'.
-Back to file '/home/morris/uvm-1.2/src/uvm_pkg.sv'.
-Back to file '/home/morris/uvm-1.2/src/uvm.sv'.
-Parsing design file 'tb_top.sv'
-Parsing included file '/home/morris/uvm-1.2/src/uvm_macros.svh'.
-Back to file 'tb_top.sv'.
-Parsing included file 'interface.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'model/pcs_tx_cmd_pkg.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'model/pcs_tx_pkg.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'model/tx_scrambler.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'model/tx_sc_gen.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'model/tx_sd_gen.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'model/tx_table.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'model/tx_sign_rev.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'model/pcs_tx.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'model/pcs_tx_broken.sv'.
+The design hasn't changed and need not be recompiled. 
+If you really want to, delete file simv.daidir/.vcs.timestamp and
+run VCS again.
 
-Note-[SV-LCM-PPWI] Package previously wildcard imported
-model/pcs_tx_broken.sv, 4
-$unit
-  Package 'pcs_tx_cmd_pkg' already wildcard imported. 
-  Ignoring pcs_tx_cmd_pkg::*
-  See the SystemVerilog LRM(1800-2005), section 19.2.1.
-
-Back to file 'tb_top.sv'.
-Parsing included file 'seq_item.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'sequencer.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'sequence.sv'.
-
-Note-[SV-LCM-PPWI] Package previously wildcard imported
-sequence.sv, 4
-$unit
-  Package 'pcs_tx_cmd_pkg' already wildcard imported. 
-  Ignoring pcs_tx_cmd_pkg::*
-  See the SystemVerilog LRM(1800-2005), section 19.2.1.
-
-Back to file 'tb_top.sv'.
-Parsing included file 'driver.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'monitor_in.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'monitor_out.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'agent.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'scoreboard.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'env.sv'.
-Back to file 'tb_top.sv'.
-Parsing included file 'test.sv'.
-
-Note-[SV-LCM-PPWI] Package previously wildcard imported
-test.sv, 4
-$unit
-  Package 'pcs_tx_cmd_pkg' already wildcard imported. 
-  Ignoring pcs_tx_cmd_pkg::*
-  See the SystemVerilog LRM(1800-2005), section 19.2.1.
-
-Back to file 'tb_top.sv'.
-Top Level Modules:
-       tb_top
-TimeScale is 1 ns / 1 ns
-Starting vcs inline pass...
-
-12 modules and 0 UDP read.
-recompiling package vcs_paramclassrepository
-recompiling package uvm_pkg
-recompiling module tb_top
-3 of 12 modules done
-	However, due to incremental compilation, only 3 modules need to be compiled. 
-/bin/ld: rmapats_mop.o: warning: relocation against `HsimLongLong2Int' in read-only section `.text'
-/bin/ld: warning: creating DT_TEXTREL in a shared object
-rm -f _cuarc*.so _csrc*.so pre_vcsobj_*.so share_vcsobj_*.so
-if [ -x ../simv ]; then chmod a-x ../simv; fi
-g++  -o ../simv      -m32 -m32 -rdynamic  -Wl,-rpath='$ORIGIN'/simv.daidir -Wl,-rpath=./simv.daidir -Wl,-rpath=/apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib -L/apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib  -Wl,-rpath-link=./  uvm_dpi.o   objs/amcQw_d.o  _161477_archive_1.so _prev_archive_1.so  SIM_l.o      rmapats_mop.o rmapats.o rmar.o rmar_nd.o  rmar_llvm_0_1.o rmar_llvm_0_0.o            -lvirsim -lerrorinf -lsnpsmalloc -lvfs    -lvcsnew -lsimprofile -luclinative /apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib/vcs_tls.o   -Wl,-whole-archive  -lvcsucli    -Wl,-no-whole-archive      ./../simv.daidir/vc_hdrs.o    /apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib/vcs_save_restore_new.o /apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/linux/lib/ctype-stubs_32.a -ldl  -lc -lm -lpthread -ldl 
-../simv up to date
-CPU time: 6.378 seconds to compile + .399 seconds to elab + .322 seconds to link
 Info: [VCS_SAVE_RESTORE_INFO] ASLR (Address Space Layout Randomization) is detected on the machine. To enable $save functionality, ASLR will be switched off and simv re-executed.
 Please use '-no_save' simv switch to avoid re-execution or '-suppress=ASLR_DETECTED_INFO' to suppress this message.
 Chronologic VCS simulator copyright 1991-2023
 Contains Synopsys proprietary information.
-Compiler version U-2023.03-SP2-8; Runtime version U-2023.03-SP2-8;  May  6 11:30 2026
+Compiler version U-2023.03-SP2-8; Runtime version U-2023.03-SP2-8;  May  6 11:39 2026
 UVM_INFO /home/morris/uvm-1.2/src/base/uvm_root.svh(392) @ 0: reporter [UVM/RELNOTES] 
 ----------------------------------------------------------------
 UVM-1.2
@@ -428,37 +58,37 @@ UVM-1.2
       (Specify +UVM_NO_RELNOTES to turn off this notice)
 
 UVM_INFO @ 0: reporter [RNTST] Running test test...
-UVM_ERROR scoreboard.sv(141) @ 35: uvm_test_top.e.scb [SCB_MISMATCH] compare[1] mismatched fields: A  input={seq=idle_or_unlabeled enc_in=0x100 kind= cmd value=0x00}  exp={A:-2 B:0 C:0 D:0} act={A:2 B:0 C:0 D:0}
-UVM_ERROR scoreboard.sv(141) @ 55: uvm_test_top.e.scb [SCB_MISMATCH] compare[3] mismatched fields: A  input={seq=data_pass enc_in=0x001 kind=data value=0x01}  exp={A:2 B:2 C:2 D:2} act={A:-2 B:2 C:2 D:2}
-UVM_ERROR scoreboard.sv(141) @ 65: uvm_test_top.e.scb [SCB_MISMATCH] compare[4] mismatched fields: A  input={seq=data_pass enc_in=0x002 kind=data value=0x02}  exp={A:2 B:2 C:2 D:-2} act={A:-2 B:2 C:2 D:-2}
-UVM_ERROR scoreboard.sv(141) @ 75: uvm_test_top.e.scb [SCB_MISMATCH] compare[5] mismatched fields: A  input={seq=data_pass enc_in=0x003 kind=data value=0x03}  exp={A:1 B:-1 C:-1 D:-1} act={A:-1 B:-1 C:-1 D:-1}
-UVM_ERROR scoreboard.sv(141) @ 95: uvm_test_top.e.scb [SCB_MISMATCH] compare[7] mismatched fields: A  input={seq=data_pass enc_in=0x005 kind=data value=0x05}  exp={A:-1 B:1 C:1 D:1} act={A:1 B:1 C:1 D:1}
-UVM_ERROR scoreboard.sv(141) @ 115: uvm_test_top.e.scb [SCB_MISMATCH] compare[9] mismatched fields: A  input={seq=data_pass enc_in=0x007 kind=data value=0x07}  exp={A:-2 B:0 C:-2 D:0} act={A:2 B:0 C:-2 D:0}
-UVM_ERROR scoreboard.sv(141) @ 125: uvm_test_top.e.scb [SCB_MISMATCH] compare[10] mismatched fields: A  input={seq=data_pass enc_in=0x008 kind=data value=0x08}  exp={A:2 B:0 C:0 D:-2} act={A:-2 B:0 C:0 D:-2}
-UVM_ERROR scoreboard.sv(141) @ 135: uvm_test_top.e.scb [SCB_MISMATCH] compare[11] mismatched fields: A  input={seq=data_pass enc_in=0x009 kind=data value=0x09}  exp={A:-2 B:0 C:0 D:1} act={A:2 B:0 C:0 D:1}
-UVM_ERROR scoreboard.sv(141) @ 155: uvm_test_top.e.scb [SCB_MISMATCH] compare[13] mismatched fields: A  input={seq=data_pass enc_in=0x00b kind=data value=0x0b}  exp={A:-1 B:-2 C:2 D:0} act={A:1 B:-2 C:2 D:0}
-UVM_ERROR scoreboard.sv(141) @ 165: uvm_test_top.e.scb [SCB_MISMATCH] compare[14] mismatched fields: A  input={seq=data_pass enc_in=0x00c kind=data value=0x0c}  exp={A:-2 B:2 C:1 D:1} act={A:2 B:2 C:1 D:1}
-UVM_ERROR scoreboard.sv(141) @ 175: uvm_test_top.e.scb [SCB_MISMATCH] compare[15] mismatched fields: A  input={seq=data_pass enc_in=0x00d kind=data value=0x0d}  exp={A:-2 B:-2 C:0 D:2} act={A:2 B:-2 C:0 D:2}
-UVM_ERROR scoreboard.sv(141) @ 195: uvm_test_top.e.scb [SCB_MISMATCH] compare[17] mismatched fields: A  input={seq=data_pass enc_in=0x00f kind=data value=0x0f}  exp={A:-2 B:1 C:1 D:-2} act={A:2 B:1 C:1 D:-2}
-UVM_ERROR scoreboard.sv(141) @ 215: uvm_test_top.e.scb [SCB_MISMATCH] compare[19] mismatched fields: A  input={seq=data_pass enc_in=0x011 kind=data value=0x11}  exp={A:1 B:0 C:1 D:0} act={A:-1 B:0 C:1 D:0}
-UVM_ERROR scoreboard.sv(141) @ 235: uvm_test_top.e.scb [SCB_MISMATCH] compare[21] mismatched fields: A  input={seq=data_pass enc_in=0x013 kind=data value=0x13}  exp={A:-2 B:2 C:1 D:0} act={A:2 B:2 C:1 D:0}
-UVM_ERROR scoreboard.sv(141) @ 245: uvm_test_top.e.scb [SCB_MISMATCH] compare[22] mismatched fields: A  input={seq=data_pass enc_in=0x014 kind=data value=0x14}  exp={A:1 B:1 C:-1 D:-1} act={A:-1 B:1 C:-1 D:-1}
-UVM_ERROR scoreboard.sv(141) @ 255: uvm_test_top.e.scb [SCB_MISMATCH] compare[23] mismatched fields: A  input={seq=data_pass enc_in=0x015 kind=data value=0x15}  exp={A:-1 B:0 C:-2 D:2} act={A:1 B:0 C:-2 D:2}
-UVM_ERROR scoreboard.sv(141) @ 265: uvm_test_top.e.scb [SCB_MISMATCH] compare[24] mismatched fields: A  input={seq=data_pass enc_in=0x016 kind=data value=0x16}  exp={A:1 B:1 C:0 D:-1} act={A:-1 B:1 C:0 D:-1}
-UVM_ERROR scoreboard.sv(141) @ 275: uvm_test_top.e.scb [SCB_MISMATCH] compare[25] mismatched fields: A  input={seq=data_pass enc_in=0x017 kind=data value=0x17}  exp={A:-1 B:-1 C:1 D:1} act={A:1 B:-1 C:1 D:1}
-UVM_ERROR scoreboard.sv(141) @ 295: uvm_test_top.e.scb [SCB_MISMATCH] compare[27] mismatched fields: A  input={seq=data_pass enc_in=0x019 kind=data value=0x19}  exp={A:1 B:0 C:1 D:-2} act={A:-1 B:0 C:1 D:-2}
-UVM_ERROR scoreboard.sv(141) @ 315: uvm_test_top.e.scb [SCB_MISMATCH] compare[29] mismatched fields: A  input={seq=data_pass enc_in=0x01b kind=data value=0x1b}  exp={A:-1 B:-1 C:1 D:1} act={A:1 B:-1 C:1 D:1}
-UVM_ERROR scoreboard.sv(146) @ 325: uvm_test_top.e.scb [SCB_MISMATCH] more than 20 mismatches seen; suppressing per-item details until summary
+UVM_ERROR scoreboard.sv(137) @ 35: uvm_test_top.e.scb [SCB_MISMATCH] compare[1] mismatched fields: A  input={seq=idle_or_unlabeled enc_in=0x100 kind= cmd value=0x00}  exp={A:-2 B:0 C:0 D:0} act={A:2 B:0 C:0 D:0}
+UVM_ERROR scoreboard.sv(137) @ 55: uvm_test_top.e.scb [SCB_MISMATCH] compare[3] mismatched fields: A  input={seq=data_pass enc_in=0x001 kind=data value=0x01}  exp={A:2 B:2 C:2 D:2} act={A:-2 B:2 C:2 D:2}
+UVM_ERROR scoreboard.sv(137) @ 65: uvm_test_top.e.scb [SCB_MISMATCH] compare[4] mismatched fields: A  input={seq=data_pass enc_in=0x002 kind=data value=0x02}  exp={A:2 B:2 C:2 D:-2} act={A:-2 B:2 C:2 D:-2}
+UVM_ERROR scoreboard.sv(137) @ 75: uvm_test_top.e.scb [SCB_MISMATCH] compare[5] mismatched fields: A  input={seq=data_pass enc_in=0x003 kind=data value=0x03}  exp={A:1 B:-1 C:-1 D:-1} act={A:-1 B:-1 C:-1 D:-1}
+UVM_ERROR scoreboard.sv(137) @ 95: uvm_test_top.e.scb [SCB_MISMATCH] compare[7] mismatched fields: A  input={seq=data_pass enc_in=0x005 kind=data value=0x05}  exp={A:-1 B:1 C:1 D:1} act={A:1 B:1 C:1 D:1}
+UVM_ERROR scoreboard.sv(137) @ 115: uvm_test_top.e.scb [SCB_MISMATCH] compare[9] mismatched fields: A  input={seq=data_pass enc_in=0x007 kind=data value=0x07}  exp={A:-2 B:0 C:-2 D:0} act={A:2 B:0 C:-2 D:0}
+UVM_ERROR scoreboard.sv(137) @ 125: uvm_test_top.e.scb [SCB_MISMATCH] compare[10] mismatched fields: A  input={seq=data_pass enc_in=0x008 kind=data value=0x08}  exp={A:2 B:0 C:0 D:-2} act={A:-2 B:0 C:0 D:-2}
+UVM_ERROR scoreboard.sv(137) @ 135: uvm_test_top.e.scb [SCB_MISMATCH] compare[11] mismatched fields: A  input={seq=data_pass enc_in=0x009 kind=data value=0x09}  exp={A:-2 B:0 C:0 D:1} act={A:2 B:0 C:0 D:1}
+UVM_ERROR scoreboard.sv(137) @ 155: uvm_test_top.e.scb [SCB_MISMATCH] compare[13] mismatched fields: A  input={seq=data_pass enc_in=0x00b kind=data value=0x0b}  exp={A:-1 B:-2 C:2 D:0} act={A:1 B:-2 C:2 D:0}
+UVM_ERROR scoreboard.sv(137) @ 165: uvm_test_top.e.scb [SCB_MISMATCH] compare[14] mismatched fields: A  input={seq=data_pass enc_in=0x00c kind=data value=0x0c}  exp={A:-2 B:2 C:1 D:1} act={A:2 B:2 C:1 D:1}
+UVM_ERROR scoreboard.sv(137) @ 175: uvm_test_top.e.scb [SCB_MISMATCH] compare[15] mismatched fields: A  input={seq=data_pass enc_in=0x00d kind=data value=0x0d}  exp={A:-2 B:-2 C:0 D:2} act={A:2 B:-2 C:0 D:2}
+UVM_ERROR scoreboard.sv(137) @ 195: uvm_test_top.e.scb [SCB_MISMATCH] compare[17] mismatched fields: A  input={seq=data_pass enc_in=0x00f kind=data value=0x0f}  exp={A:-2 B:1 C:1 D:-2} act={A:2 B:1 C:1 D:-2}
+UVM_ERROR scoreboard.sv(137) @ 215: uvm_test_top.e.scb [SCB_MISMATCH] compare[19] mismatched fields: A  input={seq=data_pass enc_in=0x011 kind=data value=0x11}  exp={A:1 B:0 C:1 D:0} act={A:-1 B:0 C:1 D:0}
+UVM_ERROR scoreboard.sv(137) @ 235: uvm_test_top.e.scb [SCB_MISMATCH] compare[21] mismatched fields: A  input={seq=data_pass enc_in=0x013 kind=data value=0x13}  exp={A:-2 B:2 C:1 D:0} act={A:2 B:2 C:1 D:0}
+UVM_ERROR scoreboard.sv(137) @ 245: uvm_test_top.e.scb [SCB_MISMATCH] compare[22] mismatched fields: A  input={seq=data_pass enc_in=0x014 kind=data value=0x14}  exp={A:1 B:1 C:-1 D:-1} act={A:-1 B:1 C:-1 D:-1}
+UVM_ERROR scoreboard.sv(137) @ 255: uvm_test_top.e.scb [SCB_MISMATCH] compare[23] mismatched fields: A  input={seq=data_pass enc_in=0x015 kind=data value=0x15}  exp={A:-1 B:0 C:-2 D:2} act={A:1 B:0 C:-2 D:2}
+UVM_ERROR scoreboard.sv(137) @ 265: uvm_test_top.e.scb [SCB_MISMATCH] compare[24] mismatched fields: A  input={seq=data_pass enc_in=0x016 kind=data value=0x16}  exp={A:1 B:1 C:0 D:-1} act={A:-1 B:1 C:0 D:-1}
+UVM_ERROR scoreboard.sv(137) @ 275: uvm_test_top.e.scb [SCB_MISMATCH] compare[25] mismatched fields: A  input={seq=data_pass enc_in=0x017 kind=data value=0x17}  exp={A:-1 B:-1 C:1 D:1} act={A:1 B:-1 C:1 D:1}
+UVM_ERROR scoreboard.sv(137) @ 295: uvm_test_top.e.scb [SCB_MISMATCH] compare[27] mismatched fields: A  input={seq=data_pass enc_in=0x019 kind=data value=0x19}  exp={A:1 B:0 C:1 D:-2} act={A:-1 B:0 C:1 D:-2}
+UVM_ERROR scoreboard.sv(137) @ 315: uvm_test_top.e.scb [SCB_MISMATCH] compare[29] mismatched fields: A  input={seq=data_pass enc_in=0x01b kind=data value=0x1b}  exp={A:-1 B:-1 C:1 D:1} act={A:1 B:-1 C:1 D:1}
+UVM_ERROR scoreboard.sv(142) @ 325: uvm_test_top.e.scb [SCB_MISMATCH] more than 20 mismatches seen; suppressing per-item details until summary
 UVM_INFO /home/morris/uvm-1.2/src/base/uvm_objection.svh(1270) @ 197635: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
-UVM_INFO scoreboard.sv(177) @ 197635: uvm_test_top.e.scb [SCB] received: in=19753 act=19753 exp=19753  compared=19753 match=2949 fail=16804  leftover: in_q=0 act_q=0 exp_q=0
-UVM_ERROR scoreboard.sv(186) @ 197635: uvm_test_top.e.scb [SCB] FAIL: 16804 mismatches; PASS: 2949 matched  lane mismatches: A=16804 B=0 C=0 D=0
-UVM_INFO scoreboard.sv(161) @ 197635: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=idle_or_unlabeled compared=1 pass=0 fail=1 lane_fail={A:1 B:0 C:0 D:0}
-UVM_INFO scoreboard.sv(161) @ 197635: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=data_pass compared=1024 pass=192 fail=832 lane_fail={A:832 B:0 C:0 D:0}
-UVM_INFO scoreboard.sv(161) @ 197635: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=random compared=18008 pass=2647 fail=15361 lane_fail={A:15361 B:0 C:0 D:0}
-UVM_INFO scoreboard.sv(161) @ 197635: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=data_idle_mix compared=288 pass=54 fail=234 lane_fail={A:234 B:0 C:0 D:0}
-UVM_INFO scoreboard.sv(161) @ 197635: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=special_rows compared=228 pass=36 fail=192 lane_fail={A:192 B:0 C:0 D:0}
-UVM_INFO scoreboard.sv(161) @ 197635: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=error_injection compared=60 pass=12 fail=48 lane_fail={A:48 B:0 C:0 D:0}
-UVM_INFO scoreboard.sv(161) @ 197635: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=corner_cases compared=144 pass=8 fail=136 lane_fail={A:136 B:0 C:0 D:0}
+UVM_INFO scoreboard.sv(175) @ 197635: uvm_test_top.e.scb [SCB] received: in=19753 act=19753 exp=19753  compared=19753 match=2949 fail=16804  leftover: in_q=0 act_q=0 exp_q=0
+UVM_ERROR scoreboard.sv(184) @ 197635: uvm_test_top.e.scb [SCB] FAIL: 16804 mismatches; PASS: 2949 matched  lane mismatches: A=20 B=0 C=0 D=0
+UVM_INFO scoreboard.sv(158) @ 197635: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=idle_or_unlabeled compared=1 pass=0 fail=1 lane_fail={A:1 B:0 C:0 D:0}
+UVM_INFO scoreboard.sv(158) @ 197635: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=data_pass compared=1024 pass=192 fail=832 lane_fail={A:19 B:0 C:0 D:0}
+UVM_INFO scoreboard.sv(158) @ 197635: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=random compared=18008 pass=2647 fail=15361 lane_fail={A:0 B:0 C:0 D:0}
+UVM_INFO scoreboard.sv(158) @ 197635: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=data_idle_mix compared=288 pass=54 fail=234 lane_fail={A:0 B:0 C:0 D:0}
+UVM_INFO scoreboard.sv(158) @ 197635: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=special_rows compared=228 pass=36 fail=192 lane_fail={A:0 B:0 C:0 D:0}
+UVM_INFO scoreboard.sv(158) @ 197635: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=error_injection compared=60 pass=12 fail=48 lane_fail={A:0 B:0 C:0 D:0}
+UVM_INFO scoreboard.sv(158) @ 197635: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=corner_cases compared=144 pass=8 fail=136 lane_fail={A:0 B:0 C:0 D:0}
 UVM_INFO /home/morris/uvm-1.2/src/base/uvm_report_server.svh(847) @ 197635: reporter [UVM/REPORT/SERVER] 
 --- UVM Report Summary ---
 
@@ -479,6 +109,6 @@ $finish called from file "/home/morris/uvm-1.2/src/base/uvm_root.svh", line 517.
 $finish at simulation time               197635
            V C S   S i m u l a t i o n   R e p o r t 
 Time: 197635 ns
-CPU Time:      1.270 seconds;       Data structure size:   0.2Mb
-Wed May  6 11:30:48 2026
+CPU Time:      1.970 seconds;       Data structure size:   0.2Mb
+Wed May  6 11:39:25 2026
 
