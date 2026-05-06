@@ -1,0 +1,12 @@
+/build/
+/obj_dir/
+Makefile
+/sim/
+model/*_tb.sv
+encoder_if.sv
+csrc/
+simv.daidir
+ucli.key
+vc_drs.h
+tr_db.log
+simv
