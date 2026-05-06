@@ -1,8 +1,6 @@
 `ifndef SEQUENCE_SV
 `define SEQUENCE_SV
 
-import pcs_tx_cmd_pkg::*;
-
 class my_sequence extends uvm_sequence #(seq_item);
     `uvm_object_utils(my_sequence)
 
@@ -30,17 +28,15 @@ class my_sequence extends uvm_sequence #(seq_item);
         finish_item(item);
     endtask
 
-    // random stimulus: 80% data, 12% idle, 5% error, 3% carrier_extend
+    // constrained random stimulus via item.randomize()
+    // uses seq_item::enc_dist constraint: 80% data, 20% commands
     task send_rand();
-        logic [8:0] val;
-        logic [7:0] rand_byte = $urandom_range(0, 255);
-        randcase
-            80: val = {1'b0, rand_byte};
-            12: val = {1'b1, PCS_TX_CMD_IDLE};
-            5:  val = {1'b1, PCS_TX_CMD_TX_ERROR};
-            3:  val = {1'b1, PCS_TX_CMD_CARRIER_EXT};
-        endcase
-        send(val);
+        seq_item item;
+        item = seq_item::type_id::create("item");
+        start_item(item);
+        if (!item.randomize()) `uvm_fatal("RAND", "randomization failed")
+        item.scenario_id = current_scenario_id;
+        finish_item(item);
     endtask
 
     // ordered: directed tests first, random stress last

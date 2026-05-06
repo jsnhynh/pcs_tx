@@ -6,7 +6,7 @@ class agent extends uvm_agent;
 
     sequencer      sqr;
     driver         drv;
-    monitor_in  mon;
+    monitor_in     mon;
 
     function new(string name = "agent", uvm_component parent = null);
         super.new(name, parent);

@@ -4,10 +4,10 @@
 class env extends uvm_env;
     `uvm_component_utils(env)
 
-    agent           agt;
-    monitor_out  mon_out_gm;
-    monitor_out  mon_out_dut;
-    scoreboard      scb;
+    agent          agt;
+    monitor_out    mon_out_gm;
+    monitor_out    mon_out_dut;
+    scoreboard     scb;
 
     function new(string name = "env", uvm_component parent = null);
         super.new(name, parent);

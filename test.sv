@@ -1,8 +1,6 @@
 `ifndef TEST_SV
 `define TEST_SV
 
-import pcs_tx_cmd_pkg::*;
-
 class test extends uvm_test;
     `uvm_component_utils(test)
 

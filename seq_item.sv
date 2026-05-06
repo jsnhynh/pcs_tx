@@ -11,6 +11,16 @@ class seq_item extends uvm_sequence_item;
     // output fields
     logic [11:0]     enc_out;
 
+    // weighted distribution: 80% data, 20% commands (idle/error/carrier_ext)
+    constraint enc_dist {
+        enc_in[8] dist { 0 := 80, 1 := 20 };
+        (enc_in[8] == 1) -> enc_in[7:0] inside {
+            PCS_TX_CMD_IDLE,
+            PCS_TX_CMD_TX_ERROR,
+            PCS_TX_CMD_CARRIER_EXT
+        };
+    }
+
     function new(string name = "seq_item");
         super.new(name);
     endfunction
