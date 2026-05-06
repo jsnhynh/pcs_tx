@@ -8,13 +8,11 @@ class my_sequence extends uvm_sequence #(seq_item);
 
     localparam int unsigned SCN_IDLE            = 0;
     localparam int unsigned SCN_DATA_PASS       = 1;
-    localparam int unsigned SCN_RANDOM_RUN      = 2;
-    localparam int unsigned SCN_TX_MODE         = 3;
+    localparam int unsigned SCN_RANDOM          = 2;
+    localparam int unsigned SCN_DATA_IDLE_MIX   = 3;
     localparam int unsigned SCN_SPECIAL_ROWS    = 4;
     localparam int unsigned SCN_ERROR_INJECTION = 5;
     localparam int unsigned SCN_CORNER_CASES    = 6;
-    localparam int unsigned SCN_RANDOM_STRESS1  = 7;
-    localparam int unsigned SCN_RANDOM_STRESS2  = 8;
 
     int unsigned current_scenario_id = SCN_IDLE;
 
@@ -45,13 +43,11 @@ class my_sequence extends uvm_sequence #(seq_item);
 
     task body();
         data_pass();
-        random_run(500);
-        tx_mode_tests();
+        data_idle_mix();
         special_rows();
         error_injection();
         corner_cases();
-        random_stress1(2000);
-        random_stress2(2000);
+        random_run(4500);
     endtask
 
     task data_pass();
@@ -61,12 +57,12 @@ class my_sequence extends uvm_sequence #(seq_item);
     endtask
 
     task random_run(int n);
-        current_scenario_id = SCN_RANDOM_RUN;
+        current_scenario_id = SCN_RANDOM;
         repeat (n) send_rand();
     endtask
 
-    task tx_mode_tests();
-        current_scenario_id = SCN_TX_MODE;
+    task data_idle_mix();
+        current_scenario_id = SCN_DATA_IDLE_MIX;
         repeat (64) send_rand();
         repeat (3) send({1'b1, PCS_TX_CMD_IDLE});
         send({1'b0, 8'hAA});
@@ -78,43 +74,44 @@ class my_sequence extends uvm_sequence #(seq_item);
 
     task special_rows();
         current_scenario_id = SCN_SPECIAL_ROWS;
-        // XMT_ERR: data, data, error
+
+        // error after data stream
         send({1'b0, 8'h00});
         send({1'b0, 8'h00});
         send({1'b1, PCS_TX_CMD_TX_ERROR});
+        repeat (5) send({1'b1, PCS_TX_CMD_IDLE});
 
-        // CSRESET: data, data, idle
+        // idle after data stream
         send({1'b0, 8'h00});
         send({1'b0, 8'h00});
         send({1'b1, PCS_TX_CMD_IDLE});
+        repeat (5) send({1'b1, PCS_TX_CMD_IDLE});
 
-        // CSEXTEND: data, data, carrier_ext
+        // carrier_extend after data stream
         send({1'b0, 8'h00});
         send({1'b0, 8'h00});
         send({1'b1, PCS_TX_CMD_CARRIER_EXT});
+        repeat (5) send({1'b1, PCS_TX_CMD_IDLE});
 
-        // SSD1, SSD2: first data after flush
+        // start-of-stream: first data bytes after idle
         send({1'b0, 8'h00});
         send({1'b0, 8'h55});
+        repeat (5) send({1'b1, PCS_TX_CMD_IDLE});
 
-        // ESD1: data, 4 idles
-        send({1'b0, 8'h00});
-        repeat (4) send({1'b1, PCS_TX_CMD_IDLE});
+        // end-of-stream: data then idle train
+        send({1'b0, 8'hAA});
+        repeat (5) send({1'b1, PCS_TX_CMD_IDLE});
 
-        // ESD2_EXT0: data, 4 idles
-        send({1'b0, 8'h00});
-        repeat (4) send({1'b1, PCS_TX_CMD_IDLE});
-
-        // ESD2_EXT1: data, 3 errors, idle
+        // error burst then idle
         send({1'b0, 8'h00});
         repeat (3) send({1'b1, PCS_TX_CMD_TX_ERROR});
         send({1'b1, PCS_TX_CMD_IDLE});
+        repeat (5) send({1'b1, PCS_TX_CMD_IDLE});
 
-        // ESD2_EXT2: data, 3 errors, carrier_ext
+        // error burst then carrier_extend
         send({1'b0, 8'h00});
         repeat (3) send({1'b1, PCS_TX_CMD_TX_ERROR});
         send({1'b1, PCS_TX_CMD_CARRIER_EXT});
-
         repeat (5) send({1'b1, PCS_TX_CMD_IDLE});
     endtask
 
@@ -158,16 +155,6 @@ class my_sequence extends uvm_sequence #(seq_item);
             else
                 send({1'b1, PCS_TX_CMD_IDLE});
         end
-    endtask
-
-    task random_stress1(int n);
-        current_scenario_id = SCN_RANDOM_STRESS1;
-        repeat (n) send_rand();
-    endtask
-
-    task random_stress2(int n);
-        current_scenario_id = SCN_RANDOM_STRESS2;
-        repeat (n) send_rand();
     endtask
 
 endclass

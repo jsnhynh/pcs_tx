@@ -87,14 +87,12 @@ class scoreboard extends uvm_scoreboard;
 
     function string scenario_name(int unsigned scenario_id);
         case (scenario_id)
-            1:  return "data_pass";
-            2:  return "random_run";
-            3:  return "tx_mode_tests";
-            4:  return "special_rows";
-            5:  return "error_injection";
-            6:  return "corner_cases";
-            7:  return "random_stress1";
-            8:  return "random_stress2";
+            1: return "data_pass";
+            2: return "random";
+            3: return "data_idle_mix";
+            4: return "special_rows";
+            5: return "error_injection";
+            6: return "corner_cases";
             default: return "idle_or_unlabeled";
         endcase
     endfunction
