@@ -1,103 +1,43 @@
-bash-5.1$ ../sv_uvm tb_top.sv 
-/apps/synopsys/vcs_2023/vcs/U-2023.03-SP2-8/bin/vcs: line 3860: lsb_release: command not found
-
-Warning-[LNX_OS_VERUN] Unsupported Linux version
-  Linux version 'Red Hat Enterprise Linux release 9.7 (Plow)' is not supported
-  on 'x86_64' officially, assuming linux compatibility by default. Set 
-  VCS_ARCH_OVERRIDE to linux or suse32 to override.
-  Please refer to release notes for information on supported platforms.
-
-                         Chronologic VCS (TM)
-         Version U-2023.03-SP2-8 -- Tue May  5 17:04:14 2026
-
-                    Copyright (c) 1991 - 2024 Synopsys, Inc.
-   This software and the associated documentation are proprietary to Synopsys,
- Inc. This software may only be used in accordance with the terms and conditions
- of a written license agreement with Synopsys, Inc. All other use, reproduction,
-   or distribution of this software is strictly prohibited.  Licensed Products
-     communicate with Synopsys servers for the purpose of providing software
-    updates, detecting software piracy and verifying that customers are using
-    Licensed Products in conformity with the applicable License Key for such
-  Licensed Products. Synopsys will use information gathered in connection with
-    this process to deliver software updates and pursue software pirates and
-                                   infringers.
-
- Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
-            Inclusivity and Diversity" (Refer to article 000036315 at
-                        https://solvnetplus.synopsys.com)
-
-The design hasn't changed and need not be recompiled. 
-If you really want to, delete file simv.daidir/.vcs.timestamp and
-run VCS again.
-
-Info: [VCS_SAVE_RESTORE_INFO] ASLR (Address Space Layout Randomization) is detected on the machine. To enable $save functionality, ASLR will be switched off and simv re-executed.
-Please use '-no_save' simv switch to avoid re-execution or '-suppress=ASLR_DETECTED_INFO' to suppress this message.
-Chronologic VCS simulator copyright 1991-2023
-Contains Synopsys proprietary information.
-Compiler version U-2023.03-SP2-8; Runtime version U-2023.03-SP2-8;  May  5 17:04 2026
-UVM_INFO /home/morris/uvm-1.2/src/base/uvm_root.svh(392) @ 0: reporter [UVM/RELNOTES] 
-----------------------------------------------------------------
-UVM-1.2
-(C) 2007-2014 Mentor Graphics Corporation
-(C) 2007-2014 Cadence Design Systems, Inc.
-(C) 2006-2014 Synopsys, Inc.
-(C) 2011-2013 Cypress Semiconductor Corp.
-(C) 2013-2014 NVIDIA Corporation
-----------------------------------------------------------------
-
-  ***********       IMPORTANT RELEASE NOTES         ************
-
-  You are using a version of the UVM library that has been compiled
-  with `UVM_NO_DEPRECATED undefined.
-  See http://www.eda.org/svdb/view.php?id=3313 for more details.
-
-  You are using a version of the UVM library that has been compiled
-  with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
-  See http://www.eda.org/svdb/view.php?id=3770 for more details.
-
-      (Specify +UVM_NO_RELNOTES to turn off this notice)
 
 UVM_INFO @ 0: reporter [RNTST] Running test test...
-UVM_ERROR scoreboard.sv(147) @ 35: uvm_test_top.e.scb [SCB_MISMATCH] compare[1] mismatched fields: A  input={seq=idle_or_unlabeled TXD=0x00 tx_en=0 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:-2 B:0 C:0 D:0} act={A:2 B:0 C:0 D:0}
-UVM_ERROR scoreboard.sv(147) @ 55: uvm_test_top.e.scb [SCB_MISMATCH] compare[3] mismatched fields: A  input={seq=normal_data_cfg1 TXD=0x01 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:2 B:2 C:2 D:2} act={A:-2 B:2 C:2 D:2}
-UVM_ERROR scoreboard.sv(147) @ 65: uvm_test_top.e.scb [SCB_MISMATCH] compare[4] mismatched fields: A  input={seq=normal_data_cfg1 TXD=0x02 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:2 B:2 C:2 D:-2} act={A:-2 B:2 C:2 D:-2}
-UVM_ERROR scoreboard.sv(147) @ 75: uvm_test_top.e.scb [SCB_MISMATCH] compare[5] mismatched fields: A  input={seq=normal_data_cfg1 TXD=0x03 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:1 B:-1 C:-1 D:-1} act={A:-1 B:-1 C:-1 D:-1}
-UVM_ERROR scoreboard.sv(147) @ 95: uvm_test_top.e.scb [SCB_MISMATCH] compare[7] mismatched fields: A  input={seq=normal_data_cfg1 TXD=0x05 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:-1 B:1 C:1 D:1} act={A:1 B:1 C:1 D:1}
-UVM_ERROR scoreboard.sv(147) @ 115: uvm_test_top.e.scb [SCB_MISMATCH] compare[9] mismatched fields: A  input={seq=normal_data_cfg1 TXD=0x07 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:-2 B:0 C:-2 D:0} act={A:2 B:0 C:-2 D:0}
-UVM_ERROR scoreboard.sv(147) @ 125: uvm_test_top.e.scb [SCB_MISMATCH] compare[10] mismatched fields: A  input={seq=normal_data_cfg1 TXD=0x08 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:2 B:0 C:0 D:-2} act={A:-2 B:0 C:0 D:-2}
-UVM_ERROR scoreboard.sv(147) @ 135: uvm_test_top.e.scb [SCB_MISMATCH] compare[11] mismatched fields: A  input={seq=normal_data_cfg1 TXD=0x09 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:-2 B:0 C:0 D:1} act={A:2 B:0 C:0 D:1}
-UVM_ERROR scoreboard.sv(147) @ 155: uvm_test_top.e.scb [SCB_MISMATCH] compare[13] mismatched fields: A  input={seq=normal_data_cfg1 TXD=0x0b tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:-1 B:-2 C:2 D:0} act={A:1 B:-2 C:2 D:0}
-UVM_ERROR scoreboard.sv(147) @ 165: uvm_test_top.e.scb [SCB_MISMATCH] compare[14] mismatched fields: A  input={seq=normal_data_cfg1 TXD=0x0c tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:-2 B:2 C:1 D:1} act={A:2 B:2 C:1 D:1}
-UVM_ERROR scoreboard.sv(147) @ 175: uvm_test_top.e.scb [SCB_MISMATCH] compare[15] mismatched fields: A  input={seq=normal_data_cfg1 TXD=0x0d tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:-2 B:-2 C:0 D:2} act={A:2 B:-2 C:0 D:2}
-UVM_ERROR scoreboard.sv(147) @ 195: uvm_test_top.e.scb [SCB_MISMATCH] compare[17] mismatched fields: A  input={seq=normal_data_cfg1 TXD=0x0f tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:-2 B:1 C:1 D:-2} act={A:2 B:1 C:1 D:-2}
-UVM_ERROR scoreboard.sv(147) @ 215: uvm_test_top.e.scb [SCB_MISMATCH] compare[19] mismatched fields: A  input={seq=normal_data_cfg1 TXD=0x11 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:1 B:0 C:1 D:0} act={A:-1 B:0 C:1 D:0}
-UVM_ERROR scoreboard.sv(147) @ 235: uvm_test_top.e.scb [SCB_MISMATCH] compare[21] mismatched fields: A  input={seq=normal_data_cfg1 TXD=0x13 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:-2 B:2 C:1 D:0} act={A:2 B:2 C:1 D:0}
-UVM_ERROR scoreboard.sv(147) @ 245: uvm_test_top.e.scb [SCB_MISMATCH] compare[22] mismatched fields: A  input={seq=normal_data_cfg1 TXD=0x14 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:1 B:1 C:-1 D:-1} act={A:-1 B:1 C:-1 D:-1}
-UVM_ERROR scoreboard.sv(147) @ 255: uvm_test_top.e.scb [SCB_MISMATCH] compare[23] mismatched fields: A  input={seq=normal_data_cfg1 TXD=0x15 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:-1 B:0 C:-2 D:2} act={A:1 B:0 C:-2 D:2}
-UVM_ERROR scoreboard.sv(147) @ 265: uvm_test_top.e.scb [SCB_MISMATCH] compare[24] mismatched fields: A  input={seq=normal_data_cfg1 TXD=0x16 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:1 B:1 C:0 D:-1} act={A:-1 B:1 C:0 D:-1}
-UVM_ERROR scoreboard.sv(147) @ 275: uvm_test_top.e.scb [SCB_MISMATCH] compare[25] mismatched fields: A  input={seq=normal_data_cfg1 TXD=0x17 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:-1 B:-1 C:1 D:1} act={A:1 B:-1 C:1 D:1}
-UVM_ERROR scoreboard.sv(147) @ 295: uvm_test_top.e.scb [SCB_MISMATCH] compare[27] mismatched fields: A  input={seq=normal_data_cfg1 TXD=0x19 tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:1 B:0 C:1 D:-2} act={A:-1 B:0 C:1 D:-2}
-UVM_ERROR scoreboard.sv(147) @ 315: uvm_test_top.e.scb [SCB_MISMATCH] compare[29] mismatched fields: A  input={seq=normal_data_cfg1 TXD=0x1b tx_en=1 tx_err=0 tx_mode=0 cfg=1 lrs=0 lpi=0 upd=0}  exp={A:-1 B:-1 C:1 D:1} act={A:1 B:-1 C:1 D:1}
-UVM_ERROR scoreboard.sv(152) @ 325: uvm_test_top.e.scb [SCB_MISMATCH] more than 20 mismatches seen; suppressing per-item details until summary
-UVM_INFO /home/morris/uvm-1.2/src/base/uvm_objection.svh(1270) @ 208275: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
-UVM_INFO scoreboard.sv(183) @ 208275: uvm_test_top.e.scb [SCB] received: in=20817 act=20817 exp=20817  compared=20817 match=2555 fail=18262  leftover: in_q=0 act_q=0 exp_q=0
-UVM_ERROR scoreboard.sv(192) @ 208275: uvm_test_top.e.scb [SCB] FAIL: 18262 mismatches; PASS: 2555 matched  lane mismatches: A=18262 B=0 C=0 D=0
-UVM_INFO scoreboard.sv(167) @ 208275: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=idle_or_unlabeled compared=1 pass=0 fail=1 lane_fail={A:1 B:0 C:0 D:0}
-UVM_INFO scoreboard.sv(167) @ 208275: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=normal_data_cfg1 compared=1024 pass=192 fail=832 lane_fail={A:832 B:0 C:0 D:0}
-UVM_INFO scoreboard.sv(167) @ 208275: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=normal_data_cfg0 compared=1024 pass=264 fail=760 lane_fail={A:760 B:0 C:0 D:0}
-UVM_INFO scoreboard.sv(167) @ 208275: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=random_run_cfg1 compared=2000 pass=227 fail=1773 lane_fail={A:1773 B:0 C:0 D:0}
-UVM_INFO scoreboard.sv(167) @ 208275: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=tx_mode_tests compared=284 pass=37 fail=247 lane_fail={A:247 B:0 C:0 D:0}
-UVM_INFO scoreboard.sv(167) @ 208275: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=special_rows compared=176 pass=20 fail=156 lane_fail={A:156 B:0 C:0 D:0}
-UVM_INFO scoreboard.sv(167) @ 208275: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=sideband_perms compared=96 pass=36 fail=60 lane_fail={A:60 B:0 C:0 D:0}
-UVM_INFO scoreboard.sv(167) @ 208275: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=error_injection compared=60 pass=20 fail=40 lane_fail={A:40 B:0 C:0 D:0}
-UVM_INFO scoreboard.sv(167) @ 208275: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=corner_cases compared=144 pass=32 fail=112 lane_fail={A:112 B:0 C:0 D:0}
-UVM_INFO scoreboard.sv(167) @ 208275: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=random_stress_cfg1 compared=8000 pass=872 fail=7128 lane_fail={A:7128 B:0 C:0 D:0}
-UVM_INFO scoreboard.sv(167) @ 208275: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=random_stress_cfg0 compared=8008 pass=855 fail=7153 lane_fail={A:7153 B:0 C:0 D:0}
-UVM_INFO /home/morris/uvm-1.2/src/base/uvm_report_server.svh(847) @ 208275: reporter [UVM/REPORT/SERVER] 
+UVM_ERROR scoreboard.sv(143) @ 35: uvm_test_top.e.scb [SCB_MISMATCH] compare[1] mismatched fields: A  input={seq=idle_or_unlabeled enc_in=0x100 kind= cmd value=0x00}  exp={A:-2 B:0 C:0 D:0} act={A:2 B:0 C:0 D:0}
+UVM_ERROR scoreboard.sv(143) @ 55: uvm_test_top.e.scb [SCB_MISMATCH] compare[3] mismatched fields: A  input={seq=data_pass enc_in=0x001 kind=data value=0x01}  exp={A:2 B:2 C:2 D:2} act={A:-2 B:2 C:2 D:2}
+UVM_ERROR scoreboard.sv(143) @ 65: uvm_test_top.e.scb [SCB_MISMATCH] compare[4] mismatched fields: A  input={seq=data_pass enc_in=0x002 kind=data value=0x02}  exp={A:2 B:2 C:2 D:-2} act={A:-2 B:2 C:2 D:-2}
+UVM_ERROR scoreboard.sv(143) @ 75: uvm_test_top.e.scb [SCB_MISMATCH] compare[5] mismatched fields: A  input={seq=data_pass enc_in=0x003 kind=data value=0x03}  exp={A:1 B:-1 C:-1 D:-1} act={A:-1 B:-1 C:-1 D:-1}
+UVM_ERROR scoreboard.sv(143) @ 95: uvm_test_top.e.scb [SCB_MISMATCH] compare[7] mismatched fields: A  input={seq=data_pass enc_in=0x005 kind=data value=0x05}  exp={A:-1 B:1 C:1 D:1} act={A:1 B:1 C:1 D:1}
+UVM_ERROR scoreboard.sv(143) @ 115: uvm_test_top.e.scb [SCB_MISMATCH] compare[9] mismatched fields: A  input={seq=data_pass enc_in=0x007 kind=data value=0x07}  exp={A:-2 B:0 C:-2 D:0} act={A:2 B:0 C:-2 D:0}
+UVM_ERROR scoreboard.sv(143) @ 125: uvm_test_top.e.scb [SCB_MISMATCH] compare[10] mismatched fields: A  input={seq=data_pass enc_in=0x008 kind=data value=0x08}  exp={A:2 B:0 C:0 D:-2} act={A:-2 B:0 C:0 D:-2}
+UVM_ERROR scoreboard.sv(143) @ 135: uvm_test_top.e.scb [SCB_MISMATCH] compare[11] mismatched fields: A  input={seq=data_pass enc_in=0x009 kind=data value=0x09}  exp={A:-2 B:0 C:0 D:1} act={A:2 B:0 C:0 D:1}
+UVM_ERROR scoreboard.sv(143) @ 155: uvm_test_top.e.scb [SCB_MISMATCH] compare[13] mismatched fields: A  input={seq=data_pass enc_in=0x00b kind=data value=0x0b}  exp={A:-1 B:-2 C:2 D:0} act={A:1 B:-2 C:2 D:0}
+UVM_ERROR scoreboard.sv(143) @ 165: uvm_test_top.e.scb [SCB_MISMATCH] compare[14] mismatched fields: A  input={seq=data_pass enc_in=0x00c kind=data value=0x0c}  exp={A:-2 B:2 C:1 D:1} act={A:2 B:2 C:1 D:1}
+UVM_ERROR scoreboard.sv(143) @ 175: uvm_test_top.e.scb [SCB_MISMATCH] compare[15] mismatched fields: A  input={seq=data_pass enc_in=0x00d kind=data value=0x0d}  exp={A:-2 B:-2 C:0 D:2} act={A:2 B:-2 C:0 D:2}
+UVM_ERROR scoreboard.sv(143) @ 195: uvm_test_top.e.scb [SCB_MISMATCH] compare[17] mismatched fields: A  input={seq=data_pass enc_in=0x00f kind=data value=0x0f}  exp={A:-2 B:1 C:1 D:-2} act={A:2 B:1 C:1 D:-2}
+UVM_ERROR scoreboard.sv(143) @ 215: uvm_test_top.e.scb [SCB_MISMATCH] compare[19] mismatched fields: A  input={seq=data_pass enc_in=0x011 kind=data value=0x11}  exp={A:1 B:0 C:1 D:0} act={A:-1 B:0 C:1 D:0}
+UVM_ERROR scoreboard.sv(143) @ 235: uvm_test_top.e.scb [SCB_MISMATCH] compare[21] mismatched fields: A  input={seq=data_pass enc_in=0x013 kind=data value=0x13}  exp={A:-2 B:2 C:1 D:0} act={A:2 B:2 C:1 D:0}
+UVM_ERROR scoreboard.sv(143) @ 245: uvm_test_top.e.scb [SCB_MISMATCH] compare[22] mismatched fields: A  input={seq=data_pass enc_in=0x014 kind=data value=0x14}  exp={A:1 B:1 C:-1 D:-1} act={A:-1 B:1 C:-1 D:-1}
+UVM_ERROR scoreboard.sv(143) @ 255: uvm_test_top.e.scb [SCB_MISMATCH] compare[23] mismatched fields: A  input={seq=data_pass enc_in=0x015 kind=data value=0x15}  exp={A:-1 B:0 C:-2 D:2} act={A:1 B:0 C:-2 D:2}
+UVM_ERROR scoreboard.sv(143) @ 265: uvm_test_top.e.scb [SCB_MISMATCH] compare[24] mismatched fields: A  input={seq=data_pass enc_in=0x016 kind=data value=0x16}  exp={A:1 B:1 C:0 D:-1} act={A:-1 B:1 C:0 D:-1}
+UVM_ERROR scoreboard.sv(143) @ 275: uvm_test_top.e.scb [SCB_MISMATCH] compare[25] mismatched fields: A  input={seq=data_pass enc_in=0x017 kind=data value=0x17}  exp={A:-1 B:-1 C:1 D:1} act={A:1 B:-1 C:1 D:1}
+UVM_ERROR scoreboard.sv(143) @ 295: uvm_test_top.e.scb [SCB_MISMATCH] compare[27] mismatched fields: A  input={seq=data_pass enc_in=0x019 kind=data value=0x19}  exp={A:1 B:0 C:1 D:-2} act={A:-1 B:0 C:1 D:-2}
+UVM_ERROR scoreboard.sv(143) @ 315: uvm_test_top.e.scb [SCB_MISMATCH] compare[29] mismatched fields: A  input={seq=data_pass enc_in=0x01b kind=data value=0x1b}  exp={A:-1 B:-1 C:1 D:1} act={A:1 B:-1 C:1 D:1}
+UVM_ERROR scoreboard.sv(148) @ 325: uvm_test_top.e.scb [SCB_MISMATCH] more than 20 mismatches seen; suppressing per-item details until summary
+UVM_INFO /home/morris/uvm-1.2/src/base/uvm_objection.svh(1270) @ 196795: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+UVM_INFO scoreboard.sv(179) @ 196795: uvm_test_top.e.scb [SCB] received: in=19669 act=19669 exp=19669  compared=19669 match=2998 fail=16671  leftover: in_q=0 act_q=0 exp_q=0
+UVM_ERROR scoreboard.sv(188) @ 196795: uvm_test_top.e.scb [SCB] FAIL: 16671 mismatches; PASS: 2998 matched  lane mismatches: A=16671 B=0 C=0 D=0
+UVM_INFO scoreboard.sv(163) @ 196795: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=idle_or_unlabeled compared=1 pass=0 fail=1 lane_fail={A:1 B:0 C:0 D:0}
+UVM_INFO scoreboard.sv(163) @ 196795: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=data_pass compared=1024 pass=192 fail=832 lane_fail={A:832 B:0 C:0 D:0}
+UVM_INFO scoreboard.sv(163) @ 196795: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=random_run compared=2000 pass=313 fail=1687 lane_fail={A:1687 B:0 C:0 D:0}
+UVM_INFO scoreboard.sv(163) @ 196795: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=tx_mode_tests compared=288 pass=48 fail=240 lane_fail={A:240 B:0 C:0 D:0}
+UVM_INFO scoreboard.sv(163) @ 196795: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=special_rows compared=144 pass=24 fail=120 lane_fail={A:120 B:0 C:0 D:0}
+UVM_INFO scoreboard.sv(163) @ 196795: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=error_injection compared=60 pass=16 fail=44 lane_fail={A:44 B:0 C:0 D:0}
+UVM_INFO scoreboard.sv(163) @ 196795: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=corner_cases compared=144 pass=24 fail=120 lane_fail={A:120 B:0 C:0 D:0}
+UVM_INFO scoreboard.sv(163) @ 196795: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=random_stress1 compared=8000 pass=1197 fail=6803 lane_fail={A:6803 B:0 C:0 D:0}
+UVM_INFO scoreboard.sv(163) @ 196795: uvm_test_top.e.scb [SCB_SEQ] FAIL: seq=random_stress2 compared=8008 pass=1184 fail=6824 lane_fail={A:6824 B:0 C:0 D:0}
+UVM_INFO /home/morris/uvm-1.2/src/base/uvm_report_server.svh(847) @ 196795: reporter [UVM/REPORT/SERVER] 
 --- UVM Report Summary ---
 
 ** Report counts by severity
-UVM_INFO :   15
+UVM_INFO :   13
 UVM_WARNING :    0
 UVM_ERROR :   22
 UVM_FATAL :    0
@@ -105,14 +45,14 @@ UVM_FATAL :    0
 [RNTST]     1
 [SCB]     2
 [SCB_MISMATCH]    21
-[SCB_SEQ]    11
+[SCB_SEQ]     9
 [TEST_DONE]     1
 [UVM/RELNOTES]     1
 
 $finish called from file "/home/morris/uvm-1.2/src/base/uvm_root.svh", line 517.
-$finish at simulation time               208275
+$finish at simulation time               196795
            V C S   S i m u l a t i o n   R e p o r t 
-Time: 208275 ns
-CPU Time:      2.740 seconds;       Data structure size:   0.2Mb
-Tue May  5 17:04:17 2026
+Time: 196795 ns
+CPU Time:      1.260 seconds;       Data structure size:   0.2Mb
+Wed May  6 11:09:23 2026
 
