@@ -17,6 +17,7 @@ class driver extends uvm_driver #(seq_item);
         end
     endfunction
 
+    // drives seq_item fields onto the interface via clocking block
     task run_phase(uvm_phase phase);
         seq_item item;
 

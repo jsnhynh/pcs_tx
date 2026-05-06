@@ -24,6 +24,8 @@ class monitor_out extends uvm_monitor;
         void'(uvm_config_db #(bit)::get(this, "", "use_dut_output", use_dut_output));
     endfunction
 
+    // captures output-side transactions: golden reference (use_dut_output=0)
+    // or DUT output (use_dut_output=1), determined by uvm_config_db
     task run_phase(uvm_phase phase);
         seq_item txn;
 

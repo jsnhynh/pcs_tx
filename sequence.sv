@@ -20,6 +20,7 @@ class my_sequence extends uvm_sequence #(seq_item);
         super.new(name);
     endfunction
 
+    // low-level send: encodes raw 9-bit enc_in into a seq_item transaction
     task send(input logic [8:0] val);
         seq_item item;
         item = seq_item::type_id::create("item");
@@ -29,6 +30,7 @@ class my_sequence extends uvm_sequence #(seq_item);
         finish_item(item);
     endtask
 
+    // random stimulus: 80% data, 12% idle, 5% error, 3% carrier_extend
     task send_rand();
         logic [8:0] val;
         logic [7:0] rand_byte = $urandom_range(0, 255);
@@ -41,6 +43,7 @@ class my_sequence extends uvm_sequence #(seq_item);
         send(val);
     endtask
 
+    // ordered: directed tests first, random stress last
     task body();
         data_pass();
         data_idle_mix();
@@ -50,6 +53,7 @@ class my_sequence extends uvm_sequence #(seq_item);
         random_run(4500);
     endtask
 
+    // sweep all 256 possible data byte values
     task data_pass();
         current_scenario_id = SCN_DATA_PASS;
         for (int i = 0; i < 256; i++)
@@ -61,6 +65,7 @@ class my_sequence extends uvm_sequence #(seq_item);
         repeat (n) send_rand();
     endtask
 
+    // random data mixed with idle bursts and directed data bytes (AA, BB, CC, DD)
     task data_idle_mix();
         current_scenario_id = SCN_DATA_IDLE_MIX;
         repeat (64) send_rand();
@@ -72,6 +77,9 @@ class my_sequence extends uvm_sequence #(seq_item);
         send({1'b0, 8'hDD});
     endtask
 
+    // exercises row-table state transitions: data→error, data→idle,
+    // data→carrier_extend, start/end-of-stream, error bursts
+    // each section flushed with 5 idles for clean pipeline state
     task special_rows();
         current_scenario_id = SCN_SPECIAL_ROWS;
 
@@ -115,6 +123,7 @@ class my_sequence extends uvm_sequence #(seq_item);
         repeat (5) send({1'b1, PCS_TX_CMD_IDLE});
     endtask
 
+    // single error pulses, 3-cycle error burst, error-during-csreset
     task error_injection();
         current_scenario_id = SCN_ERROR_INJECTION;
         send({1'b1, PCS_TX_CMD_TX_ERROR});
@@ -133,6 +142,8 @@ class my_sequence extends uvm_sequence #(seq_item);
         repeat (3) send({1'b1, PCS_TX_CMD_IDLE});
     endtask
 
+    // boundary values (00, FF, 0F), walking-ones with alternating error,
+    // rapid data/idle toggle
     task corner_cases();
         current_scenario_id = SCN_CORNER_CASES;
         send({1'b0, 8'h00});

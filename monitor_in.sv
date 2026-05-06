@@ -22,6 +22,8 @@ class monitor_in extends uvm_monitor;
         end
     endfunction
 
+    // captures input-side transactions (enc_in, scenario_id) every cycle
+    // sampled through mon_cb clocking block; skips during reset (rst_n active-low)
     task run_phase(uvm_phase phase);
         seq_item txn;
 

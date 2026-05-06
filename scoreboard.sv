@@ -44,6 +44,8 @@ class scoreboard extends uvm_scoreboard;
         void'($value$plusargs("SCB_MAX_MISMATCH_LOG=%d", max_mismatch_log));
     endfunction
 
+    // TLM analysis port callbacks: deep-copy and queue the transaction,
+    // then trigger comparison when all three queues have at least one item
     function void write_in(seq_item t);
         seq_item cpy;
         cpy = seq_item::type_id::create("cpy");
@@ -97,30 +99,26 @@ class scoreboard extends uvm_scoreboard;
         endcase
     endfunction
 
-    function string diff_fields(seq_item exp_t, seq_item act_t);
-        string fields;
-        fields = "";
-        if (exp_t.enc_out[11:9] !== act_t.enc_out[11:9]) fields = {fields, " A"};
-        if (exp_t.enc_out[8:6]  !== act_t.enc_out[8:6])  fields = {fields, " B"};
-        if (exp_t.enc_out[5:3]  !== act_t.enc_out[5:3])  fields = {fields, " C"};
-        if (exp_t.enc_out[2:0]  !== act_t.enc_out[2:0])  fields = {fields, " D"};
-        return fields;
+    // single pass over 4 lanes: build diff string and update all counters
+    function string check_lanes(seq_item exp_t, seq_item act_t, int unsigned scn);
+        string diff = "";
+        if (exp_t.enc_out[11:9] !== act_t.enc_out[11:9]) begin
+            diff = {diff, " A"}; lane_fail_count[0]++; seq_lane_a_fail[scn]++;
+        end
+        if (exp_t.enc_out[8:6]  !== act_t.enc_out[8:6])  begin
+            diff = {diff, " B"}; lane_fail_count[1]++; seq_lane_b_fail[scn]++;
+        end
+        if (exp_t.enc_out[5:3]  !== act_t.enc_out[5:3])  begin
+            diff = {diff, " C"}; lane_fail_count[2]++; seq_lane_c_fail[scn]++;
+        end
+        if (exp_t.enc_out[2:0]  !== act_t.enc_out[2:0])  begin
+            diff = {diff, " D"}; lane_fail_count[3]++; seq_lane_d_fail[scn]++;
+        end
+        return diff;
     endfunction
 
-    function void count_lane_mismatches(seq_item exp_t, seq_item act_t);
-        if (exp_t.enc_out[11:9] !== act_t.enc_out[11:9]) lane_fail_count[0]++;
-        if (exp_t.enc_out[8:6]  !== act_t.enc_out[8:6])  lane_fail_count[1]++;
-        if (exp_t.enc_out[5:3]  !== act_t.enc_out[5:3])  lane_fail_count[2]++;
-        if (exp_t.enc_out[2:0]  !== act_t.enc_out[2:0])  lane_fail_count[3]++;
-    endfunction
-
-    function void count_seq_lane_mismatches(int unsigned scenario_id, seq_item exp_t, seq_item act_t);
-        if (exp_t.enc_out[11:9] !== act_t.enc_out[11:9]) seq_lane_a_fail[scenario_id]++;
-        if (exp_t.enc_out[8:6]  !== act_t.enc_out[8:6])  seq_lane_b_fail[scenario_id]++;
-        if (exp_t.enc_out[5:3]  !== act_t.enc_out[5:3])  seq_lane_c_fail[scenario_id]++;
-        if (exp_t.enc_out[2:0]  !== act_t.enc_out[2:0])  seq_lane_d_fail[scenario_id]++;
-    endfunction
-
+    // drains queues in lockstep: pops one item from each queue,
+    // compares expected vs actual output, logs first N mismatches
     function void compare_if_ready();
         seq_item in_t, act_t, exp_t;
 
@@ -135,12 +133,10 @@ class scoreboard extends uvm_scoreboard;
             begin
                 fail_count++;
                 seq_fail_count[in_t.scenario_id]++;
-                count_lane_mismatches(exp_t, act_t);
-                count_seq_lane_mismatches(in_t.scenario_id, exp_t, act_t);
                 if (fail_count <= max_mismatch_log) begin
                     `uvm_error("SCB_MISMATCH",
                         $sformatf("compare[%0d] mismatched fields:%s  input={%s}  exp=%s act=%s",
-                                  compare_count, diff_fields(exp_t, act_t),
+                                  compare_count, check_lanes(exp_t, act_t, in_t.scenario_id),
                                   fmt_in(in_t), fmt_out(exp_t), fmt_out(act_t)))
                 end else if (fail_count == (max_mismatch_log + 1)) begin
                     `uvm_error("SCB_MISMATCH",
@@ -154,6 +150,7 @@ class scoreboard extends uvm_scoreboard;
         end
     endfunction
 
+    // per-scenario pass/fail with lane-level breakdown
     function void report_sequence_summary();
         foreach (seq_compare_count[scenario_id]) begin
             string status;
@@ -171,6 +168,7 @@ class scoreboard extends uvm_scoreboard;
         end
     endfunction
 
+    // final summary: total received/compared/match/fail with lane breakdown
     function void report_phase(uvm_phase phase);
         super.report_phase(phase);
 

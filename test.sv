@@ -32,6 +32,8 @@ class test extends uvm_test;
         @(negedge vif.clk);
     endtask
 
+    // runs the full sequence 4 times to verify repeatability
+    // reset is asserted between runs via apply_reset before each seq.start
     task run_phase(uvm_phase phase);
         my_sequence seq;
 

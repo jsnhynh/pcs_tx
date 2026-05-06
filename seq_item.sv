@@ -15,6 +15,7 @@ class seq_item extends uvm_sequence_item;
         super.new(name);
     endfunction
 
+    // called by scoreboard's write_* functions for deep-copy into queues
     function void do_copy(uvm_object rhs);
         seq_item rhs_;
         if (!$cast(rhs_, rhs)) begin

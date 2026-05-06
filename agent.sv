@@ -12,6 +12,8 @@ class agent extends uvm_agent;
         super.new(name, parent);
     endfunction
 
+    // active agent: creates driver + sequencer only when UVM_ACTIVE
+    // input monitor is always created (passive agent still monitors)
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
 
