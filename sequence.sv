@@ -46,7 +46,7 @@ class my_sequence extends uvm_sequence #(seq_item);
         special_rows();
         error_injection();
         corner_cases();
-        random_run(4500);
+        random_run(20000);
     endtask
 
     // sweep all 256 possible data byte values

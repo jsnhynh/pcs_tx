@@ -2,7 +2,6 @@
 `define INTERFACE_SV
 
 interface encoder_if(input logic clk);
-
     logic        rst_n;
 
     logic [8:0]  tx_in;

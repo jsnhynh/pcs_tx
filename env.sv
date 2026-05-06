@@ -22,8 +22,8 @@ class env extends uvm_env;
         scb          = scoreboard::type_id::create("scb", this);
     endfunction
 
-    // mon_out_gm captures golden-model output → expected (ap_exp)
-    // mon_out_dut captures DUT output → actual (ap_act)
+    // mon_out_gm captures golden-model output -> expected (ap_exp)
+    // mon_out_dut captures DUT output -> actual (ap_act)
     function void connect_phase(uvm_phase phase);
         super.connect_phase(phase);
 

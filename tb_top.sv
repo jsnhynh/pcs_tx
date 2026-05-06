@@ -42,11 +42,8 @@ module tb_top;
         .enc_out (dif.tx_out_ref)
     );
 
-`ifdef DUT_IS_GOLDEN
-    pcs_tx u_dut (
-`else
+    //pcs_tx u_dut (
     pcs_tx_broken u_dut (
-`endif
         .clk     (clk),
         .rst     (dut_rst),
         .enc_in  (dif.tx_in),

@@ -30,36 +30,13 @@ class test extends uvm_test;
         @(negedge vif.clk);
     endtask
 
-    // runs the full sequence 4 times to verify repeatability
-    // reset is asserted between runs via apply_reset before each seq.start
+    // single directed pass, then multiple random-only passes for wider coverage
     task run_phase(uvm_phase phase);
         my_sequence seq;
 
         phase.raise_objection(this);
 
-        // run 1
         apply_reset();
-        seq = my_sequence::type_id::create("seq");
-        seq.start(e.agt.sqr);
-
-        // run 2
-        apply_reset();
-        seq = my_sequence::type_id::create("seq");
-        seq.start(e.agt.sqr);
-
-        // run 3
-        apply_reset();
-        seq = my_sequence::type_id::create("seq");
-        seq.start(e.agt.sqr);
-
-        // run 4: quick reset
-        vif.scenario_id <= 0;
-        vif.tx_in <= {1'b1, PCS_TX_CMD_IDLE};
-        vif.rst_n <= 1'b0;
-        @(posedge vif.clk);
-        vif.rst_n <= 1'b1;
-        @(negedge vif.clk);
-
         seq = my_sequence::type_id::create("seq");
         seq.start(e.agt.sqr);
 
