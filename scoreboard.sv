@@ -121,6 +121,7 @@ class scoreboard extends uvm_scoreboard;
     // compares expected vs actual output, logs first N mismatches
     function void compare_if_ready();
         seq_item in_t, act_t, exp_t;
+        string  mismatch_fields;
 
         while ((in_q.size() > 0) && (act_q.size() > 0) && (exp_q.size() > 0)) begin
             in_t = in_q.pop_front();
@@ -133,10 +134,11 @@ class scoreboard extends uvm_scoreboard;
             begin
                 fail_count++;
                 seq_fail_count[in_t.scenario_id]++;
+                mismatch_fields = check_lanes(exp_t, act_t, in_t.scenario_id);
                 if (fail_count <= max_mismatch_log) begin
                     `uvm_error("SCB_MISMATCH",
                         $sformatf("compare[%0d] mismatched fields:%s  input={%s}  exp=%s act=%s",
-                                  compare_count, check_lanes(exp_t, act_t, in_t.scenario_id),
+                                  compare_count, mismatch_fields,
                                   fmt_in(in_t), fmt_out(exp_t), fmt_out(act_t)))
                 end else if (fail_count == (max_mismatch_log + 1)) begin
                     `uvm_error("SCB_MISMATCH",
