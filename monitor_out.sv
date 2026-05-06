@@ -1,14 +1,15 @@
 `ifndef MON_PCS_TX_OUT_SV
 `define MON_PCS_TX_OUT_SV
 
-class mon_pcs_tx_out extends uvm_monitor;
-    `uvm_component_utils(mon_pcs_tx_out)
+class monitor_out extends uvm_monitor;
+    `uvm_component_utils(monitor_out)
 
-    virtual pcs_tx_out_if vif;
+    virtual encoder_if vif;
+    bit use_dut_output;
 
     uvm_analysis_port #(seq_item) ap;
 
-    function new(string name = "mon_pcs_tx_out", uvm_component parent = null);
+    function new(string name = "monitor_out", uvm_component parent = null);
         super.new(name, parent);
     endfunction
 
@@ -17,9 +18,10 @@ class mon_pcs_tx_out extends uvm_monitor;
 
         ap = new("ap", this);
 
-        if (!uvm_config_db #(virtual pcs_tx_out_if)::get(this, "", "vif", vif)) begin
-            `uvm_fatal("NOVIF", "virtual interface not set for mon_pcs_tx_out")
+        if (!uvm_config_db #(virtual encoder_if)::get(this, "", "vif", vif)) begin
+            `uvm_fatal("NOVIF", "virtual interface not set for monitor_out")
         end
+        void'(uvm_config_db #(bit)::get(this, "", "use_dut_output", use_dut_output));
     endfunction
 
     task run_phase(uvm_phase phase);
@@ -27,13 +29,10 @@ class mon_pcs_tx_out extends uvm_monitor;
 
         forever begin
             @(vif.mon_cb);
-            if (vif.mon_cb.rst) continue;
+            if (!vif.mon_cb.rst_n) continue;
 
             txn = seq_item::type_id::create("txn");
-            txn.A_n = vif.mon_cb.A_n;
-            txn.B_n = vif.mon_cb.B_n;
-            txn.C_n = vif.mon_cb.C_n;
-            txn.D_n = vif.mon_cb.D_n;
+            txn.enc_out = use_dut_output ? vif.mon_cb.tx_out : vif.mon_cb.tx_out_ref;
 
             ap.write(txn);
         end

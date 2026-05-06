@@ -5,8 +5,8 @@ class env extends uvm_env;
     `uvm_component_utils(env)
 
     agent           agt;
-    mon_pcs_tx_out  mon_out_gm;
-    mon_pcs_tx_out  mon_out_dut;
+    monitor_out  mon_out_gm;
+    monitor_out  mon_out_dut;
     scoreboard      scb;
 
     function new(string name = "env", uvm_component parent = null);
@@ -17,8 +17,8 @@ class env extends uvm_env;
         super.build_phase(phase);
 
         agt          = agent::type_id::create("agt", this);
-        mon_out_gm   = mon_pcs_tx_out::type_id::create("mon_out_gm", this);
-        mon_out_dut  = mon_pcs_tx_out::type_id::create("mon_out_dut", this);
+        mon_out_gm   = monitor_out::type_id::create("mon_out_gm", this);
+        mon_out_dut  = monitor_out::type_id::create("mon_out_dut", this);
         scb          = scoreboard::type_id::create("scb", this);
     endfunction
 

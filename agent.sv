@@ -6,7 +6,7 @@ class agent extends uvm_agent;
 
     sequencer      sqr;
     driver         drv;
-    mon_pcs_tx_in  mon;
+    monitor_in  mon;
 
     function new(string name = "agent", uvm_component parent = null);
         super.new(name, parent);
@@ -15,7 +15,7 @@ class agent extends uvm_agent;
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
 
-        mon = mon_pcs_tx_in::type_id::create("mon", this);
+        mon = monitor_in::type_id::create("mon", this);
 
         if (get_is_active()) begin
             sqr = sequencer::type_id::create("sqr", this);

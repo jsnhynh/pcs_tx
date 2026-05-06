@@ -74,28 +74,27 @@ class scoreboard extends uvm_scoreboard;
     function string fmt_out(seq_item t);
         if (t == null) return "<none>";
         return $sformatf("{A:%0d B:%0d C:%0d D:%0d}",
-                         t.A_n, t.B_n, t.C_n, t.D_n);
+                         $signed(t.enc_out[11:9]), $signed(t.enc_out[8:6]),
+                         $signed(t.enc_out[5:3]),  $signed(t.enc_out[2:0]));
     endfunction
 
     function string fmt_in(seq_item t);
         if (t == null) return "<input not captured>";
-        return $sformatf("seq=%s TXD=0x%02h tx_en=%0b tx_err=%0b tx_mode=%0b cfg=%0b lrs=%0b lpi=%0b upd=%0b",
-                         scenario_name(t.scenario_id), t.TXD, t.tx_enable, t.tx_error, t.tx_mode, t.config_i,
-                         t.loc_rcvr_status, t.loc_lpi_req, t.loc_update_done);
+        return $sformatf("seq=%s enc_in=0x%03h kind=%s value=0x%02h",
+                         scenario_name(t.scenario_id), t.enc_in,
+                         t.enc_in[8] ? "cmd" : "data", t.enc_in[7:0]);
     endfunction
 
     function string scenario_name(int unsigned scenario_id);
         case (scenario_id)
-            1:  return "normal_data_cfg1";
-            2:  return "normal_data_cfg0";
-            3:  return "random_run_cfg1";
-            4:  return "tx_mode_tests";
-            5:  return "special_rows";
-            6:  return "sideband_perms";
-            7:  return "error_injection";
-            8:  return "corner_cases";
-            9:  return "random_stress_cfg1";
-            10: return "random_stress_cfg0";
+            1:  return "data_pass";
+            2:  return "random_run";
+            3:  return "tx_mode_tests";
+            4:  return "special_rows";
+            5:  return "error_injection";
+            6:  return "corner_cases";
+            7:  return "random_stress1";
+            8:  return "random_stress2";
             default: return "idle_or_unlabeled";
         endcase
     endfunction
@@ -103,25 +102,25 @@ class scoreboard extends uvm_scoreboard;
     function string diff_fields(seq_item exp_t, seq_item act_t);
         string fields;
         fields = "";
-        if (exp_t.A_n !== act_t.A_n) fields = {fields, " A"};
-        if (exp_t.B_n !== act_t.B_n) fields = {fields, " B"};
-        if (exp_t.C_n !== act_t.C_n) fields = {fields, " C"};
-        if (exp_t.D_n !== act_t.D_n) fields = {fields, " D"};
+        if (exp_t.enc_out[11:9] !== act_t.enc_out[11:9]) fields = {fields, " A"};
+        if (exp_t.enc_out[8:6]  !== act_t.enc_out[8:6])  fields = {fields, " B"};
+        if (exp_t.enc_out[5:3]  !== act_t.enc_out[5:3])  fields = {fields, " C"};
+        if (exp_t.enc_out[2:0]  !== act_t.enc_out[2:0])  fields = {fields, " D"};
         return fields;
     endfunction
 
     function void count_lane_mismatches(seq_item exp_t, seq_item act_t);
-        if (exp_t.A_n !== act_t.A_n) lane_fail_count[0]++;
-        if (exp_t.B_n !== act_t.B_n) lane_fail_count[1]++;
-        if (exp_t.C_n !== act_t.C_n) lane_fail_count[2]++;
-        if (exp_t.D_n !== act_t.D_n) lane_fail_count[3]++;
+        if (exp_t.enc_out[11:9] !== act_t.enc_out[11:9]) lane_fail_count[0]++;
+        if (exp_t.enc_out[8:6]  !== act_t.enc_out[8:6])  lane_fail_count[1]++;
+        if (exp_t.enc_out[5:3]  !== act_t.enc_out[5:3])  lane_fail_count[2]++;
+        if (exp_t.enc_out[2:0]  !== act_t.enc_out[2:0])  lane_fail_count[3]++;
     endfunction
 
     function void count_seq_lane_mismatches(int unsigned scenario_id, seq_item exp_t, seq_item act_t);
-        if (exp_t.A_n !== act_t.A_n) seq_lane_a_fail[scenario_id]++;
-        if (exp_t.B_n !== act_t.B_n) seq_lane_b_fail[scenario_id]++;
-        if (exp_t.C_n !== act_t.C_n) seq_lane_c_fail[scenario_id]++;
-        if (exp_t.D_n !== act_t.D_n) seq_lane_d_fail[scenario_id]++;
+        if (exp_t.enc_out[11:9] !== act_t.enc_out[11:9]) seq_lane_a_fail[scenario_id]++;
+        if (exp_t.enc_out[8:6]  !== act_t.enc_out[8:6])  seq_lane_b_fail[scenario_id]++;
+        if (exp_t.enc_out[5:3]  !== act_t.enc_out[5:3])  seq_lane_c_fail[scenario_id]++;
+        if (exp_t.enc_out[2:0]  !== act_t.enc_out[2:0])  seq_lane_d_fail[scenario_id]++;
     endfunction
 
     function void compare_if_ready();
@@ -134,10 +133,7 @@ class scoreboard extends uvm_scoreboard;
             compare_count++;
             seq_compare_count[in_t.scenario_id]++;
 
-            if ((exp_t.A_n !== act_t.A_n) ||
-                (exp_t.B_n !== act_t.B_n) ||
-                (exp_t.C_n !== act_t.C_n) ||
-                (exp_t.D_n !== act_t.D_n))
+            if (exp_t.enc_out !== act_t.enc_out)
             begin
                 fail_count++;
                 seq_fail_count[in_t.scenario_id]++;

@@ -7,6 +7,6 @@ encoder_if.sv
 csrc/
 simv.daidir
 ucli.key
-vc_drs.h
 tr_db.log
 simv
+vc_hdrs.h

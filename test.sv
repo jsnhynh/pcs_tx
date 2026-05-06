@@ -1,12 +1,14 @@
 `ifndef TEST_SV
 `define TEST_SV
 
+import pcs_tx_cmd_pkg::*;
+
 class test extends uvm_test;
     `uvm_component_utils(test)
 
     env e;
 
-    virtual pcs_tx_mon_if vif;
+    virtual encoder_if vif;
 
     function new(string name = "test", uvm_component parent = null);
         super.new(name, parent);
@@ -16,48 +18,49 @@ class test extends uvm_test;
         super.build_phase(phase);
         e = env::type_id::create("e", this);
 
-        if (!uvm_config_db #(virtual pcs_tx_mon_if)::get(this, "", "vif", vif)) begin
+        if (!uvm_config_db #(virtual encoder_if)::get(this, "", "vif", vif)) begin
             `uvm_fatal("NOVIF", "virtual interface not set for test")
         end
     endfunction
 
-    task apply_reset(input logic cfg);
-        vif.rst      <= 1'b1;
-        vif.config_i <= cfg;
+    task apply_reset();
+        vif.rst_n <= 1'b0;
+        vif.tx_in <= {1'b1, PCS_TX_CMD_IDLE};
         vif.scenario_id <= 0;
         repeat (3) @(posedge vif.clk);
-        vif.rst <= 1'b0;
+        vif.rst_n <= 1'b1;
         @(negedge vif.clk);
     endtask
 
     task run_phase(uvm_phase phase);
-        comprehensive_sequence seq;
+        my_sequence seq;
 
         phase.raise_objection(this);
 
-        // run 1: master
-        apply_reset(1'b1);
-        seq = comprehensive_sequence::type_id::create("seq");
+        // run 1
+        apply_reset();
+        seq = my_sequence::type_id::create("seq");
         seq.start(e.agt.sqr);
 
-        // run 2: master
-        apply_reset(1'b1);
-        seq = comprehensive_sequence::type_id::create("seq");
+        // run 2
+        apply_reset();
+        seq = my_sequence::type_id::create("seq");
         seq.start(e.agt.sqr);
 
-        // run 3: slave
-        apply_reset(1'b0);
-        seq = comprehensive_sequence::type_id::create("seq");
+        // run 3
+        apply_reset();
+        seq = my_sequence::type_id::create("seq");
         seq.start(e.agt.sqr);
 
         // run 4: quick reset
         vif.scenario_id <= 0;
-        vif.rst <= 1'b1;
+        vif.tx_in <= {1'b1, PCS_TX_CMD_IDLE};
+        vif.rst_n <= 1'b0;
         @(posedge vif.clk);
-        vif.rst <= 1'b0;
+        vif.rst_n <= 1'b1;
         @(negedge vif.clk);
 
-        seq = comprehensive_sequence::type_id::create("seq");
+        seq = my_sequence::type_id::create("seq");
         seq.start(e.agt.sqr);
 
         #100ns;
