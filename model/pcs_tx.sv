@@ -95,7 +95,12 @@ module pcs_tx #(
         .D_n         (D_n)
     );
 
-    assign Dout = {A_n[2:0], B_n[2:0], C_n[2:0], D_n[2:0]};
+    always_ff @(posedge clk or posedge rst) begin
+        if (rst)
+            Dout <= '0;
+        else
+            Dout <= {A_n[2:0], B_n[2:0], C_n[2:0], D_n[2:0]};
+    end
 
 endmodule
 
