@@ -25,7 +25,8 @@ class driver extends uvm_driver #(seq_item);
             seq_item_port.get_next_item(item);
 
             @(vif.drv_cb);
-            vif.drv_cb.tx_in       <= item.enc_in;
+            vif.drv_cb.Din         <= item.Din;
+            vif.drv_cb.TX_EN       <= item.TX_EN;
             vif.drv_cb.scenario_id <= item.scenario_id;
 
             seq_item_port.item_done();

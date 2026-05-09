@@ -4,9 +4,12 @@
 `include "uvm_macros.svh"
 import uvm_pkg::*;
 
-`include "interface.sv"
 `include "model/pcs_tx_cmd_pkg.sv"
 `include "model/pcs_tx_pkg.sv"
+import pcs_tx_cmd_pkg::*;
+
+`include "interface.sv"
+`include "DUTS26_0.sv"
 
 `include "model/tx_scrambler.sv"
 `include "model/tx_sc_gen.sv"
@@ -14,7 +17,6 @@ import uvm_pkg::*;
 `include "model/tx_table.sv"
 `include "model/tx_sign_rev.sv"
 `include "model/pcs_tx.sv"
-`include "model/pcs_tx_broken.sv"
 
 `include "seq_item.sv"
 `include "sequencer.sv"
@@ -35,20 +37,24 @@ module tb_top;
 
     assign dut_rst = ~dif.rst_n;
 
+    // PCS_TX golden model
     pcs_tx u_ref (
-        .clk     (clk),
-        .rst     (dut_rst),
-        .enc_in  (dif.tx_in),
-        .enc_out (dif.tx_out_ref)
+        .clk  (clk),
+        .rst  (dut_rst),
+        .Din  (dif.Din),
+        .TX_EN(dif.TX_EN),
+        .Dout (dif.Dout_ref)
     );
 
-    //pcs_tx u_dut (
-    pcs_tx_broken u_dut (
-        .clk     (clk),
-        .rst     (dut_rst),
-        .enc_in  (dif.tx_in),
-        .enc_out (dif.tx_out)
+    // DUT
+    DUTS26_0 u_dut (
+        .Clk   (clk),
+        .Reset (dut_rst),
+        .Din   (dif.Din),
+        .TX_EN (dif.TX_EN),
+        .Dout  (dif.Dout)
     );
+
 
     always #5 clk <= ~clk;
 
@@ -56,7 +62,8 @@ module tb_top;
         clk = 1'b0;
 
         dif.rst_n       = 1'b0;
-        dif.tx_in       = {1'b1, PCS_TX_CMD_IDLE};
+        dif.Din         = 8'h00;
+        dif.TX_EN       = 1'b0;
         dif.scenario_id = 0;
 
         uvm_config_db #(virtual encoder_if)::set(null, "uvm_test_top", "vif", dif);

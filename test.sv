@@ -23,7 +23,8 @@ class test extends uvm_test;
 
     task apply_reset();
         vif.rst_n <= 1'b0;
-        vif.tx_in <= {1'b1, PCS_TX_CMD_IDLE};
+        vif.Din <= 8'h00;
+        vif.TX_EN <= 1'b0;
         vif.scenario_id <= 0;
         repeat (3) @(posedge vif.clk);
         vif.rst_n <= 1'b1;

@@ -53,7 +53,6 @@ module pcs_tx_broken_core #(
         .clk             (clk),
         .rst             (rst),
         .tx_enable_n     (tx_enable_n[2:0]),
-        .tx_mode         (tx_mode),
 
         .Sy_n            (Sy_n),
         .Sx_n            (Sx_n),
@@ -67,11 +66,6 @@ module pcs_tx_broken_core #(
         .rst                (rst),
         .tx_enable_n        (tx_enable_n[2:0]),
         .TXD                (TXD),
-        .tx_mode            (tx_mode),
-        .loc_rcvr_status    (loc_rcvr_status),
-        .loc_lpi_req        (loc_lpi_req),
-        .loc_update_done    (loc_update_done),
-        .tx_error           (tx_error_n[0]),
         .Sc_n               (Sc_n),
 
         .Sd_n               (Sd_n)

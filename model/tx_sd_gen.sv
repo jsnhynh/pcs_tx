@@ -5,14 +5,8 @@ module tx_sd_gen (
     input  logic        clk,
     input  logic        rst,
 
-    // dut inputs
-    input  logic [2:0]  tx_enable_n,    
-    input  logic        tx_error,
+    input  logic [2:0]  tx_enable_n,
     input  logic [7:0]  TXD,
-    input  logic        tx_mode,            
-    input  logic        loc_rcvr_status,    
-    input  logic        loc_lpi_req,
-    input  logic        loc_update_done,
 
     // from sc gen
     input  logic [7:0]  Sc_n,
@@ -24,13 +18,8 @@ module tx_sd_gen (
     logic [2:0]  cs_next;
 
     logic        csreset_n;
-    logic        cext_n;
-    logic        cext_err_n;
-
     always_comb begin
         csreset_n  = tx_enable_n[2] & ~tx_enable_n[0];
-        cext_n     = (!tx_enable_n[0]) && (TXD[7:0] == 8'h0F)                     ? tx_error : '0;
-        cext_err_n = (!tx_enable_n[0]) && (TXD[7:0] != 8'h0F) && (!loc_lpi_req)   ? tx_error : '0;
 
         cs_next[0] = cs_prev[2];
 
@@ -44,7 +33,7 @@ module tx_sd_gen (
 
         // sd bit 6
         if (!csreset_n && tx_enable_n[2])   Sd_n[6] = Sc_n[6] ^ TXD[6];
-        else if (csreset_n)                 Sd_n[6] = cs_prev[0];
+        else if (csreset_n)                 Sd_n[6] = cs_prev[1];
         else                                Sd_n[6] = Sc_n[6];
 
         // sd bits 5:4
@@ -52,28 +41,24 @@ module tx_sd_gen (
         else                                Sd_n[5:4] = Sc_n[5:4];
 
         // sd bit 3
-        if (tx_enable_n[2])                             Sd_n[3] = Sc_n[3] ^ TXD[3];
-        else if (loc_lpi_req && !tx_mode)               Sd_n[3] = Sc_n[3] ^ 1'b1;
-        else                                            Sd_n[3] = Sc_n[3];
+        if (tx_enable_n[2])                 Sd_n[3] = Sc_n[3] ^ TXD[3];
+        else                                Sd_n[3] = Sc_n[3];
 
         // sd bit 2
-        if (tx_enable_n[2])                             Sd_n[2] = Sc_n[2] ^ TXD[2];
-        else if (loc_rcvr_status && !tx_mode)           Sd_n[2] = Sc_n[2] ^ 1'b1;
-        else                                            Sd_n[2] = Sc_n[2];
+        if (tx_enable_n[2])                 Sd_n[2] = Sc_n[2] ^ TXD[2];
+        else                                Sd_n[2] = Sc_n[2];
 
         // sd bit 1
-        if (tx_enable_n[2])                             Sd_n[1] = Sc_n[1] ^ TXD[1];
-        else if (loc_update_done && !tx_mode)           Sd_n[1] = Sc_n[1] ^ 1'b1;
-        else                                            Sd_n[1] = Sc_n[1] ^ cext_err_n;
+        if (tx_enable_n[2])                 Sd_n[1] = Sc_n[1] ^ TXD[1];
+        else                                Sd_n[1] = Sc_n[1] ^ 1'b1;
 
         // sd bit 0
-        if (tx_enable_n[2])                 Sd_n[0] = Sc_n[0] ^ TXD[0];
-        else                                Sd_n[0] = Sc_n[0] ^ cext_n;
+        Sd_n[0] = (Sc_n[0] ^ tx_enable_n[2]) ? TXD[0] : 1'b0;
 
-        if (tx_enable_n[2])                 cs_next[1] = Sd_n[6] ^ cs_prev[0];
+        if (tx_enable_n[2])                 cs_next[1] = Sd_n[6] ^ cs_prev[1];
         else                                cs_next[1] = '0;
 
-        if (tx_enable_n[2])                 cs_next[2] = Sd_n[7] ^ cs_prev[1];
+        if (tx_enable_n[2])                 cs_next[2] = Sd_n[7] ^ TXD[7];
         else                                cs_next[2] = '0;
     end
 

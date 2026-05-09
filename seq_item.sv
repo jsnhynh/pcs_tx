@@ -4,21 +4,14 @@
 class seq_item extends uvm_sequence_item;
     `uvm_object_utils(seq_item)
 
-    // input fields
-    rand logic [8:0] enc_in;
+    rand logic [7:0] Din;
+    rand logic       TX_EN;
     int unsigned     scenario_id;
 
-    // output fields
-    logic [11:0]     enc_out;
+    logic [3:0][2:0] Dout;
 
-    // weighted distribution: 80% data, 20% commands (idle/error/carrier_ext)
-    constraint enc_dist {
-        enc_in[8] dist { 0 := 80, 1 := 20 };
-        (enc_in[8] == 1) -> enc_in[7:0] inside {
-            PCS_TX_CMD_IDLE,
-            PCS_TX_CMD_TX_ERROR,
-            PCS_TX_CMD_CARRIER_EXT
-        };
+    constraint dut_input_dist {
+        TX_EN dist { 1 := 75, 0 := 25 };
     }
 
     function new(string name = "seq_item");
@@ -32,9 +25,10 @@ class seq_item extends uvm_sequence_item;
             `uvm_fatal("TYPE", "do_copy: type mismatch")
         end
         super.do_copy(rhs);
-        enc_in           = rhs_.enc_in;
-        scenario_id      = rhs_.scenario_id;
-        enc_out          = rhs_.enc_out;
+        Din         = rhs_.Din;
+        TX_EN       = rhs_.TX_EN;
+        scenario_id = rhs_.scenario_id;
+        Dout        = rhs_.Dout;
     endfunction
 
 endclass

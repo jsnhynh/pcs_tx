@@ -22,8 +22,7 @@ class monitor_in extends uvm_monitor;
         end
     endfunction
 
-    // captures input-side transactions (enc_in, scenario_id) every cycle
-    // sampled through mon_cb clocking block; skips during reset (rst_n active-low)
+    // captures input-side transactions every cycle after reset
     task run_phase(uvm_phase phase);
         seq_item txn;
 
@@ -32,7 +31,8 @@ class monitor_in extends uvm_monitor;
             if (!vif.mon_cb.rst_n) continue;
 
             txn = seq_item::type_id::create("txn");
-            txn.enc_in      = vif.mon_cb.tx_in;
+            txn.Din         = vif.mon_cb.Din;
+            txn.TX_EN       = vif.mon_cb.TX_EN;
             txn.scenario_id = vif.mon_cb.scenario_id;
 
             ap.write(txn);

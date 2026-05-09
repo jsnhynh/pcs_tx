@@ -5,9 +5,7 @@ module tx_sc_gen (
     input  logic        clk,
     input  logic        rst,
 
-    // in
-    input  logic [2:0]  tx_enable_n,  
-    input  logic        tx_mode,
+    input  logic [2:0]  tx_enable_n,
 
     // from scrambler
     input  logic [3:0]  Sy_n,
@@ -23,20 +21,16 @@ module tx_sc_gen (
         if (tx_enable_n[2])         Sc_n[7:4] = Sx_n[3:0];
         else                        Sc_n[7:4] = '0;
 
-        // sc bits 3:1
-        if (tx_mode)                Sc_n[3:1] = '0;
-        else if (sc_even_phase)     Sc_n[3:1] = Sy_n[3:1];
-        else                        Sc_n[3:1] = Sy_prev[3:1] ^ 3'b111;
+        if (sc_even_phase)     Sc_n[3:1] = Sy_n[3:1];
+        else                   Sc_n[3:1] = Sy_prev[3:1] ^ 3'b111;
 
-        // sc bit 0
-        if (tx_mode)                Sc_n[0] = '0;
-        else                        Sc_n[0] = Sy_n[0];
+        Sc_n[0] = Sy_n[0];
     end
 
     always_ff @(posedge clk or posedge rst) begin
         if (rst) begin
             Sy_prev             <= '0;
-            sc_even_phase       <= 1'b1;
+            sc_even_phase       <= 1'b0;
         end else begin
             Sy_prev             <= Sy_n;
             sc_even_phase       <= ~sc_even_phase;

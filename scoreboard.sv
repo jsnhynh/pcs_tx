@@ -25,6 +25,7 @@ class scoreboard extends uvm_scoreboard;
     int lane_fail_count[4];
     int max_mismatch_log = 20;
     localparam int MAX_STALL_DEPTH = 200;
+
     int seq_compare_count[int unsigned];
     int seq_match_count[int unsigned];
     int seq_fail_count[int unsigned];
@@ -32,6 +33,14 @@ class scoreboard extends uvm_scoreboard;
     int seq_lane_b_fail[int unsigned];
     int seq_lane_c_fail[int unsigned];
     int seq_lane_d_fail[int unsigned];
+
+    bit seen_en_data[256];
+    bit seen_dis_data[256];
+    bit prev_valid;
+    bit prev_tx_en;
+    int tx_en_transition_count[4];
+    int enabled_sample_count;
+    int disabled_sample_count;
 
     function new(string name, uvm_component par);
         super.new(name, par);
@@ -45,30 +54,38 @@ class scoreboard extends uvm_scoreboard;
         void'($value$plusargs("SCB_MAX_MISMATCH_LOG=%d", max_mismatch_log));
     endfunction
 
-    // warn if any queue stalls beyond threshold - indicates monitor or DUT deadlock
-    function void check_stall();
-        if (in_q.size()  > MAX_STALL_DEPTH)
-            `uvm_warning("SCB_STALL",
-                $sformatf("in_q  stalled at %0d (act=%0d exp=%0d)",
-                          in_q.size(), act_q.size(), exp_q.size()))
-        if (act_q.size() > MAX_STALL_DEPTH)
-            `uvm_warning("SCB_STALL",
-                $sformatf("act_q stalled at %0d (in=%0d exp=%0d)",
-                          act_q.size(), in_q.size(), exp_q.size()))
-        if (exp_q.size() > MAX_STALL_DEPTH)
-            `uvm_warning("SCB_STALL",
-                $sformatf("exp_q stalled at %0d (in=%0d act=%0d)",
-                          exp_q.size(), in_q.size(), act_q.size()))
+    function void update_input_coverage(seq_item t);
+        if (t.TX_EN) begin
+            seen_en_data[t.Din] = 1'b1;
+            enabled_sample_count++;
+        end else begin
+            seen_dis_data[t.Din] = 1'b1;
+            disabled_sample_count++;
+        end
+
+        if (prev_valid)
+            tx_en_transition_count[{prev_tx_en, t.TX_EN}]++;
+
+        prev_tx_en = t.TX_EN;
+        prev_valid = 1'b1;
     endfunction
 
-    // TLM analysis port callbacks: deep-copy and queue the transaction,
-    // then trigger comparison when all three queues have at least one item
+    function void check_stall();
+        if (in_q.size() > MAX_STALL_DEPTH)
+            `uvm_warning("SCB_STALL", $sformatf("in_q stalled at %0d", in_q.size()))
+        if (act_q.size() > MAX_STALL_DEPTH)
+            `uvm_warning("SCB_STALL", $sformatf("act_q stalled at %0d", act_q.size()))
+        if (exp_q.size() > MAX_STALL_DEPTH)
+            `uvm_warning("SCB_STALL", $sformatf("exp_q stalled at %0d", exp_q.size()))
+    endfunction
+
     function void write_in(seq_item t);
         seq_item cpy;
         cpy = seq_item::type_id::create("cpy");
         cpy.copy(t);
         in_q.push_back(cpy);
         in_rcv_count++;
+        update_input_coverage(cpy);
         compare_if_ready();
         check_stall();
     endfunction
@@ -96,74 +113,59 @@ class scoreboard extends uvm_scoreboard;
     function string fmt_out(seq_item t);
         if (t == null) return "<none>";
         return $sformatf("{A:%0d B:%0d C:%0d D:%0d}",
-                         $signed(t.enc_out[11:9]), $signed(t.enc_out[8:6]),
-                         $signed(t.enc_out[5:3]),  $signed(t.enc_out[2:0]));
+                         $signed(t.Dout[3]), $signed(t.Dout[2]),
+                         $signed(t.Dout[1]), $signed(t.Dout[0]));
     endfunction
 
     function string fmt_in(seq_item t);
         if (t == null) return "<input not captured>";
-        return $sformatf("seq=%s enc_in=0x%03h kind=%s value=0x%02h",
-                         scenario_name(t.scenario_id), t.enc_in,
-                         t.enc_in[8] ? "cmd" : "data", t.enc_in[7:0]);
+        return $sformatf("seq=%s Din=0x%02h TX_EN=%0b",
+                         scenario_name(t.scenario_id), t.Din, t.TX_EN);
     endfunction
 
     function string scenario_name(int unsigned scenario_id);
         case (scenario_id)
-            1: return "data_pass";
-            2: return "random";
-            3: return "data_idle_mix";
-            4: return "special_rows";
-            5: return "error_injection";
+            1: return "data_sweep";
+            2: return "packet_bursts";
+            3: return "disable_patterns";
+            4: return "transitions";
+            5: return "random";
             6: return "corner_cases";
-            default: return "idle_or_unlabeled";
+            default: return "idle";
         endcase
     endfunction
 
-    // single pass over 4 lanes: build diff string and update all counters
     function string check_lanes(seq_item exp_t, seq_item act_t, int unsigned scn);
         string diff = "";
-        if (exp_t.enc_out[11:9] !== act_t.enc_out[11:9]) begin
+        if (exp_t.Dout[3] !== act_t.Dout[3]) begin
             diff = {diff, " A"}; lane_fail_count[0]++; seq_lane_a_fail[scn]++;
         end
-        if (exp_t.enc_out[8:6]  !== act_t.enc_out[8:6])  begin
+        if (exp_t.Dout[2] !== act_t.Dout[2]) begin
             diff = {diff, " B"}; lane_fail_count[1]++; seq_lane_b_fail[scn]++;
         end
-        if (exp_t.enc_out[5:3]  !== act_t.enc_out[5:3])  begin
+        if (exp_t.Dout[1] !== act_t.Dout[1]) begin
             diff = {diff, " C"}; lane_fail_count[2]++; seq_lane_c_fail[scn]++;
         end
-        if (exp_t.enc_out[2:0]  !== act_t.enc_out[2:0])  begin
+        if (exp_t.Dout[0] !== act_t.Dout[0]) begin
             diff = {diff, " D"}; lane_fail_count[3]++; seq_lane_d_fail[scn]++;
         end
         return diff;
     endfunction
 
-    // IEEE 802.3 specifies lane outputs in [-2, -1, 0, +1, +2]
-    // catch out-of-range or X propagation on DUT output
     function void check_dut_range(seq_item act_t);
-        logic signed [2:0] a, b, c, d;
-        if ($isunknown(act_t.enc_out)) begin
-            `uvm_error("SCB_RANGE", $sformatf("DUT output contains X: 0x%03h", act_t.enc_out))
-            return;
+        for (int lane = 0; lane < 4; lane++) begin
+            logic signed [2:0] v;
+            v = $signed(act_t.Dout[lane]);
+            if ($isunknown(act_t.Dout[lane]))
+                `uvm_error("SCB_RANGE", $sformatf("DUT lane %0d contains X", lane))
+            else if (v < -3'sd2 || v > 3'sd2)
+                `uvm_error("SCB_RANGE", $sformatf("DUT lane %0d out of range: %0d", lane, v))
         end
-        a = $signed(act_t.enc_out[11:9]);
-        b = $signed(act_t.enc_out[8:6]);
-        c = $signed(act_t.enc_out[5:3]);
-        d = $signed(act_t.enc_out[2:0]);
-        if (a < -3'sd2 || a > 3'sd2)
-            `uvm_error("SCB_RANGE", $sformatf("lane A out of range: %0d", a))
-        if (b < -3'sd2 || b > 3'sd2)
-            `uvm_error("SCB_RANGE", $sformatf("lane B out of range: %0d", b))
-        if (c < -3'sd2 || c > 3'sd2)
-            `uvm_error("SCB_RANGE", $sformatf("lane C out of range: %0d", c))
-        if (d < -3'sd2 || d > 3'sd2)
-            `uvm_error("SCB_RANGE", $sformatf("lane D out of range: %0d", d))
     endfunction
 
-    // drains queues in lockstep: pops one item from each queue,
-    // compares expected vs actual output, logs first N mismatches
     function void compare_if_ready();
         seq_item in_t, act_t, exp_t;
-        string  mismatch_fields;
+        string mismatch_fields;
 
         while ((in_q.size() > 0) && (act_q.size() > 0) && (exp_q.size() > 0)) begin
             in_t = in_q.pop_front();
@@ -174,14 +176,13 @@ class scoreboard extends uvm_scoreboard;
 
             check_dut_range(act_t);
 
-            if (exp_t.enc_out !== act_t.enc_out)
-            begin
+            if (exp_t.Dout !== act_t.Dout) begin
                 fail_count++;
                 seq_fail_count[in_t.scenario_id]++;
                 mismatch_fields = check_lanes(exp_t, act_t, in_t.scenario_id);
                 if (fail_count <= max_mismatch_log) begin
                     `uvm_error("SCB_MISMATCH",
-                        $sformatf("compare[%0d] mismatched fields:%s  input={%s}  exp=%s act=%s",
+                        $sformatf("compare[%0d] mismatched fields:%s input={%s} exp=%s act=%s",
                                   compare_count, mismatch_fields,
                                   fmt_in(in_t), fmt_out(exp_t), fmt_out(act_t)))
                 end else if (fail_count == (max_mismatch_log + 1)) begin
@@ -196,7 +197,12 @@ class scoreboard extends uvm_scoreboard;
         end
     endfunction
 
-    // per-scenario pass/fail with lane-level breakdown
+    function int count_seen(bit seen[256]);
+        int total = 0;
+        foreach (seen[i]) if (seen[i]) total++;
+        return total;
+    endfunction
+
     function void report_sequence_summary();
         foreach (seq_compare_count[scenario_id]) begin
             string status;
@@ -214,12 +220,30 @@ class scoreboard extends uvm_scoreboard;
         end
     endfunction
 
-    // final summary: total received/compared/match/fail with lane breakdown
+    function void report_coverage_summary();
+        int en_cov;
+        int dis_cov;
+        en_cov = count_seen(seen_en_data);
+        dis_cov = count_seen(seen_dis_data);
+        `uvm_info("SCB_COV", $sformatf(
+            "input coverage: TX_EN=1 Din=%0d/256 samples=%0d, TX_EN=0 Din=%0d/256 samples=%0d, transitions 00=%0d 01=%0d 10=%0d 11=%0d",
+            en_cov, enabled_sample_count, dis_cov, disabled_sample_count,
+            tx_en_transition_count[0], tx_en_transition_count[1],
+            tx_en_transition_count[2], tx_en_transition_count[3]), UVM_NONE)
+        if (en_cov != 256)
+            `uvm_error("SCB_COV", $sformatf("missing enabled Din values: %0d", 256 - en_cov))
+        if (dis_cov != 256)
+            `uvm_error("SCB_COV", $sformatf("missing disabled Din values: %0d", 256 - dis_cov))
+        foreach (tx_en_transition_count[i])
+            if (tx_en_transition_count[i] == 0)
+                `uvm_error("SCB_COV", $sformatf("missing TX_EN transition bin %0d", i))
+    endfunction
+
     function void report_phase(uvm_phase phase);
         super.report_phase(phase);
 
         `uvm_info("SCB", $sformatf(
-            "received: in=%0d act=%0d exp=%0d  compared=%0d match=%0d fail=%0d  leftover: in_q=%0d act_q=%0d exp_q=%0d",
+            "received: in=%0d act=%0d exp=%0d compared=%0d match=%0d fail=%0d leftover: in_q=%0d act_q=%0d exp_q=%0d",
             in_rcv_count, act_rcv_count, exp_rcv_count, compare_count, match_count, fail_count,
             in_q.size(), act_q.size(), exp_q.size()), UVM_NONE)
 
@@ -227,9 +251,9 @@ class scoreboard extends uvm_scoreboard;
             `uvm_error("SCB", "FAIL: no output samples were compared")
         else if (fail_count == 0)
             `uvm_info("SCB", $sformatf("PASS: %0d items matched", match_count), UVM_NONE)
-        else if (fail_count > 0)
+        else
             `uvm_error("SCB", $sformatf(
-                "FAIL: %0d mismatches; PASS: %0d matched  lane mismatches: A=%0d B=%0d C=%0d D=%0d",
+                "FAIL: %0d mismatches; PASS: %0d matched lane mismatches: A=%0d B=%0d C=%0d D=%0d",
                 fail_count, match_count,
                 lane_fail_count[0], lane_fail_count[1], lane_fail_count[2], lane_fail_count[3]))
 
@@ -237,6 +261,7 @@ class scoreboard extends uvm_scoreboard;
             `uvm_error("SCB", $sformatf("leftover items: in=%0d act=%0d exp=%0d", in_q.size(), act_q.size(), exp_q.size()))
 
         report_sequence_summary();
+        report_coverage_summary();
     endfunction
 
 endclass

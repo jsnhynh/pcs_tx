@@ -24,8 +24,7 @@ class monitor_out extends uvm_monitor;
         void'(uvm_config_db #(bit)::get(this, "", "use_dut_output", use_dut_output));
     endfunction
 
-    // captures output-side transactions: golden reference (use_dut_output=0)
-    // or DUT output (use_dut_output=1), determined by uvm_config_db
+    // captures output-side transactions from golden reference or DUT
     task run_phase(uvm_phase phase);
         seq_item txn;
 
@@ -34,7 +33,7 @@ class monitor_out extends uvm_monitor;
             if (!vif.mon_cb.rst_n) continue;
 
             txn = seq_item::type_id::create("txn");
-            txn.enc_out = use_dut_output ? vif.mon_cb.tx_out : vif.mon_cb.tx_out_ref;
+            txn.Dout = use_dut_output ? vif.mon_cb.Dout : vif.mon_cb.Dout_ref;
 
             ap.write(txn);
         end
