@@ -99,8 +99,35 @@ class my_sequence extends uvm_sequence #(seq_item);
     endtask
 
     task random_run(int n);
+        int sent;
+        int gap_len;
+        int packet_len;
+        int tail_len;
         current_scenario_id = SCN_RANDOM;
-        repeat (n) send_rand();
+        sent = 0;
+
+        while (sent < n) begin
+            gap_len = $urandom_range(1, 8);
+            repeat (gap_len) begin
+                if (sent >= n) break;
+                send($urandom_range(0, 255), 1'b0);
+                sent++;
+            end
+
+            packet_len = $urandom_range(1, 64);
+            repeat (packet_len) begin
+                if (sent >= n) break;
+                send($urandom_range(0, 255), 1'b1);
+                sent++;
+            end
+
+            tail_len = $urandom_range(6, 10);
+            repeat (tail_len) begin
+                if (sent >= n) break;
+                send(8'h00, 1'b0);
+                sent++;
+            end
+        end
     endtask
 
     task corner_cases();
@@ -114,6 +141,11 @@ class my_sequence extends uvm_sequence #(seq_item);
             walk = 8'b1 << b;
             send(walk, 1'b1);
             send(~walk, 1'b1);
+        end
+        repeat (12) send(8'h00, 1'b0);
+
+        for (int b = 0; b < 8; b++) begin
+            walk = 8'b1 << b;
             send(walk, 1'b0);
             send(~walk, 1'b0);
         end
