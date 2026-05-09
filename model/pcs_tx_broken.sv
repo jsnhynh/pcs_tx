@@ -61,11 +61,15 @@ module pcs_tx_broken_core #(
 
     // Sd_n
     logic [8:0] Sd_n;
+    logic       csreset_compat;
+    assign csreset_compat = tx_enable_n[2] & ~tx_enable_n[0];
+
     tx_sd_gen   u_tx_sd_gen (
         .clk                (clk),
         .rst                (rst),
         .tx_enable_n        (tx_enable_n[2:0]),
         .TXD                (TXD),
+        .csreset            (csreset_compat),
         .Sc_n               (Sc_n),
 
         .Sd_n               (Sd_n)

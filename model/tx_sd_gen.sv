@@ -7,6 +7,7 @@ module tx_sd_gen (
 
     input  logic [2:0]  tx_enable_n,
     input  logic [7:0]  TXD,
+    input  logic        csreset,
 
     // from sc gen
     input  logic [7:0]  Sc_n,
@@ -17,23 +18,20 @@ module tx_sd_gen (
     logic [2:0]  cs_prev;
     logic [2:0]  cs_next;
 
-    logic        csreset_n;
     always_comb begin
-        csreset_n  = tx_enable_n[2] & ~tx_enable_n[0];
-
         cs_next[0] = cs_prev[2];
 
         // sd bit 8
         Sd_n[8] = cs_next[0];
 
         // sd bit 7
-        if (!csreset_n && tx_enable_n[2])   Sd_n[7] = Sc_n[7] ^ TXD[7];
-        else if (csreset_n)                 Sd_n[7] = cs_prev[1];
+        if (!csreset && tx_enable_n[2])     Sd_n[7] = Sc_n[7] ^ TXD[7];
+        else if (csreset)                   Sd_n[7] = cs_prev[1];
         else                                Sd_n[7] = Sc_n[7];
 
         // sd bit 6
-        if (!csreset_n && tx_enable_n[2])   Sd_n[6] = Sc_n[6] ^ TXD[6];
-        else if (csreset_n)                 Sd_n[6] = cs_prev[1];
+        if (!csreset && tx_enable_n[2])     Sd_n[6] = Sc_n[6] ^ TXD[6];
+        else if (csreset)                   Sd_n[6] = cs_prev[1];
         else                                Sd_n[6] = Sc_n[6];
 
         // sd bits 5:4
