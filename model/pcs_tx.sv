@@ -83,8 +83,8 @@ module pcs_tx #(
             ST_RESET:               next_state = ST_IDLE;
             ST_IDLE:    if (TX_EN)  next_state = ST_SDD2;
             ST_SDD2:                next_state = ST_DATA;
-            ST_DATA:    if (!TX_EN) next_state = ST_CSR2; csreset = 1'b1;
-            ST_CSR2:                next_state = ST_ESD1; csreset    = 1'b1;
+            ST_DATA:    if (!TX_EN) {next_state, csreset} = {ST_CSR2, 1'b1};
+            ST_CSR2:                {next_state, csreset} = {ST_ESD1, 1'b1};
             ST_ESD1:                next_state = ST_ESD2;
             ST_ESD2:                next_state = ST_IDLE;
             default:                next_state = ST_IDLE;
