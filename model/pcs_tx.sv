@@ -122,8 +122,13 @@ module pcs_tx #(
     logic signed [2:0] TC_n;
     logic signed [2:0] TD_n;
     tx_table_entry_t table_entry;
+    logic             subset_is_odd;
+    logic [1:0]       subset_col;
 
     always_comb begin
+        subset_is_odd = Sd_n[8];
+        subset_col    = {Sd_n[6], Sd_n[7]};
+
         unique case (state)
             ST_RESET, ST_IDLE: begin
                 if ((state == ST_IDLE) && TX_EN)
@@ -136,22 +141,22 @@ module pcs_tx #(
             end
             ST_DATA: begin
                 if (TX_EN) begin
-                    if (Sd_n[6])
-                        table_entry = TX_TABLE_NORMAL_ODD[Sd_n[8:7]][Sd_n[5:0]];
+                    if (subset_is_odd)
+                        table_entry = TX_TABLE_NORMAL_ODD[subset_col][Sd_n[5:0]];
                     else
-                        table_entry = TX_TABLE_NORMAL_EVEN[Sd_n[8:7]][Sd_n[5:0]];
+                        table_entry = TX_TABLE_NORMAL_EVEN[subset_col][Sd_n[5:0]];
                 end else begin
-                    if (Sd_n[6])
-                        table_entry = TX_TABLE_SPECIAL_ODD[2][Sd_n[8:7]];
+                    if (subset_is_odd)
+                        table_entry = TX_TABLE_SPECIAL_ODD[2][subset_col];
                     else
-                        table_entry = TX_TABLE_SPECIAL_EVEN[2][Sd_n[8:7]];
+                        table_entry = TX_TABLE_SPECIAL_EVEN[2][subset_col];
                 end
             end
             ST_CSR2: begin
-                if (Sd_n[6])
-                    table_entry = TX_TABLE_SPECIAL_ODD[2][Sd_n[8:7]];
+                if (subset_is_odd)
+                    table_entry = TX_TABLE_SPECIAL_ODD[2][subset_col];
                 else
-                    table_entry = TX_TABLE_SPECIAL_EVEN[2][Sd_n[8:7]];
+                    table_entry = TX_TABLE_SPECIAL_EVEN[2][subset_col];
             end
             ST_ESD1: begin
                 table_entry = TX_TABLE_SPECIAL_EVEN[7][0];

@@ -76,8 +76,8 @@ module tx_table (
     end
 
     always_comb begin
-        subset_col    = Sd_n[8:7];
-        subset_is_odd = Sd_n[6];
+        subset_col    = {Sd_n[6], Sd_n[7]};
+        subset_is_odd = Sd_n[8];
         fixed_special_row = (row_sel == ROW_SSD1)        ||
                             (row_sel == ROW_SSD2)        ||
                             (row_sel == ROW_ESD1)        ||
