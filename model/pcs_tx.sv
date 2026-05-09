@@ -1,8 +1,6 @@
 `ifndef PCS_TX_SV
 `define PCS_TX_SV
 
-import pcs_tx_pkg::*;
-
 module pcs_tx #(
     parameter logic [32:0] SCR_SEED = 33'h1
 ) (
@@ -14,7 +12,6 @@ module pcs_tx #(
 );
 
     logic [4:0] tx_enable_n;
-    logic [3:0] tx_error_n;
 
     typedef enum logic [2:0] {
         ST_RESET,
@@ -33,11 +30,9 @@ module pcs_tx #(
     always_ff @(posedge clk or posedge rst) begin
         if (rst) begin
             tx_enable_n <= '0;
-            tx_error_n  <= '0;
             state       <= ST_RESET;
         end else begin
             tx_enable_n <= {tx_enable_n[3:0], TX_EN};
-            tx_error_n  <= '0;
             state       <= next_state;
         end
     end
@@ -85,35 +80,14 @@ module pcs_tx #(
         csreset    = 1'b0;
 
         unique case (state)
-            ST_RESET: begin
-                next_state = ST_IDLE;
-            end
-            ST_IDLE: begin
-                if (TX_EN)
-                    next_state = ST_SDD2;
-            end
-            ST_SDD2: begin
-                next_state = ST_DATA;
-            end
-            ST_DATA: begin
-                if (!TX_EN) begin
-                    csreset    = 1'b1;
-                    next_state = ST_CSR2;
-                end
-            end
-            ST_CSR2: begin
-                csreset    = 1'b1;
-                next_state = ST_ESD1;
-            end
-            ST_ESD1: begin
-                next_state = ST_ESD2;
-            end
-            ST_ESD2: begin
-                next_state = ST_IDLE;
-            end
-            default: begin
-                next_state = ST_IDLE;
-            end
+            ST_RESET:               next_state = ST_IDLE;
+            ST_IDLE:    if (TX_EN)  next_state = ST_SDD2;
+            ST_SDD2:                next_state = ST_DATA;
+            ST_DATA:    if (!TX_EN) next_state = ST_CSR2; csreset = 1'b1;
+            ST_CSR2:                next_state = ST_ESD1; csreset    = 1'b1;
+            ST_ESD1:                next_state = ST_ESD2;
+            ST_ESD2:                next_state = ST_IDLE;
+            default:                next_state = ST_IDLE;
         endcase
     end
 
@@ -121,59 +95,16 @@ module pcs_tx #(
     logic signed [2:0] TB_n;
     logic signed [2:0] TC_n;
     logic signed [2:0] TD_n;
-    tx_table_entry_t table_entry;
-    logic             subset_is_odd;
-    logic [1:0]       subset_col;
 
-    always_comb begin
-        subset_is_odd = Sd_n[8];
-        subset_col    = {Sd_n[6], Sd_n[7]};
-
-        unique case (state)
-            ST_RESET, ST_IDLE: begin
-                if ((state == ST_IDLE) && TX_EN)
-                    table_entry = TX_TABLE_SPECIAL_EVEN[5][0];
-                else
-                    table_entry = TX_TABLE_NORMAL_EVEN[0][Sd_n[5:0]];
-            end
-            ST_SDD2: begin
-                table_entry = TX_TABLE_SPECIAL_EVEN[6][0];
-            end
-            ST_DATA: begin
-                if (TX_EN) begin
-                    if (subset_is_odd)
-                        table_entry = TX_TABLE_NORMAL_ODD[subset_col][Sd_n[5:0]];
-                    else
-                        table_entry = TX_TABLE_NORMAL_EVEN[subset_col][Sd_n[5:0]];
-                end else begin
-                    if (subset_is_odd)
-                        table_entry = TX_TABLE_SPECIAL_ODD[2][subset_col];
-                    else
-                        table_entry = TX_TABLE_SPECIAL_EVEN[2][subset_col];
-                end
-            end
-            ST_CSR2: begin
-                if (subset_is_odd)
-                    table_entry = TX_TABLE_SPECIAL_ODD[2][subset_col];
-                else
-                    table_entry = TX_TABLE_SPECIAL_EVEN[2][subset_col];
-            end
-            ST_ESD1: begin
-                table_entry = TX_TABLE_SPECIAL_EVEN[7][0];
-            end
-            ST_ESD2: begin
-                table_entry = TX_TABLE_SPECIAL_EVEN[8][0];
-            end
-            default: begin
-                table_entry = TX_TABLE_NORMAL_EVEN[0][Sd_n[5:0]];
-            end
-        endcase
-
-        TA_n = table_entry.TA_n;
-        TB_n = table_entry.TB_n;
-        TC_n = table_entry.TC_n;
-        TD_n = table_entry.TD_n;
-    end
+    tx_table u_tx_table (
+        .tx_state (state),
+        .TX_EN    (TX_EN),
+        .Sd_n     (Sd_n),
+        .TA_n     (TA_n),
+        .TB_n     (TB_n),
+        .TC_n     (TC_n),
+        .TD_n     (TD_n)
+    );
 
     logic signed [2:0] A_n;
     logic signed [2:0] B_n;

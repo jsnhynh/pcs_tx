@@ -4,9 +4,7 @@
 `include "uvm_macros.svh"
 import uvm_pkg::*;
 
-`include "model/pcs_tx_cmd_pkg.sv"
 `include "model/pcs_tx_pkg.sv"
-import pcs_tx_cmd_pkg::*;
 
 `include "interface.sv"
 `include "DUTS26_0.sv"
