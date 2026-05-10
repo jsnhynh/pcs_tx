@@ -11,6 +11,7 @@ class my_sequence extends uvm_sequence #(seq_item);
     localparam int unsigned SCN_TRANSITIONS      = 4;
     localparam int unsigned SCN_RANDOM           = 5;
     localparam int unsigned SCN_CORNER_CASES     = 6;
+    localparam int unsigned SCN_DATA_MODE_SWEEP  = 7;
 
     int unsigned current_scenario_id = SCN_IDLE;
 
@@ -35,6 +36,7 @@ class my_sequence extends uvm_sequence #(seq_item);
 
         idle_train(16);
         data_sweep();
+        data_mode_sweep();
         packet_bursts();
         disable_patterns();
         transition_stress();
@@ -51,6 +53,15 @@ class my_sequence extends uvm_sequence #(seq_item);
     task data_sweep();
         current_scenario_id = SCN_DATA_SWEEP;
         for (int i = 0; i < 256; i++) send(i[7:0], 1'b1);
+    endtask
+
+    task data_mode_sweep();
+        current_scenario_id = SCN_DATA_MODE_SWEEP;
+        repeat (8) send(8'h00, 1'b0);
+        send(8'h55, 1'b1);
+        send(8'hAA, 1'b1);
+        for (int i = 0; i < 256; i++) send(i[7:0], 1'b1);
+        repeat (8) send(8'h00, 1'b0);
     endtask
 
     task packet_bursts();

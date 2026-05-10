@@ -78,6 +78,7 @@ class scoreboard extends uvm_scoreboard;
             4: return "transitions";
             5: return "random";
             6: return "corner_cases";
+            7: return "data_mode_sweep";
             default: return "idle";
         endcase
     endfunction
